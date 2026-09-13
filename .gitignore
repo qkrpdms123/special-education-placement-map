@@ -1,0 +1,19 @@
+# Local credentials and environments
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+.venv/
+node_modules/
+dist/
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db
+# Real student records and scratch files belong outside Git
+data/private/
+data/raw/
+uploads/
+work/
+*.log
