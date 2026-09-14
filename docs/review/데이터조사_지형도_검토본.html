@@ -1,0 +1,426 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>특수교육 배치 데이터 지형도</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+KR:wght@300;400;500;600&family=Noto+Serif+KR:wght@600;700&display=swap">
+<style>
+:root{
+  --paper:#EDEFEE; --paper-2:#E2E6E3; --card:#F8F9F8;
+  --ink:#141A18; --ink-2:#4C5752; --ink-3:#6E7A74;
+  --rule:#C7CFC9; --rule-soft:#DAE0DB;
+  --accent:#0F5C55; --accent-soft:#D8E6E3;
+  --open:#2E6B45; --open-soft:#DCE8DF;
+  --partial:#856110; --partial-soft:#EDE5CE;
+  --blocked:#9C3520; --blocked-soft:#F0DBD5;
+  --serif:"Noto Serif KR",Georgia,"Nanum Myeongjo",serif;
+  --sans:"IBM Plex Sans KR","Noto Sans KR",system-ui,-apple-system,sans-serif;
+  --mono:"IBM Plex Mono","SFMono-Regular",Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#0F1413; --paper-2:#161C1A; --card:#1A211F;
+    --ink:#E7EBE8; --ink-2:#9AA69F; --ink-3:#7C8880;
+    --rule:#2C3633; --rule-soft:#222B28;
+    --accent:#54B7A7; --accent-soft:#16302D;
+    --open:#69B887; --open-soft:#162C1F;
+    --partial:#CDA850; --partial-soft:#2E2716;
+    --blocked:#E3765E; --blocked-soft:#33190F;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0F1413; --paper-2:#161C1A; --card:#1A211F;
+  --ink:#E7EBE8; --ink-2:#9AA69F; --ink-3:#7C8880;
+  --rule:#2C3633; --rule-soft:#222B28;
+  --accent:#54B7A7; --accent-soft:#16302D;
+  --open:#69B887; --open-soft:#162C1F;
+  --partial:#CDA850; --partial-soft:#2E2716;
+  --blocked:#E3765E; --blocked-soft:#33190F;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:var(--sans); font-weight:400; font-size:16px; line-height:1.75;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:940px; margin:0 auto; padding-inline:24px; padding-block:0 88px}
+@media(max-width:520px){.wrap{padding-inline:16px}}
+
+.mast{padding-block:56px 36px; border-bottom:2px solid var(--ink)}
+.eyebrow{
+  font-family:var(--mono); font-size:11.5px; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--accent); margin:0 0 18px;
+}
+h1{
+  font-family:var(--serif); font-weight:700; font-size:clamp(34px,6vw,52px);
+  line-height:1.18; letter-spacing:-.02em; margin:0; text-wrap:balance;
+}
+.dek{margin:18px 0 0; max-width:62ch; font-size:17px; color:var(--ink-2); font-weight:300}
+.mast-meta{
+  display:flex; flex-wrap:wrap; gap:8px 26px; margin-top:26px;
+  font-family:var(--mono); font-size:12px; color:var(--ink-3);
+}
+.mast-meta b{color:var(--ink-2); font-weight:500}
+
+.verdict{
+  margin-block:40px; padding:26px 28px; background:var(--card);
+  border:1px solid var(--rule); border-left:4px solid var(--accent);
+}
+.verdict p{margin:0; font-family:var(--serif); font-weight:600; font-size:clamp(19px,2.6vw,23px); line-height:1.6; text-wrap:balance}
+.verdict .sub{margin-top:12px; font-family:var(--sans); font-weight:300; font-size:15.5px; color:var(--ink-2); line-height:1.75}
+
+section{margin-block:64px}
+h2{
+  font-family:var(--serif); font-weight:700; font-size:clamp(23px,3.4vw,29px);
+  line-height:1.35; margin:0; letter-spacing:-.01em; text-wrap:balance;
+}
+.h2-rule{display:flex; align-items:baseline; gap:14px; border-bottom:1px solid var(--rule); padding-bottom:12px; margin-bottom:26px}
+.h2-num{font-family:var(--mono); font-size:12px; color:var(--accent); letter-spacing:.1em; flex:none}
+h3{font-family:var(--sans); font-weight:600; font-size:17px; margin:34px 0 10px; letter-spacing:-.005em}
+p{margin:0 0 14px; max-width:68ch}
+a{color:var(--accent); text-decoration:none; border-bottom:1px solid var(--accent-soft); transition:border-color .15s}
+a:hover{border-bottom-color:var(--accent)}
+a:focus-visible{outline:2px solid var(--accent); outline-offset:3px}
+strong{font-weight:600}
+em{font-style:italic; color:var(--ink-2)}
+code{font-family:var(--mono); font-size:.88em; background:var(--paper-2); padding:1px 5px; border-radius:2px}
+
+.strata{display:flex; flex-direction:column; border:1px solid var(--rule); background:var(--card)}
+.stratum{display:grid; grid-template-columns:78px 1fr; border-bottom:1px solid var(--rule)}
+.stratum:last-child{border-bottom:0}
+.st-key{
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px;
+  padding:22px 8px; border-right:1px solid var(--rule); font-family:var(--mono);
+}
+.st-key .lv{font-size:19px; font-weight:500; letter-spacing:.02em}
+.st-key .depth{font-size:10px; letter-spacing:.1em; color:var(--ink-3)}
+.stratum[data-s="open"] .st-key{background:var(--open-soft); color:var(--open)}
+.stratum[data-s="partial"] .st-key{background:var(--partial-soft); color:var(--partial)}
+.stratum[data-s="blocked"] .st-key{background:var(--blocked-soft); color:var(--blocked)}
+.st-body{padding:20px 24px}
+@media(max-width:520px){.st-body{padding:16px}}
+.st-head{display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin-bottom:8px}
+.st-title{font-family:var(--serif); font-weight:600; font-size:18px}
+.st-body p{margin:0 0 10px; font-size:15px; color:var(--ink-2)}
+.st-body p:last-child{margin-bottom:0}
+.st-how{font-family:var(--mono); font-size:12px; color:var(--ink-3)}
+
+.chip{
+  font-family:var(--mono); font-size:11px; letter-spacing:.06em; padding:3px 9px;
+  border-radius:2px; white-space:nowrap; font-weight:500;
+}
+.chip.open{background:var(--open-soft); color:var(--open)}
+.chip.partial{background:var(--partial-soft); color:var(--partial)}
+.chip.blocked{background:var(--blocked-soft); color:var(--blocked)}
+
+.scroller{overflow-x:auto; margin:20px 0; border:1px solid var(--rule)}
+table{border-collapse:collapse; width:100%; min-width:560px; font-size:14.5px; background:var(--card)}
+th,td{text-align:left; padding:11px 16px; border-bottom:1px solid var(--rule-soft); vertical-align:top}
+thead th{
+  background:var(--paper-2); font-family:var(--mono); font-size:11px; letter-spacing:.09em;
+  text-transform:uppercase; color:var(--ink-2); font-weight:500; white-space:nowrap;
+  border-bottom:1px solid var(--rule);
+}
+tbody tr:last-child td{border-bottom:0}
+td.num,td.mono{font-family:var(--mono); font-variant-numeric:tabular-nums; font-size:13px; white-space:nowrap}
+td.field{font-family:var(--mono); font-size:12.5px; color:var(--accent)}
+.mark{font-family:var(--mono); font-weight:500; white-space:nowrap}
+.mark.no{color:var(--blocked)}
+.mark.maybe{color:var(--partial)}
+.mark.yes{color:var(--open)}
+
+.code{margin:18px 0; border:1px solid var(--rule); background:var(--card)}
+.code-cap{
+  font-family:var(--mono); font-size:11px; letter-spacing:.07em; color:var(--ink-3);
+  padding:9px 16px; border-bottom:1px solid var(--rule); background:var(--paper-2);
+  display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;
+}
+.code pre{margin:0; padding:16px; overflow-x:auto; font-family:var(--mono); font-size:12.5px; line-height:1.8}
+.code .k{color:var(--accent)}
+.code .c{color:var(--ink-3)}
+.code .hi{background:var(--accent-soft); border-radius:2px; padding:0 3px}
+
+.callout{margin:26px 0; padding:22px 24px; background:var(--paper-2); border-left:3px solid var(--ink-3)}
+.callout .lbl{font-family:var(--mono); font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3); display:block; margin-bottom:8px}
+.callout p{margin:0; font-size:15.5px; color:var(--ink)}
+.callout p + p{margin-top:10px}
+.callout.risk{background:var(--blocked-soft); border-left-color:var(--blocked)}
+.callout.risk .lbl{color:var(--blocked)}
+
+ol.steps{list-style:none; counter-reset:s; margin:22px 0 0; padding:0}
+ol.steps li{
+  counter-increment:s; display:grid; grid-template-columns:30px 1fr; gap:16px;
+  padding:15px 0; border-bottom:1px solid var(--rule-soft);
+}
+ol.steps li:last-child{border-bottom:0}
+ol.steps li::before{
+  content:counter(s); font-family:var(--mono); font-size:13px; color:var(--accent);
+  border:1px solid var(--rule); width:28px; height:28px; display:grid; place-items:center;
+  border-radius:50%; margin-top:2px;
+}
+.t{font-weight:600; font-size:15.5px}
+.d{font-size:14.5px; color:var(--ink-2); margin-top:3px}
+.when{font-family:var(--mono); font-size:12px; color:var(--ink-3)}
+
+ul.plain{margin:14px 0; padding-left:0; list-style:none}
+ul.plain li{position:relative; padding-left:20px; margin-bottom:10px; font-size:15.5px; color:var(--ink-2); max-width:68ch}
+ul.plain li::before{content:""; position:absolute; left:3px; top:11px; width:5px; height:5px; background:var(--accent); border-radius:50%}
+ul.plain li strong{color:var(--ink)}
+
+footer{margin-top:72px; padding-top:24px; border-top:1px solid var(--rule); font-family:var(--mono); font-size:12px; color:var(--ink-3); line-height:2}
+footer a{border-bottom-color:transparent}
+@media(prefers-reduced-motion:reduce){*{transition:none!important; animation:none!important}}
+</style>
+
+</head>
+<body>
+<div class="wrap">
+
+<header class="mast">
+  <p class="eyebrow">중입배치 MAP · 데이터 조달 조사 v0.1</p>
+  <h1>특수교육 배치 데이터 지형도</h1>
+  <p class="dek">배치 서비스에 필요한 데이터는 개방 수준이 전혀 다른 세 개 층으로 갈라진다. 위층은 오늘 바로 연동되고, 아래층은 사람이 문서에서 꺼내와야 한다.</p>
+  <div class="mast-meta">
+    <span><b>조사일</b> 2026-09-13</span>
+    <span><b>방법</b> 레퍼런스 역분석 + 공공 API 실호출</span>
+    <span><b>대상</b> 개발자 · 기획 검토용</span>
+  </div>
+</header>
+
+<div class="verdict">
+  <p>“지자체별 특수교육 API”는 존재하지 않는다.</p>
+  <p class="sub">대신 학교 뼈대(L1)는 전국 단위로 완전히 열려 있고, 학교별 특수학급 실체(L2)는 시도 집계까지만 열려 있으며, 배치 규칙(L3)은 애초에 데이터가 아니라 매년 새로 발간되는 문서다. 조달 전략은 층마다 달라야 한다.</p>
+</div>
+
+<section>
+  <div class="h2-rule"><span class="h2-num">L1—L3</span><h2>세 개의 층</h2></div>
+  <p>아래로 내려갈수록 개방도가 떨어지고, 우리 서비스의 차별성은 올라간다. 이건 우리 프로젝트의 약점이 아니라 이 도메인의 구조다.</p>
+
+  <div class="strata">
+    <div class="stratum" data-s="open">
+      <div class="st-key"><span class="lv">L1</span><span class="depth">표층</span></div>
+      <div class="st-body">
+        <div class="st-head"><span class="st-title">학교 뼈대</span><span class="chip open">전국 OpenAPI 존재</span></div>
+        <p>학교코드 · 정식명칭 · 관할 교육지원청 · 도로명주소 · 위도경도 · 중학구 경계</p>
+        <p class="st-how">조달 → 오늘 연동 가능. 인증키 발급만 남음</p>
+      </div>
+    </div>
+    <div class="stratum" data-s="partial">
+      <div class="st-key"><span class="lv">L2</span><span class="depth">중층</span></div>
+      <div class="st-body">
+        <div class="st-head"><span class="st-title">특수학급 실체</span><span class="chip partial">시도 집계까지만</span></div>
+        <p>학교별 특수학급 설치 여부 · 학급수 · 학생수 · 순회 현황 · 졸업예정자 수</p>
+        <p class="st-how">조달 → 교육지원청 공표 문서 수집·정규화. EDSS 신청이 유일한 미개척 카드</p>
+      </div>
+    </div>
+    <div class="stratum" data-s="blocked">
+      <div class="st-key"><span class="lv">L3</span><span class="depth">기반암</span></div>
+      <div class="st-body">
+        <div class="st-head"><span class="st-title">배치 규칙</span><span class="chip blocked">API 전무</span></div>
+        <p>거리 산정법 · 2km 전환 기준 · 근거리 순위 작성법 · 형제자매 및 특이배치</p>
+        <p class="st-how">조달 → 관할별 계획 HWP를 매년 확보해 규칙 테이블로 수기 전환</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="h2-rule"><span class="h2-num">01</span><h2>수원 레퍼런스 역분석</h2></div>
+  <p><code>school2026.github.io/map</code>의 실제 구현을 확인했다. 결론부터 말하면 <strong>이 서비스는 학교 API를 쓰지 않는다.</strong></p>
+
+  <ul class="plain">
+    <li><strong>298KB 단일 HTML 파일.</strong> 외부 데이터 파일도, 백엔드도, 학교 API 호출도 없다.</li>
+    <li>외부 의존은 카카오맵 SDK <code>dapi.kakao.com/v2/maps/sdk.js</code> <strong>하나뿐</strong>이다.</li>
+    <li>학교 데이터 <strong>177개 레코드가 HTML에 그대로 하드코딩</strong>돼 있다.</li>
+    <li>GitHub 저장소 <code>school2026/map</code>에는 README도, 데이터 파일도, 수집 스크립트도 <strong>전혀 없다</strong>. <code>index.html</code> 외 2개 파일이 전부다.</li>
+  </ul>
+
+  <h3>하드코딩된 레코드의 필드 구성</h3>
+  <div class="scroller">
+    <table>
+      <thead><tr><th>필드</th><th>건수</th><th>의미</th><th>공공 API로 확보 가능?</th></tr></thead>
+      <tbody>
+        <tr><td class="field">name · type · address · tel</td><td class="num">177</td><td>기본정보</td><td><span class="mark yes">가능</span> NEIS</td></tr>
+        <tr><td class="field">lat · lng</td><td class="num">177</td><td>좌표</td><td><span class="mark yes">가능</span> 위치표준데이터</td></tr>
+        <tr><td class="field">specialClass · specialStu</td><td class="num">177</td><td>특수학급 수 · 학생수</td><td><span class="mark no">불가</span> 학교 단위 미개방</td></tr>
+        <tr><td class="field">itinerantClass · itinerantStu</td><td class="num">177</td><td>순회 학급 · 학생</td><td><span class="mark no">불가</span></td></tr>
+        <tr><td class="field">totalClass · totalStu</td><td class="num">177</td><td>전체 규모</td><td><span class="mark maybe">일부</span> 학교알리미</td></tr>
+        <tr><td class="field">jidosa · extraTeacher · coopInstructor</td><td class="num">176</td><td>지도사 · 가배치교사 · 협력강사</td><td><span class="mark no">불가</span> 센터 내부 문서</td></tr>
+        <tr><td class="field">graduateStuSpecial</td><td class="num">173</td><td>졸업예정 특수교육대상 학생수</td><td><span class="mark no">불가</span> 센터 내부 문서</td></tr>
+        <tr><td class="field">junGun</td><td class="num">134</td><td>학군 · 중학구</td><td><span class="mark yes">가능</span> 학구도 SHP</td></tr>
+        <tr><td class="field">quota · level</td><td class="num">12</td><td>일부 기관 정원</td><td><span class="mark no">불가</span></td></tr>
+        <tr><td class="field">admissionQuota</td><td class="num">3</td><td>특수학교 입학정원</td><td><span class="mark no">불가</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout">
+    <span class="lbl">해석</span>
+    <p>국내에서 가장 앞선 레퍼런스조차 API를 쓰지 못했다. 수원특수교육지원센터가 배포한 현황 문서를 <strong>수작업 전사한 뒤 직접 지오코딩</strong>한 결과물이다. 출처 표기 “수원특수교육지원센터”, 기준일 2026.9.1., 하단 고지 “학구 정보는 단순 열람용이며 법적효력이 없습니다”가 이를 뒷받침한다.</p>
+    <p>따라서 <strong>“API를 못 구해서 못 만드는 것”이 아니다.</strong> 경쟁 레퍼런스도 동일 조건이었고, 그쪽에는 규칙이 아예 없다. 우리 해자는 어차피 L3에 있다.</p>
+  </div>
+</section>
+
+<section>
+  <div class="h2-rule"><span class="h2-num">02</span><h2>L1 · 오늘 확보되는 것</h2></div>
+
+  <h3>NEIS 학교기본정보 — 실호출 검증 완료</h3>
+  <p><code>open.neis.go.kr/hub/schoolInfo</code>를 인증키 없이 호출했고 정상 응답을 받았다. 운영 적용 시에는 키 발급을 권장한다.</p>
+
+  <div class="code">
+    <div class="code-cap"><span>GET /hub/schoolInfo?SCHUL_NM=방이중학교</span><span>응답 발췌 · LOAD_DTM 20260423</span></div>
+<pre><span class="k">"SD_SCHUL_CODE"</span>: "7130179"          <span class="c">← 공식 학교코드</span>
+<span class="k">"SCHUL_NM"</span>:      "방이중학교"
+<span class="k">"ATPT_OFCDC_SC_NM"</span>: "서울특별시교육청"
+<span class="k">"JU_ORG_NM"</span>:     <span class="hi">"서울특별시강동송파교육지원청"</span>  <span class="c">← 관할 자동 판정</span>
+<span class="k">"ORG_RDNMA"</span>:    "서울특별시 송파구 오금로11길 64"
+<span class="k">"COEDU_SC_NM"</span>:  "남여공학"
+<span class="k">"FOND_SC_NM"</span>:   "공립"</pre>
+  </div>
+
+  <p><code>JU_ORG_NM</code>에 교육지원청명이 그대로 들어 있어 관할 분할이 즉시 된다. 경기도교육청(<code>J10</code>) 중학교는 <strong>695교</strong>가 조회된다. <strong>다만 위도·경도가 없다.</strong></p>
+
+  <h3>좌표와 학구 경계 보완</h3>
+  <div class="scroller">
+    <table>
+      <thead><tr><th>소스</th><th>핵심 항목</th><th>형식 · 기준</th><th>용도</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>전국초중등학교위치<br>표준데이터</strong><br><span class="when">data.go.kr / 15021148</span></td>
+          <td>학교ID, 학교급, <strong>위도 · 경도</strong>, 시도교육청코드, 교육지원청코드</td>
+          <td class="mono">CSV · JSON · API<br>2026-05-06 갱신</td>
+          <td>NEIS와 조인해<br>좌표 완성</td>
+        </tr>
+        <tr>
+          <td><strong>학구도안내서비스</strong><br><span class="when">schoolzone.emac.kr</span></td>
+          <td><strong>중학교 학구 및 학군</strong>, 학교–학구도 연계정보, 교육행정구역</td>
+          <td class="mono">SHP · CSV<br>반기 갱신</td>
+          <td>중입 배치<br>경계 판정</td>
+        </tr>
+        <tr>
+          <td><strong>경기데이터드림</strong><br><span class="when">data.gg.go.kr</span></td>
+          <td>장애영역별 특수학급 학생수, 특수학급 설치 학교 수, 지원센터 현황</td>
+          <td class="mono">Sheet · OpenAPI</td>
+          <td>수요 추세 근거<br><span class="mark no">집계뿐</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p>수원 레퍼런스가 수작업으로 전사한 <code>junGun</code> 필드를 우리는 공식 SHP로 받을 수 있다. 이 지점에서 이미 우위다.</p>
+</section>
+
+<section>
+  <div class="h2-rule"><span class="h2-num">03</span><h2>L2 · 막혀 있는 것</h2></div>
+  <p>학교별 특수학급 현황에 대한 전국 API가 있는지 후보를 하나씩 확인했다. 결과는 명확하다.</p>
+
+  <div class="scroller">
+    <table>
+      <thead><tr><th>후보 소스</th><th>실제 확인 결과</th><th>판정</th></tr></thead>
+      <tbody>
+        <tr><td>교육부_특수교육정보<br>특수학급 현황<br><span class="when">15051021</span></td><td>컬럼이 시도 · 설립별 · 학교급별 학교수/학급수/학생수. <strong>기준일 2016-04-01</strong>, 1회성 데이터</td><td><span class="mark no">✗ 10년 전 집계</span></td></tr>
+        <tr><td>교육부_특수교육 통계<br><span class="when">15051018</span></td><td><strong>PDF</strong> 제공, 시도교육청별 집계, 29행</td><td><span class="mark no">✗ 학교 단위 아님</span></td></tr>
+        <tr><td>나이스 교육정보<br>개방 포털</td><td>특수학교 <em>시간표</em> API는 있으나 특수학급 설치 현황 API 없음</td><td><span class="mark no">✗</span></td></tr>
+        <tr><td>학교알리미<br>공시정보 OpenAPI<br><span class="when">15098092</span></td><td>학생 · 교원 · 시설 · 급식 · 학업성취 등. 특수학급 항목 포함 여부는 명세서 확인 필요</td><td><span class="mark maybe">△ 확인 필요</span></td></tr>
+        <tr><td>나이스 특수교육<br>배치시스템</td><td>내부 행정시스템. 개방 대상 아님</td><td><span class="mark no">✗</span></td></tr>
+        <tr><td>정원 · 잔여석</td><td>어떤 경로로도 비공개</td><td><span class="mark no">✗</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>그래서 L2는 문서에서 온다 — 확보 경로 3가지</h3>
+  <div class="scroller">
+    <table>
+      <thead><tr><th>순위</th><th>경로</th><th>내용</th><th>제약</th></tr></thead>
+      <tbody>
+        <tr><td class="mono">1</td><td><strong>교육지원청<br>공표물 수집</strong></td><td>매년 배치계획 HWP의 ‘참고1 학교 현황’. 이미 3개 관할 확보. 서울교육청은 <em>2025~2029학년도 특수교육기관 학생배치계획</em>까지 공개해 중기 증설 계획도 잡힌다</td><td>관할 수만큼 반복.<br>단 가장 확실하고 최신</td></tr>
+        <tr><td class="mono">2</td><td><strong>EDSS<br>에듀데이터서비스</strong><br><span class="when">edss.moe.go.kr</span></td><td>초중등 7개 분야에 <strong>특수교육통계 · 나이스 자료 포함</strong>. 개방 범위를 70% 층화추출 → <strong>100% 전면 개방</strong>으로 확대 중</td><td>학술연구 목적 심사.<br>실시간 연동엔 부적합</td></tr>
+        <tr><td class="mono">3</td><td>정보공개청구<br><span class="when">open.go.kr</span></td><td>교육지원청별 ‘관내 특수학급 설치 현황’ 청구</td><td>회신 형식 제각각,<br>확장성 낮음</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>EDSS는 <strong>신청 가치가 가장 높은 미개척 카드</strong>다. 심사 기간이 있으니 다른 작업과 병렬로 지금 넣는 편이 좋다.</p>
+</section>
+
+<section>
+  <div class="h2-rule"><span class="h2-num">04</span><h2>L3 · API가 존재할 수 없는 영역</h2></div>
+  <p>요청하신 <strong>거리 계산 방법</strong>과 <strong>형제자매 처리</strong> 같은 규칙은 데이터셋이 아니라 매년 교육지원청이 새로 발간하는 계획 문서의 문장이다. 개방 API는 앞으로도 나오지 않는다.</p>
+
+  <ul class="plain">
+    <li>우리는 이미 3종(동부 · 강동송파 · 강남서초)에서 규칙을 추출해 <code>walk_transit_boundary</code>, <code>display_under_1000m</code>, <code>duplicate_check_scope</code> 등으로 테이블화해 뒀다. <strong>이 규칙 테이블 자체가 서비스의 해자다</strong> — 수원 레퍼런스에는 규칙이 아예 없고 현황 열람만 한다.</li>
+    <li><strong>형제자매는 자동 순위 규칙이 아니다.</strong> 특이배치 심사 대상이므로 “형제가 있으면 같은 학교”로 순위를 바꾸면 실제 업무와 어긋난다. 서식과 증빙을 안내하고 <strong>특이배치 플래그를 세우는 것</strong>까지가 자동화 범위다.</li>
+    <li>관할 확장 비용 = 계획 문서 확보 × 관할 수. <strong>1개 관할 추가마다 HWP 1~3종을 읽고 규칙 행을 추가하는 수작업</strong>으로 예산과 일정을 잡아야 한다.</li>
+  </ul>
+</section>
+
+<section>
+  <div class="h2-rule"><span class="h2-num">05</span><h2>최대 기술 리스크 · 경로 API</h2></div>
+  <p>서식은 <strong>“카카오맵 기준, 2km 미만 도보 / 이상 대중교통”</strong>이라고 명시한다. 그런데 서식이 요구하는 바로 그 두 기능이 API로 막혀 있다.</p>
+
+  <div class="scroller">
+    <table>
+      <thead><tr><th>필요 기능</th><th>카카오 제공 현황</th><th>상태</th></tr></thead>
+      <tbody>
+        <tr><td>지도 표시</td><td>카카오맵 JS SDK</td><td><span class="mark yes">공개</span></td></tr>
+        <tr><td>자동차 길찾기</td><td>카카오모빌리티 Directions <span class="when">(단 서식은 자차 제외)</span></td><td><span class="mark yes">공개</span></td></tr>
+        <tr><td><strong>도보 길찾기</strong></td><td>Directions(도보)는 <strong>제휴 파트너 전용</strong>, 사전 제휴 계약 필요</td><td><span class="mark no">제한</span></td></tr>
+        <tr><td><strong>대중교통 길찾기</strong></td><td><strong>공식 API 미개방</strong> — 개발자 포럼 문의만 존재</td><td><span class="mark no">차단</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>대응 선택지</h3>
+  <ul class="plain">
+    <li><strong>제휴 문의</strong> — 카카오모빌리티에 GovTech · 공익 목적으로 도보 Directions 사용 승인 요청. 성사되면 최선.</li>
+    <li><strong>대체 API</strong> — ODsay(대중교통, 상용), TMAP 보행자 경로, 국토부 대중교통 API. 값이 카카오맵과 <strong>달라질 수 있으므로</strong> <code>route_provider</code>를 반드시 표기하고 교사 검수를 거쳐야 한다.</li>
+    <li><strong>하이브리드 (현실적 MVP)</strong> — 직선거리로 후보를 추린 뒤 각 후보의 카카오맵 길찾기 딥링크를 제공해 교사가 확인하고 입력. 자동화율은 낮지만 서식 정합성은 100%다.</li>
+  </ul>
+
+  <div class="callout risk">
+    <span class="lbl">반드시 화면에 명시</span>
+    <p>어느 쪽을 택하든 <strong>“카카오맵과 값이 다를 수 있다”</strong>를 UI에 표기해야 한다. 교육지원청이 거리 재점검을 할 때 카카오맵으로 보기 때문이다. 리드타임이 가장 길어 제휴 문의는 즉시 착수를 권한다.</p>
+  </div>
+</section>
+
+<section>
+  <div class="h2-rule"><span class="h2-num">06</span><h2>권고 실행 순서</h2></div>
+  <ol class="steps">
+    <li><div><div class="t">NEIS <code>schoolInfo</code> + 학교위치표준데이터 조인</div><div class="d">학교코드 · 명칭 · 관할 · 주소 · 좌표 마스터 확보. <span class="when">오늘 가능 · 인증키 발급만</span></div></div></li>
+    <li><div><div class="t">학구도 ‘중학교 학구 및 학군’ SHP 수령</div><div class="d">중학구 경계 레이어. 레퍼런스 대비 우위 지점. <span class="when">문의 schoolzone@koies.or.kr</span></div></div></li>
+    <li><div><div class="t">확보한 배치계획 참고1을 L2 스키마로 정규화</div><div class="d"><code>school_id + school_year + special_class_count + source</code>. <span class="when">2026 현황과 2027 계획 분리 필수</span></div></div></li>
+    <li><div><div class="t">카카오모빌리티 제휴 문의 발송 + 대체 API 비교 검증</div><div class="d">경로 조달 방식 결정. <span class="when">가장 긴 리드타임 · 즉시 착수</span></div></div></li>
+    <li><div><div class="t">EDSS 이용 신청</div><div class="d">학교 단위 특수교육 마이크로데이터 확보 여부 타진. <span class="when">심사 기간 고려 · 병렬 진행</span></div></div></li>
+    <li><div><div class="t">규칙 테이블에 관할 추가</div><div class="d"><code>rule_version</code>별 관할 규칙 확장. <span class="when">관할 1개당 HWP 1~3종</span></div></div></li>
+  </ol>
+</section>
+
+<section>
+  <div class="h2-rule"><span class="h2-num">07</span><h2>미확인 항목</h2></div>
+  <p>아래는 확인 전까지 기획서에 “가능” 또는 “불가”로 단정하지 않는다.</p>
+  <ul class="plain">
+    <li><strong>학교알리미 OpenAPI 명세서(zip)</strong>에 특수학급 관련 공시항목이 있는지 — L2 자동화 가능성이 걸린 유일한 잔여 카드.</li>
+    <li>경기도교육청이 <strong>수원 등 교육지원청별 특수학급 설치 학교 목록</strong>을 별도 공표하는지. 경기데이터드림은 집계만 확인됐다.</li>
+    <li>학구도 SHP의 <strong>중학구 갱신 주기</strong>와 2027학년도 반영 시점.</li>
+    <li>EDSS 개방용 데이터에 특수교육통계의 <strong>학교 식별자</strong>가 포함되는지, 비식별 처리 수준은 어느 정도인지.</li>
+    <li>카카오모빌리티 <strong>제휴 심사 기준</strong>과 공공 · 비영리 트랙 존재 여부.</li>
+  </ul>
+</section>
+
+<footer>
+  확인 소스 —
+  <a href="https://open.neis.go.kr/">NEIS 교육정보 개방 포털</a> ·
+  <a href="https://www.data.go.kr/data/15021148/standard.do">전국초중등학교위치표준데이터</a> ·
+  <a href="https://schoolzone.emac.kr/publicData/dataInfo.do">학구도안내서비스</a> ·
+  <a href="https://www.data.go.kr/data/15051021/fileData.do">교육부 특수학급 현황</a> ·
+  <a href="https://www.data.go.kr/data/15051018/fileData.do">교육부 특수교육 통계</a> ·
+  <a href="https://www.data.go.kr/data/15098092/openapi.do">학교알리미 공시정보 OpenAPI</a> ·
+  <a href="https://www.edmgr.kr/intro/service_edss">EDSS 에듀데이터서비스</a> ·
+  <a href="https://data.gg.go.kr/">경기데이터드림</a> ·
+  <a href="https://developers.kakaomobility.com/affiliate/walking/directions">카카오모빌리티 도보 길찾기</a><br>
+  본 조사는 2026-09-13 기준 공개 정보와 실제 API 호출 결과에 근거한다. 갱신일 · 기준일이 명시된 항목은 이후 변경될 수 있다.
+</footer>
+
+</div>
+</body>
+</html>
