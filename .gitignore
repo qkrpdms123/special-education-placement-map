@@ -17,3 +17,7 @@ data/raw/
 uploads/
 work/
 *.log
+
+# 설치된 스킬 본문 (외부 저작물, skills-lock.json으로 재설치)
+.agents/skills/
+.claude/skills/
