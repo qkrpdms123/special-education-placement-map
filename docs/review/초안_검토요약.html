@@ -1,0 +1,332 @@
+<title>중입배치 MAP 초안 검토</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=IBM+Plex+Sans+KR:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+:root{
+  --paper:#F5F6F5; --surface:#FFFFFF; --surface-2:#EDF0EF;
+  --ink:#13303A; --ink-soft:#33474E; --muted:#5C6B6E; --faint:#8A9698;
+  --rule:#D6DDDB; --rule-soft:#E5EAE9;
+  --accent:#1E8E84; --accent-deep:#17414F; --accent-wash:#E2F0EE;
+  --ok:#2F7D5B; --ok-wash:#E3F0E9;
+  --warn:#A2691A; --warn-wash:#F6EDDD;
+  --todo:#A83F34; --todo-wash:#F8E7E4;
+  --serif:"Gowun Batang",Batang,"Nanum Myeongjo",serif;
+  --sans:"IBM Plex Sans KR","Malgun Gothic","Apple SD Gothic Neo",system-ui,sans-serif;
+  --mono:"IBM Plex Mono","D2Coding",ui-monospace,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#0D1518; --surface:#141F22; --surface-2:#1B282B;
+  --ink:#E4ECEA; --ink-soft:#C2CFCD; --muted:#93A3A4; --faint:#6B7B7D;
+  --rule:#2B3A3D; --rule-soft:#223033;
+  --accent:#4BC3B5; --accent-deep:#8FD8CE; --accent-wash:#152E2F;
+  --ok:#63B88E; --ok-wash:#162A22;
+  --warn:#D2A257; --warn-wash:#2B2317;
+  --todo:#DE8478; --todo-wash:#2D1B18;
+}}
+:root[data-theme="dark"]{
+  --paper:#0D1518; --surface:#141F22; --surface-2:#1B282B;
+  --ink:#E4ECEA; --ink-soft:#C2CFCD; --muted:#93A3A4; --faint:#6B7B7D;
+  --rule:#2B3A3D; --rule-soft:#223033;
+  --accent:#4BC3B5; --accent-deep:#8FD8CE; --accent-wash:#152E2F;
+  --ok:#63B88E; --ok-wash:#162A22;
+  --warn:#D2A257; --warn-wash:#2B2317;
+  --todo:#DE8478; --todo-wash:#2D1B18;
+}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.75;margin:0;padding-inline:20px;-webkit-font-smoothing:antialiased}
+.wrap{max-width:900px;margin:0 auto;padding-block:0 96px}
+a{color:var(--accent);text-underline-offset:3px}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+
+.mast{padding-block:56px 26px;border-bottom:2px solid var(--ink)}
+.kicker{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:600;margin:0 0 14px}
+.mast h1{font-family:var(--serif);font-weight:700;font-size:clamp(30px,6vw,44px);line-height:1.18;margin:0 0 14px;text-wrap:balance}
+.mast .sub{font-size:16px;color:var(--ink-soft);margin:0 0 20px;max-width:64ch;line-height:1.7}
+.metarow{display:flex;flex-wrap:wrap;gap:8px 10px;font-family:var(--mono);font-size:11.5px;color:var(--muted)}
+.metarow span{border:1px solid var(--rule);border-radius:2px;padding:3px 9px;background:var(--surface)}
+.metarow span b{color:var(--ink);font-weight:600}
+.metarow span.due{border-color:var(--todo);color:var(--todo)}
+.metarow span.due b{color:var(--todo)}
+
+section{padding-block:40px 6px;border-top:1px solid var(--rule);margin-top:34px}
+section:first-of-type{border-top:none}
+.shead{display:flex;flex-wrap:wrap;align-items:baseline;gap:12px;margin-bottom:8px}
+.snum{font-family:var(--mono);font-size:12px;font-weight:600;color:var(--accent);letter-spacing:.1em}
+h2.stitle{font-family:var(--serif);font-weight:700;font-size:clamp(22px,4.2vw,29px);line-height:1.3;margin:0;flex:1 1 auto;text-wrap:balance}
+h3{font-family:var(--sans);font-weight:600;font-size:17px;line-height:1.5;margin:30px 0 10px;text-wrap:balance}
+h4{font-family:var(--mono);font-weight:600;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:24px 0 8px}
+p{margin:0 0 14px;max-width:68ch}
+strong{font-weight:600;color:var(--ink)}
+ul,ol{margin:0 0 16px;padding-left:20px;max-width:68ch}
+li{margin-bottom:6px}
+li::marker{color:var(--faint)}
+code{font-family:var(--mono);font-size:.88em;background:var(--surface-2);padding:1px 5px;border-radius:2px}
+
+.lede{font-family:var(--serif);font-size:clamp(19px,3.4vw,24px);line-height:1.55;border-left:3px solid var(--accent);padding:4px 0 4px 20px;margin:22px 0;max-width:52ch}
+.note{background:var(--surface);border:1px solid var(--rule);border-left:3px solid var(--accent);padding:15px 17px;margin:20px 0;border-radius:0 3px 3px 0}
+.note p:last-child{margin-bottom:0}
+.note.warn{border-left-color:var(--warn);background:var(--warn-wash)}
+.note.todo{border-left-color:var(--todo);background:var(--todo-wash)}
+
+.tw{overflow-x:auto;margin:18px 0;border:1px solid var(--rule);border-radius:3px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:14px;min-width:520px}
+caption{caption-side:top;text-align:left;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:11px 14px 0;font-weight:600}
+th,td{padding:9px 13px;text-align:left;vertical-align:top;border-bottom:1px solid var(--rule-soft);line-height:1.6}
+thead th{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600;border-bottom:1px solid var(--rule);white-space:nowrap}
+tbody tr:last-child td{border-bottom:none}
+td.num,th.num{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+td.val{font-family:var(--mono);font-weight:600;color:var(--accent-deep);white-space:nowrap;font-variant-numeric:tabular-nums}
+tbody tr.hi td{background:var(--accent-wash)}
+tbody tr.flag td{background:var(--todo-wash)}
+
+.pill{font-family:var(--mono);font-size:10.5px;font-weight:600;padding:2px 7px;border-radius:2px;white-space:nowrap;letter-spacing:.04em}
+.pill.ok{background:var(--ok-wash);color:var(--ok)}
+.pill.warn{background:var(--warn-wash);color:var(--warn)}
+.pill.todo{background:var(--todo-wash);color:var(--todo)}
+
+.score{display:flex;flex-direction:column;border-top:1px solid var(--rule);margin:20px 0}
+.score .row{display:grid;grid-template-columns:44px 1fr 96px 74px;gap:14px;align-items:center;padding:12px 6px;border-bottom:1px solid var(--rule-soft)}
+.score .row .n{font-family:var(--mono);font-size:11.5px;font-weight:600;color:var(--accent)}
+.score .row .t{font-size:14.5px;line-height:1.45}
+.score .row .t em{display:block;font-style:normal;font-size:12.5px;color:var(--muted);margin-top:3px;line-height:1.5}
+.score .row .bar{height:7px;background:var(--surface-2);border-radius:1px;overflow:hidden}
+.score .row .bar i{display:block;height:100%;background:var(--accent);opacity:.5}
+.score .row.top .bar i{opacity:1}
+.score .row .p{font-family:var(--mono);font-size:18px;font-weight:600;text-align:right;color:var(--accent-deep);font-variant-numeric:tabular-nums}
+
+.checks{list-style:none;padding:0;margin:16px 0;counter-reset:step}
+.checks li{display:grid;grid-template-columns:26px 1fr;gap:12px;align-items:start;padding:11px 0;border-bottom:1px solid var(--rule-soft);margin:0;font-size:14.5px}
+.checks li:last-child{border-bottom:none}
+.checks li::before{counter-increment:step;content:counter(step);font-family:var(--mono);font-size:11.5px;font-weight:600;color:var(--accent);background:var(--accent-wash);border-radius:2px;text-align:center;line-height:22px;height:22px;margin-top:2px}
+.banlist{list-style:none;padding:0;margin:16px 0}
+.banlist li{padding:9px 0 9px 26px;border-bottom:1px solid var(--rule-soft);margin:0;font-size:14.5px;position:relative}
+.banlist li:last-child{border-bottom:none}
+.banlist li::before{content:"×";position:absolute;left:4px;color:var(--todo);font-weight:600}
+
+footer{margin-top:50px;padding-top:20px;border-top:2px solid var(--ink);font-size:13px;color:var(--muted)}
+footer h3{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;margin:0 0 12px;font-weight:600;color:var(--muted)}
+
+@media (max-width:640px){
+  body{font-size:15.5px;padding-inline:16px}
+  .score .row{grid-template-columns:38px 1fr 60px;gap:10px}
+  .score .row .bar{display:none}
+  .mast{padding-block:36px 22px}
+  section{padding-block:30px 4px;margin-top:26px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<div class="wrap">
+
+<header class="mast">
+  <p class="kicker">2026 GovTech 창업경진대회 · 초안 검토</p>
+  <h1>중입배치 MAP 초안 검토</h1>
+  <p class="sub">1,372행짜리 제출원고를 다시 읽지 않고도 초안 전체를 점검할 수 있게 만든 문서입니다. <strong>기준 문서는 <code>docs/proposal/HWP_제출원고.txt</code></strong>이며, 이 페이지는 그것을 검토하기 위한 보조 자료입니다.</p>
+  <div class="metarow">
+    <span class="due">마감까지 <b>3일</b> · 9.21(월) 10:00</span>
+    <span>원고 <b>1,372행 · 표 37개</b></span>
+    <span>빈칸 <b>4종</b></span>
+    <span>1차 <b>서면평가</b></span>
+    <span>채점 <b>최저·최고 제외 평균</b></span>
+  </div>
+</header>
+
+<section>
+  <div class="shead"><span class="snum">01</span><h2 class="stitle">한 문장으로</h2></div>
+  <p class="lede">만족하는 제도를, 더 적은 부담으로 통과하게 하는 일.</p>
+  <p>제도 개선을 주장하지 않습니다. 선정·배치 만족도가 <strong>70.9%</strong>이기 때문입니다. 대신 그 제도를 거치는 <strong>과정의 시간과 불확실성</strong>을 줄입니다.</p>
+  <div class="note">
+    <p><strong>세부분야</strong> ② 지역·사회문제 해결 (사회적 약자·서비스 접근성) · <strong>분량</strong> 참가 개요 1p 이내, 전체 20p 이내</p>
+  </div>
+</section>
+
+<section>
+  <div class="shead"><span class="snum">02</span><h2 class="stitle">배점 7항목 대응 현황</h2><span class="pill ok">100점</span></div>
+  <div class="score">
+    <div class="row top"><span class="n">1-1</span><span class="t">아이디어 기획의 동기와 배경<em>절친 특수교사 → 인터뷰 2회 → 서식 원문 3종 대조 → 노조 설문 n=1,082 → 청약 앱 벤치마킹 → 가정 3회 기각</em></span><span class="bar"><i style="width:100%"></i></span><span class="p">25</span></div>
+    <div class="row top"><span class="n">2-1</span><span class="t">구체적 실행계획·기술적 실현 가능성<em>API 실호출 성공 + 개발자 API 검토 문서 + 호출 예산 설계 + 검증 로드맵 V1~V6</em></span><span class="bar"><i style="width:80%"></i></span><span class="p">20</span></div>
+    <div class="row"><span class="n">1-2</span><span class="t">문제 해결 필요성·사회적 공감대<em>연차보고서 + 실태조사 국가승인통계 9개 표</em></span><span class="bar"><i style="width:60%"></i></span><span class="p">15</span></div>
+    <div class="row"><span class="n">2-2</span><span class="t">사업모델·유사사업 대비 차별성<em>유사 서비스 실측 분석 + 인접 영역 선례(청약) + 연간 구독형 원가 구조</em></span><span class="bar"><i style="width:40%"></i></span><span class="p">10</span></div>
+    <div class="row"><span class="n">3-1</span><span class="t">데이터 활용·성장 가능성<em>공공데이터 9종 연결 + 확장 축 4개 + AI 한계 명시</em></span><span class="bar"><i style="width:40%"></i></span><span class="p">10</span></div>
+    <div class="row"><span class="n">3-2</span><span class="t">기존 공공 행정·서비스 혁신<em>before/after 6단계 + 학부모 경험 6행 + 핵심지표 1개</em></span><span class="bar"><i style="width:40%"></i></span><span class="p">10</span></div>
+    <div class="row"><span class="n">4-1</span><span class="t">대표자 주도성·실행 의지<em>직접 수행 10건 + 유리한 주장 4회 기각 + 2차 설문 2종 계획</em></span><span class="bar"><i style="width:40%"></i></span><span class="p">10</span></div>
+  </div>
+  <p><strong>근거 강도가 가장 높은 곳이 배점이 큰 곳과 일치합니다.</strong> 25점과 20점 항목이 1차 자료와 실행 검증으로 받쳐져 있습니다. 빈칸이 남은 곳은 §1-1의 인터뷰 수치와 §4-1의 팀 정보뿐입니다.</p>
+</section>
+
+<section>
+  <div class="shead"><span class="snum">03</span><h2 class="stitle">원고에 실린 모든 수치와 출처</h2></div>
+  <div class="note warn">
+    <p><strong>이 표의 각 행이 심사에서 반박당할 수 있는 지점입니다.</strong> 출처와 단서가 원고 본문에 붙어 있는지 확인하세요.</p>
+  </div>
+
+  <h3>규모 — 교육부 「2025 특수교육 연차보고서」 (기준일 2025.4.1)</h3>
+  <div class="tw"><table>
+    <thead><tr><th>수치</th><th>값</th><th>비고</th></tr></thead>
+    <tbody>
+      <tr><td>전체 특수교육대상자</td><td class="val">120,735명</td><td>2016년 87,950명 → +37.3%</td></tr>
+      <tr><td>일반학교 배치</td><td class="val">89,440명<br>74.1%</td><td>특수학급 69,908 + 일반학급 19,532</td></tr>
+      <tr class="hi"><td>중학교 과정</td><td class="val">27,188명</td><td>특수학급 15,305(56.3%) + 특수학교 7,290 + 일반학급 4,593</td></tr>
+      <tr><td>전국 특수학급</td><td class="val">14,658개</td><td>2016년 10,065개</td></tr>
+      <tr><td>고등학교 과정</td><td class="val">28,240명</td><td>확장 축 근거</td></tr>
+    </tbody>
+  </table></div>
+  <div class="note warn">
+    <p><strong>2026년판 발간 여부를 제출 전 확인하세요.</strong> 이 기획서가 ‘정보의 적용 연도’를 다루므로 한 해 지난 수치를 쓰면 자기모순입니다.</p>
+  </div>
+
+  <h3>보호자 — 「2023 특수교육 실태조사」 (국가승인통계 제112014호)</h3>
+  <div class="tw"><table>
+    <thead><tr><th>수치</th><th>값</th><th>표</th><th>단서</th></tr></thead>
+    <tbody>
+      <tr><td>혼자 통학 불가</td><td class="val">45.2%</td><td>Ⅰ-12</td><td>10,386 / 23,002명</td></tr>
+      <tr class="flag"><td>등·하교 주 보조자가 부모</td><td class="val">62.3%</td><td>Ⅰ-13</td><td><strong>합산치.</strong> 어머니 55.9% + 아버지 6.4%. 원문에 ‘부모’ 항목 없음 — <strong>산출 과정 명기 필수</strong></td></tr>
+      <tr><td>일상생활 도움이 가족</td><td class="val">84.5%</td><td>Ⅰ-89</td><td></td></tr>
+      <tr><td>중학교에서 처음 선정</td><td class="val">19.8%</td><td>Ⅰ-5</td><td>4,546명. 중1 9.3% + 중2·3 10.5%</td></tr>
+      <tr class="flag"><td>정보접근 지원 현재→필요</td><td class="val">0.8% → 6.0%</td><td>Ⅰ-149<br>Ⅰ-165</td><td><strong>점자·음성 등 포함 가능</strong> — 진학 정보로 좁혀 단정 금지</td></tr>
+      <tr class="hi"><td><strong>선정·배치 만족 이상</strong></td><td class="val">70.9%</td><td>Ⅰ-187</td><td>불만족 이하 5.1%. <strong>불리하지만 반드시 싣는다</strong></td></tr>
+      <tr class="flag"><td>기관 인지 — 입소문 vs 공식</td><td class="val">41.6%<br>19.2%</td><td>Ⅱ-7</td><td><strong>장애영아 보호자 406명</strong> — 병기 필수</td></tr>
+      <tr class="flag"><td>선정·배치 어려움 — 정보 부족</td><td class="val">40.1%</td><td>Ⅱ-10</td><td>252명 중. <strong>장애영아 보호자 406명</strong> — 병기 필수</td></tr>
+    </tbody>
+  </table></div>
+  <div class="note todo">
+    <p><strong>Ⅰ표(104,087명)와 Ⅱ표(406명)를 절대 섞지 않습니다.</strong></p>
+    <p>중학교 과정 응답자 <strong>23,002명(2023 기준)</strong>은 연차보고서 27,188명(2025 기준)과 <strong>조사 시점이 다릅니다</strong> — 출처 절에 명기돼 있습니다.</p>
+  </div>
+
+  <h3>교사 — 전국특수교사노조 설문 (2026.5.14, n=1,082)</h3>
+  <div class="tw"><table>
+    <thead><tr><th>수치</th><th>값</th><th>단서</th></tr></thead>
+    <tbody>
+      <tr><td>응답자 구성</td><td class="val">69.9% / 81.1%</td><td>초등 특수교사 · 특수학급 근무. 대상 집단과 일치</td></tr>
+      <tr class="flag"><td>행정업무 경감 요구</td><td class="val">39.0%</td><td><strong>행정업무 전반</strong>에 대한 응답. 중입 배치 비중은 알 수 없음 — 원고에 단서 있음</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>현직 교사 인터뷰 — 표본 1명, 2회</h3>
+  <div class="tw"><table>
+    <thead><tr><th>항목</th><th>상태</th></tr></thead>
+    <tbody>
+      <tr class="flag"><td>학생 1명당 소요시간</td><td><span class="pill todo">미기재</span></td></tr>
+      <tr class="flag"><td>수정 발생 항목</td><td><span class="pill todo">미기재</span></td></tr>
+      <tr class="flag"><td>작성 N건 중 M건</td><td><span class="pill todo">미기재</span></td></tr>
+    </tbody>
+  </table></div>
+  <div class="note todo">
+    <p><strong>“오류율 %”, “평균 __분”으로 쓰지 않습니다.</strong> 표본 1명입니다. <strong>“N건 중 M건”</strong>, <strong>“이 교사의 경우”</strong>로만 씁니다.</p>
+  </div>
+
+  <h3>기술 — 개발자 API 검토 (2026-09-18)</h3>
+  <div class="tw"><table>
+    <thead><tr><th>항목</th><th>값</th><th>검증 수준</th></tr></thead>
+    <tbody>
+      <tr class="hi"><td>학교 기본정보 API</td><td>실호출 성공, 관할 자동 판정</td><td><span class="pill ok">실행 검증</span></td></tr>
+      <tr class="hi"><td>타 시도 서식 수집</td><td>다운로드·텍스트 추출 성공</td><td><span class="pill ok">실행 검증</span></td></tr>
+      <tr><td>도보 경로</td><td>TMAP 보행자. 무료 1,000건/일, 제휴 불필요</td><td><span class="pill warn">명세 확인</span></td></tr>
+      <tr><td>대중교통 경로</td><td>ODsay. 무료는 개인·학생·5인 이하 스타트업</td><td><span class="pill warn">명세 확인</span></td></tr>
+      <tr><td>호출 예산</td><td>5개교 선별 시 <strong>하루 200명</strong></td><td>산출</td></tr>
+      <tr><td>특수학급 설치 여부</td><td>학교알리미로 전국 도출 가능 (학급유형 제외)</td><td><span class="pill warn">명세 확인</span></td></tr>
+    </tbody>
+  </table></div>
+  <div class="note todo">
+    <p><strong>“확보”로 쓰지 않습니다.</strong> 키 발급·실호출·요금 확정은 2차 기간 V2입니다.</p>
+  </div>
+</section>
+
+<section>
+  <div class="shead"><span class="snum">04</span><h2 class="stitle">내린 판단 일곱 가지</h2></div>
+  <p>이 일곱 가지가 원고의 성격을 결정했습니다. <strong>동의하지 않는 항목이 있으면 그 부분만 다시 씁니다.</strong></p>
+  <div class="tw"><table>
+    <thead><tr><th>#</th><th>판단</th><th>이유</th><th>영향받는 절</th></tr></thead>
+    <tbody>
+      <tr class="hi"><td>1</td><td><strong>제도 비판을 버렸다</strong></td><td>만족도 70.9%. 제도가 나쁘다는 서술은 국가승인통계에 반한다</td><td>전체 논지</td></tr>
+      <tr class="hi"><td>2</td><td><strong>불리한 수치를 싣는다</strong></td><td>빼면 오히려 제도 비판으로 오독되고, 심사에서 반박당한다</td><td>§1-2 · §4-1</td></tr>
+      <tr><td>3</td><td>인터뷰를 “건”으로만 쓴다</td><td>표본 1명. %로 환산하면 “몇 명 조사했나” 질문에 무너진다</td><td>§1-1</td></tr>
+      <tr><td>4</td><td>경로 조회를 “확인”까지만</td><td>명세를 본 것과 호출한 것은 다르다</td><td>§2-1</td></tr>
+      <tr><td>5</td><td>첫 관할 = 검수 교사 담당 관할</td><td>병목은 데이터가 아니라 검수다</td><td>§2-1</td></tr>
+      <tr><td>6</td><td>배치 가능성을 제시하지 않는다</td><td>정원·잔여석이 비공개. 추정값이 배치 확률로 읽히면 위험</td><td>§2-1 · §2-2</td></tr>
+      <tr><td>7</td><td>설문은 2차 기간에</td><td>1차는 서면평가라 방어 기회가 없고, 통과 시 멘토링 기간이 주어진다</td><td>§4-1</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section>
+  <div class="shead"><span class="snum">05</span><h2 class="stitle">쓰면 안 되는 표현</h2></div>
+  <p>원고 검토 시 이 표현들이 들어가 있지 않은지 확인하세요.</p>
+  <ul class="banlist">
+    <li>“전국 데이터 확보 완료” — 표본 조사다</li>
+    <li>“규칙이 관할마다 다르다”를 확정 사실로 — 같은 학교급 표본은 D·S 2건뿐</li>
+    <li>“기존 특수교육 학교 지도는 없다” — 유사 서비스가 존재한다</li>
+    <li><strong>“배치 제도가 불만족스럽다”</strong> — 만족 이상 70.9%</li>
+    <li><strong>“정보접근 지원이 부족해 진학 정보를 못 얻는다”</strong> — 점자·음성 포함 가능</li>
+    <li><strong>장애영아(Ⅱ표) 수치를 중학생 수치처럼</strong></li>
+    <li><strong>“오류율 __%”, “특수교사는 평균 __분”, “현장 조사를 완료했다”</strong></li>
+    <li><strong>경로 조회를 “확보했다”</strong> — 명세 확인 단계</li>
+    <li>측정하지 않은 시간 단축률·오류 감소율</li>
+  </ul>
+</section>
+
+<section>
+  <div class="shead"><span class="snum">06</span><h2 class="stitle">빈칸 4종</h2><span class="pill todo">이것만 채우면 제출 가능</span></div>
+  <div class="tw"><table>
+    <thead><tr><th>#</th><th>위치</th><th>내용</th><th>난이도</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>Ⅰ. 참가 개요</td><td><strong>팀명</strong></td><td>결정만 하면 됨</td></tr>
+      <tr class="flag"><td>2</td><td>§1-1 (2곳)</td><td><strong>인터뷰 수치</strong> — 1명당 소요시간, 수정 항목, “N건 중 M건”</td><td><strong>교사에게 물어봐야 함</strong></td></tr>
+      <tr><td>3</td><td>§4-1</td><td><strong>대표자 이름·소속</strong>, 개발자 참여 확정 여부</td><td>결정만 하면 됨</td></tr>
+      <tr><td>4</td><td>§4-1 (2곳)</td><td><strong>설문 목표 인원</strong> 2건</td><td>현실적인 수로</td></tr>
+    </tbody>
+  </table></div>
+  <div class="note">
+    <p><strong>2번이 유일하게 외부 의존입니다.</strong> 기억나는 범위의 대략값도 괜찮고, 그럴 경우 <strong>“약 N분”</strong>으로 적고 근거를 ‘기억’으로 표시하면 오히려 정직하게 읽힙니다.</p>
+  </div>
+</section>
+
+<section>
+  <div class="shead"><span class="snum">07</span><h2 class="stitle">제출 전 확인 순서</h2></div>
+  <ul class="checks">
+    <li><strong>연차보고서 2026년판 발간 여부</strong> 확인 → 있으면 §1-2 수치 교체</li>
+    <li><strong>모집공고 변경 여부와 최신 양식</strong> 재확인 (마감 2026-09-21 10:00로 기록)</li>
+    <li>빈칸 4종 채우기</li>
+    <li><strong>인터뷰 인용 동의</strong> 확인 — 익명이어도 교사 동의를 받았는지, 소속·실명이 본문에 없는지</li>
+    <li>한글로 이관 — <strong>UTF-8 인코딩</strong>, <code>Ctrl+Alt+V</code> 텍스트 붙여넣기, 표는 <code>[입력]-[표]-[문자열을 표로]</code>(탭)</li>
+    <li><code>▶</code> 줄을 진하게 처리 후 기호 삭제 / <code>주1)</code>을 각주로 변환 (<code>Ctrl+N,N</code>)</li>
+    <li><strong>분량 확인</strong> — 20p 초과 시 <strong>§2-2 복제 난이도 → §3-1 갱신 체계</strong> 순으로 축소. <strong>§1-1·§1-2는 줄이지 않는다</strong></li>
+    <li>맨 위 ‘작성 안내’ 상자 삭제</li>
+    <li>위 05절의 금지 표현 최종 검색</li>
+  </ul>
+</section>
+
+<section>
+  <div class="shead"><span class="snum">08</span><h2 class="stitle">남은 리스크</h2></div>
+  <div class="tw"><table>
+    <thead><tr><th>리스크</th><th>상태</th><th>영향</th></tr></thead>
+    <tbody>
+      <tr><td>경로 API 실호출 미검증</td><td>명세 확인까지 완료</td><td><span class="pill ok">낮음</span> 3갈래 병행이라 하나 막혀도 서술 성립</td></tr>
+      <tr><td>학교 마스터 키 매칭</td><td>NEIS 코드 ≠ 위치표준데이터 ID. 분교·이전·개명에서 깨짐</td><td><span class="pill warn">중</span> ② 완료 기준에 매칭률 측정 포함</td></tr>
+      <tr><td>관할 간 규칙 차이 미확정</td><td>표본 D·S 2건</td><td><span class="pill ok">낮음</span> 단정하지 않고 V1로 이관</td></tr>
+      <tr><td>인터뷰 표본 1명</td><td>미기재</td><td><span class="pill warn">중</span> V3 설문으로 확장 예정, 한계 명시됨</td></tr>
+      <tr class="flag"><td><strong>2026년판 연차보고서</strong></td><td>미확인</td><td><span class="pill warn">중</span> 발간됐는데 안 쓰면 자기모순</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<footer>
+  <h3>문서 지도</h3>
+  <div class="tw"><table>
+    <thead><tr><th>무엇을 볼 때</th><th>어디로</th></tr></thead>
+    <tbody>
+      <tr class="hi"><td><strong>제출 원고 (정본)</strong></td><td><code>docs/proposal/HWP_제출원고.txt</code></td></tr>
+      <tr><td>읽기 편한 사본</td><td><code>docs/proposal/기획서_v1.0_제출본.md</code></td></tr>
+      <tr><td>브라우저 검토</td><td><code>docs/review/기획서_v1.0_제출본_검토.html</code></td></tr>
+      <tr><td>실태조사 표 원문 확인</td><td><code>docs/research/선행조사_근거자료.md</code></td></tr>
+      <tr><td>인터뷰 수치 기록</td><td><code>docs/research/현직교사_인터뷰_기록.md</code></td></tr>
+      <tr><td>API 확보 경로 상세</td><td><code>docs/development/API_활용목록_개발자검토.md</code></td></tr>
+      <tr><td>내부 검토 메모 전체</td><td><code>docs/proposal/기획서_v0.5.md</code></td></tr>
+      <tr><td>작업 인계 규칙</td><td><code>CLAUDE.md</code></td></tr>
+    </tbody>
+  </table></div>
+</footer>
+
+</div>
