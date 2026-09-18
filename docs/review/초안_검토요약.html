@@ -96,9 +96,20 @@ tbody tr.flag td{background:var(--todo-wash)}
 .score .row .p{font-family:var(--mono);font-size:18px;font-weight:600;text-align:right;color:var(--accent-deep);font-variant-numeric:tabular-nums}
 
 .checks{list-style:none;padding:0;margin:16px 0;counter-reset:step}
-.checks li{display:grid;grid-template-columns:26px 1fr;gap:12px;align-items:start;padding:11px 0;border-bottom:1px solid var(--rule-soft);margin:0;font-size:14.5px}
+.checks li{
+  position:relative;
+  padding:11px 0 11px 36px;
+  border-bottom:1px solid var(--rule-soft);
+  margin:0;font-size:14.5px;line-height:1.65;
+}
 .checks li:last-child{border-bottom:none}
-.checks li::before{counter-increment:step;content:counter(step);font-family:var(--mono);font-size:11.5px;font-weight:600;color:var(--accent);background:var(--accent-wash);border-radius:2px;text-align:center;line-height:22px;height:22px;margin-top:2px}
+.checks li::before{
+  counter-increment:step;content:counter(step);
+  position:absolute;left:0;top:13px;
+  width:22px;height:22px;line-height:22px;text-align:center;
+  font-family:var(--mono);font-size:11.5px;font-weight:600;
+  color:var(--accent);background:var(--accent-wash);border-radius:2px;
+}
 .banlist{list-style:none;padding:0;margin:16px 0}
 .banlist li{padding:9px 0 9px 26px;border-bottom:1px solid var(--rule-soft);margin:0;font-size:14.5px;position:relative}
 .banlist li:last-child{border-bottom:none}
