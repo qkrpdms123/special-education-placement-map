@@ -183,6 +183,9 @@ li::marker{color:var(--faint)}
   text-transform:uppercase;color:var(--todo);display:block;margin-bottom:7px;
 }
 .fill p{margin:0;font-size:14.5px;color:var(--ink-soft)}
+.fill.filled{background:transparent;border-style:solid;border-color:var(--rule)}
+.fill.filled .tag{color:var(--muted)}
+.fill .note{margin-top:6px;font-size:13px;color:var(--muted)}
 
 .tw{overflow-x:auto;margin:20px 0;border:1px solid var(--rule);border-radius:3px;background:var(--surface)}
 table{border-collapse:collapse;width:100%;font-size:14px;min-width:460px}
@@ -221,6 +224,14 @@ tbody tr.hi td{background:var(--accent-wash)}
   padding:10px 0;border-bottom:1px solid var(--rule-soft);margin:0;font-size:14.5px;
 }
 .checks li:last-child{border-bottom:none}
+.checks .box.done{
+  border-color:var(--ink);background:var(--ink);position:relative;
+}
+.checks .box.done::after{
+  content:"";position:absolute;left:4px;top:1px;width:4px;height:8px;
+  border:solid var(--paper,#fff);border-width:0 1.5px 1.5px 0;transform:rotate(45deg);
+}
+.checks li:has(.box.done) strong{color:var(--muted)}
 .checks .box{
   width:15px;height:15px;border:1.5px solid var(--todo);border-radius:2px;margin-top:5px;
 }
@@ -239,6 +250,11 @@ footer p{max-width:72ch;margin-bottom:10px;line-height:1.7}
   section{padding-block:34px 4px;margin-top:28px}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+  /* 그림 (2026-09-18 추가) */
+  figure.fig{ margin:22px 0; text-align:center }
+  figure.fig img{ max-width:100%; height:auto; border:1px solid #dfe4ea; border-radius:8px; background:#fff }
+  figure.fig figcaption{ margin-top:8px; font-size:.86rem; color:#5b6570; letter-spacing:-.01em }
 </style>
 
 <div class="wrap">
@@ -269,8 +285,8 @@ footer p{max-width:72ch;margin-bottom:10px;line-height:1.7}
     <a class="row" href="#s12"><span class="snum">1-2</span><span class="rname">문제 해결의 필요성과 사회적 공감대<em>국가승인통계 9개 표</em></span><span class="bar"><i style="width:60%"></i></span><span class="pts">15</span></a>
     <a class="row" href="#s22"><span class="snum">2-2</span><span class="rname">사업모델과 유사사업 대비 차별성<em>연간 구독형 · 검수 체계</em></span><span class="bar"><i style="width:40%"></i></span><span class="pts">10</span></a>
     <a class="row" href="#s31"><span class="snum">3-1</span><span class="rname">데이터 활용의 적절성과 성장 가능성<em>확장 축 4개</em></span><span class="bar"><i style="width:40%"></i></span><span class="pts">10</span></a>
-    <a class="row" href="#s32"><span class="snum">3-2</span><span class="rname">기존 공공 행정·서비스의 혁신<em>before/after 6단계</em></span><span class="bar"><i style="width:40%"></i></span><span class="pts">10</span></a>
-    <a class="row" href="#s41"><span class="snum">4-1</span><span class="rname">대표자의 주도성과 실행 의지<em>기각한 주장 4건 · 2차 설문 계획</em></span><span class="bar"><i style="width:40%"></i></span><span class="pts">10</span></a>
+    <a class="row" href="#s32"><span class="snum">3-2</span><span class="rname">기술 적용을 통한 국민 편익·행정 효율 개선<em>before/after 6단계</em></span><span class="bar"><i style="width:40%"></i></span><span class="pts">10</span></a>
+    <a class="row" href="#s41"><span class="snum">4-1</span><span class="rname">아이디어 구체화를 위해 진행한 사항<em>기각한 주장 4건 · 2차 설문 계획</em></span><span class="bar"><i style="width:40%"></i></span><span class="pts">10</span></a>
   </nav>
   <div class="rubfoot"><span>합계</span><span><b>100</b>점</span></div>
 </div>
@@ -278,39 +294,38 @@ footer p{max-width:72ch;margin-bottom:10px;line-height:1.7}
 <section id="intro">
   <div class="shead"><span class="snum">Ⅰ</span><h2 class="stitle">참가 개요</h2><span class="chip">1페이지 이내</span></div>
 
-  <div class="fill">
-    <span class="tag">채울 자리</span>
-    <p><strong>참가자(팀)명</strong> — 확정 필요</p>
+  <div class="fill filled">
+    <span class="tag">확정</span>
+    <p><strong>참가자(팀)명</strong> — <strong>다온이음</strong>. 다름은 틀림이 아니라는 뜻의 ‘다온’과, 흩어진 정보와 사람을 잇는다는 ‘이음’을 합한 이름입니다.</p>
+    <p class="note">세부분야 — ② 지역·사회문제 해결 (모집공고 예시 ‘사회적 약자·서비스 접근성’)</p>
   </div>
 
   <h3>참가작 주제</h3>
   <p><strong>특수교육대상자의 중학교 진학을 위한 후보학교·통학정보 탐색 및 배치 신청자료 작성 지원 서비스, ‘중입배치 MAP’</strong></p>
 
   <h3>참가작 주요내용 요약</h3>
+  <p class="note">2026-09-19 개정. 양식의 <strong>‘Ⅰ. 참가 개요는 한 페이지 이하’</strong> 요건에 맞춰 여섯 덩어리를 넷으로 줄였습니다. 빠진 서술(기술 검증 상세, 규칙 원문 사례)은 1-1·2-1에 그대로 있습니다.</p>
 
   <p class="lede">어느 관할에 살든, 아이가 다닐 수 있는 중학교를 찾는 일이 보호자 혼자 감당할 일이 되지 않게 하는 것이 이 서비스의 목표입니다.</p>
 
-  <p>이 아이디어는 시장조사가 아니라 현직 특수교사의 실제 업무에서 출발했습니다. 그리고 그 업무를 따라가 보니 반대편에 학부모가 있었습니다. 교사가 학생마다 같은 확인을 반복하는 이유는 <strong>학부모가 혼자서는 확인할 방법이 없기 때문</strong>입니다. 학부모는 특수학급이 어느 학교에 있는지, 근거리 순위와 보호자 희망학교가 어떻게 다른지, 우리 관할에 어떤 조항이 있는지를 알 창구가 없어 학교와 교사에게 묻습니다. <strong>두 부담은 한 문제의 양면이며, 본 서비스는 양쪽을 함께 덜어냅니다.</strong></p>
+  <p>보호자는 어느 학교에 특수학급이 있는지, 근거리 순위와 보호자 희망학교가 어떻게 다른지, 우리 관할이 무엇을 요구하는지를 확인할 창구가 없어 학교와 교사에게 묻습니다. 교사는 학생마다 같은 검색과 검수를 반복합니다. <strong>두 부담은 한 문제의 양면입니다.</strong></p>
 
   <div class="stats">
-    <div class="stat"><span class="n">74.1%</span><span class="l">특수교육대상자의 일반학교 재학 비율</span><span class="s">120,735명 중 89,440명</span></div>
-    <div class="stat"><span class="n">56.3%</span><span class="l">중학교 과정 중 일반학교 특수학급</span><span class="s">27,188명 중 15,305명</span></div>
+    <div class="stat"><span class="n">56.5%</span><span class="l">중학교 과정 중 일반학교 특수학급</span><span class="s">27,881명 중 15,758명</span></div>
+    <div class="stat"><span class="n">15,426</span><span class="l">학교 단위로 흩어진 특수학급</span><span class="s">2016년 10,065개 → +53.3%</span></div>
     <div class="stat"><span class="n">176</span><span class="l">각자 계획·서식을 발간하는 교육지원청</span><span class="s">매 학년도 재발간</span></div>
   </div>
 
-  <p>2025년 특수교육대상자 120,735명 가운데 <strong>74.1%가 일반학교에 재학합니다.</strong> 중학교 과정 27,188명만 보면 <strong>15,305명(56.3%)이 일반학교 특수학급</strong>에 있으며, 이는 특수학교 재학생 7,290명의 두 배가 넘습니다. 즉 중학교 진학에서 다수의 가정이 마주하는 질문은 “어느 특수학교로 갈 것인가”가 아니라 <strong>“우리 동네 어느 일반학교에 특수학급이 있고, 우리 관할은 무엇을 요구하는가”</strong>입니다. [교육부, 2025 특수교육 연차보고서]</p>
+  <p>2026년 중학교 과정 특수교육대상자 27,881명 가운데 <strong>15,758명(56.5%)이 일반학교 특수학급</strong>에 있습니다. 그런데 특수학급 15,426개는 학교 단위로 흩어져 있고, 배치 신청 규칙은 <strong>176개 교육지원청</strong>이 매 학년도 각자 발간합니다.</p>
 
-  <p>그런데 그 답은 흩어져 있습니다. 특수학급 14,658개가 학교 단위로 분산되어 있고, 배치 신청 규칙은 <strong>176개 교육지원청</strong>이 매 학년도 각자 계획으로 발간합니다. 2027학년도 동부·강동송파 계획은 지도서비스를 이용한 거리 확인과 교사 검수를 요구하며, <strong>거리 오류 발생 시 나이스 수정 입력 또는 수정공문</strong>이 뒤따른다는 점을 명시하고 있습니다. [D·S 서식1-2]</p>
+  <p class="lede">중입배치 MAP은 거주지와 신청 지역·학년도를 기준으로 특수학급 설치 중학교를 모으고, 관할 규칙에 맞춘 후보학교·거리·소요시간 비교표를 제공합니다.</p>
 
-  <p>중입배치 MAP은 거주지와 신청 지역·학년도를 기준으로 특수학급 설치 중학교를 모으고, <strong>해당 관할에서 실제로 확인된 규칙</strong>에 맞춘 후보학교·거리·소요시간 비교표를 제공합니다. 근거리 순위와 보호자 희망학교를 서식 구조대로 분리하고, 정식 학교명·학급유형·중복·필수항목을 점검하여 교사의 확인과 신청자료 작성을 지원합니다. 확인되지 않은 규칙은 자동 적용하지 않고 ‘확인 필요’로 표시합니다. <strong>특수교육대상자 선정과 최종 배치 결정은 교육지원청 특수교육운영위원회의 고유 권한이며, 서비스 범위 밖입니다.</strong></p>
-
-  <p>기술 실현 가능성은 기획 단계에서 실행으로 검증했습니다. 학교 기본정보 공공 API를 직접 호출하여 <strong>주소만으로 관할 교육지원청을 자동 판정할 수 있음</strong>을 확인했고, 타 지역 공개 서식을 다운로드해 본문 추출에 성공했으며, 기존 유사 서비스의 구현 방식을 분석하여 차별 지점을 특정했습니다.</p>
+  <p>근거리 순위와 보호자 희망학교를 서식 구조대로 분리하고, 학교명·학급유형·중복·필수항목을 점검해 교사의 확인을 지원합니다. 확인되지 않은 규칙은 자동 적용하지 않고 ‘확인 필요’로 표시하며, <strong>선정과 최종 배치 결정은 교육지원청 특수교육운영위원회의 고유 권한으로 서비스 범위 밖</strong>입니다.</p>
 
   <div class="rule-note">
-    <p><strong>공공은 이미 이 데이터를 보유하고 있으며, 공개까지 하고 있습니다.</strong> 문제는 그것이 <strong>국민이 쓸 수 있는 형태가 아니라는 점</strong>입니다. 176개 관할의 HWP 문서에 흩어진 규칙을 학부모가 직접 찾아 읽고 해석하기란 현실적으로 어렵습니다. 공공데이터를 국민이 실제로 활용할 수 있게 만들어 <strong>행정의 효율과 국민의 편익을 동시에 개선하는 일</strong>, 이것이 본 과제의 성격입니다.</p>
+    <p><strong>공공이 이미 보유하고 공개까지 한 데이터를, 국민이 실제로 쓸 수 있는 형태로 바꾸는 일입니다.</strong> 검수가 가능한 한 개 교육지원청을 대상으로 MVP를 구현하고, 교사 검수를 통해 소요시간·수정 건수·기준 일치 여부를 검증하겠습니다.</p>
+    <p class="note">※ 통계 출처 : 교육부, 「2026 특수교육 연차보고서」</p>
   </div>
-
-  <p>우선 <strong>현장 검수가 가능한 한 개 교육지원청</strong>의 일반 중학교 특수학급 배치 준비를 대상으로 MVP를 구현하고, 교사 검수를 통해 소요시간·수정 건수·기준 일치 여부를 검증하겠습니다.</p>
 </section>
 
 <section id="s11">
@@ -325,13 +340,11 @@ footer p{max-width:72ch;margin-bottom:10px;line-height:1.7}
 
   <p>그리고 그 믿음에는 근거가 하나 있었습니다. <strong>제가 직접 벽을 넘어본 경험입니다.</strong></p>
 
-  <p>저에게 주택 청약은 오랫동안 벽이었습니다. 제도는 분명히 열려 있었지만, 어떤 공고에 내가 해당되는지, 내가 몇 순위인지, 어디를 넣어야 하는지를 알 수 없었습니다. 규칙이 비밀이어서가 아니라 <strong>흩어져 있었고, 내 사정에 대입하는 방법을 몰랐기 때문</strong>입니다.</p>
-
-  <p>그 벽을 낮춘 것은 제도 개선이 아니었습니다. <strong>앱 하나였습니다.</strong> 공급기관마다 따로 공고되던 청약 정보를 한자리에 모으고, <strong>내가 이 청약에 지원할 수 있는지, 지원한다면 몇 순위인지</strong>를 알려주는 서비스였습니다. 그것을 쓰고 나서야 저는 비로소 청약을 ‘할 수 있는 일’로 받아들였습니다.</p>
+  <p>저에게 주택 청약은 오랫동안 벽이었습니다. 제도는 열려 있었지만 어떤 공고에 내가 해당되는지, 몇 순위인지 알 수 없었습니다. 규칙이 비밀이어서가 아니라 <strong>흩어져 있었기 때문</strong>입니다. 그 벽을 낮춘 것은 제도 개선이 아니라 <strong>흩어진 공고를 모아 제 조건을 대입해 주는 앱 하나</strong>였습니다.</p>
 
   <p class="lede">제도가 바뀐 것이 아니라, 제도를 읽어주는 도구가 생긴 것이었습니다.</p>
 
-  <p>특수교육대상자의 배치 신청도 같은 구조로 보였습니다. <strong>제도는 있고 규칙도 공개되어 있는데, 당사자가 그것을 자기 사정에 대입할 방법이 없습니다.</strong> 제가 청약 앞에서 겪은 일을, 지금 학부모들이 아이의 진학 앞에서 겪고 있었습니다.</p>
+  <p>특수교육대상자의 배치 신청도 같은 구조로 보였습니다. <strong>제도는 있고 규칙도 공개되어 있는데, 당사자가 그것을 자기 사정에 대입할 방법이 없습니다.</strong> 같은 구조를 다룬 서비스가 실제로 작동한 사례는 §2-2에서 다시 다룹니다.</p>
 
   <p>그래서 이번에는 듣는 데서 멈추지 않았습니다. 질문을 하나로 좁혀 물었습니다. <strong>“가장 비효율적인 업무가 무엇입니까.”</strong></p>
 
@@ -422,7 +435,7 @@ footer p{max-width:72ch;margin-bottom:10px;line-height:1.7}
 
   <p>앞의 세 항목은 법 개정과 예산이 필요한 사안입니다. <strong>네 번째 항목은 도구로 접근할 수 있는 영역이며, 본 과제가 놓인 자리입니다.</strong></p>
 
-  <p>특수교육대상자는 2021년 98,154명에서 2025년 120,735명으로 <strong>4년 사이 22,581명 늘었습니다.</strong> 증원만으로 이 속도를 따라가기 어렵다면, <strong>같은 인원이 처리할 수 있는 양을 늘리는 접근</strong>이 함께 필요합니다.</p>
+  <p>특수교육대상자는 2021년 98,154명에서 2026년 124,195명으로 <strong>5년 사이 26,041명 늘었습니다.</strong> 증원만으로 이 속도를 따라가기 어렵다면, <strong>같은 인원이 처리할 수 있는 양을 늘리는 접근</strong>이 함께 필요합니다.</p>
 
   <p>다만 <strong>이 39.0%는 행정업무 전반에 대한 응답이며, 중학교 입학 배치 서류 작성이 그중 얼마를 차지하는지는 이 조사로 알 수 없습니다.</strong> 해당 비중은 2차 기간 특수교사 설문(V3)으로 직접 확인하겠습니다.</p>
 
@@ -457,24 +470,17 @@ footer p{max-width:72ch;margin-bottom:10px;line-height:1.7}
   <h3>기술로 해결 가능한 문제인지, 데이터로 확인했습니다</h3>
   <p>기획서를 작성하기에 앞서 먼저 확인했습니다. 해결할 수 없는 문제라면 제안할 이유가 없기 때문입니다.</p>
 
-  <div class="tw"><table>
-    <thead><tr><th>확인 사항</th><th>방법</th><th>결과</th></tr></thead>
-    <tbody>
-      <tr class="hi"><td>학교 기본정보를 API로 확보할 수 있는가</td><td>공공 API 직접 호출</td><td><span class="pill ok">성공</span> 학교코드·정식명칭·<strong>관할 교육지원청명</strong>·도로명주소 반환</td></tr>
-      <tr class="hi"><td>주소만으로 관할을 자동 판정할 수 있는가</td><td>반환 필드 확인</td><td><strong>가능.</strong> 사용자가 관할을 몰라도 됨</td></tr>
-      <tr><td>학교 좌표를 확보할 수 있는가</td><td>전국 표준데이터 확인</td><td>위도·경도 + 교육지원청코드 포함, 2026년 갱신분</td></tr>
-      <tr class="hi"><td>타 지역 서식을 수집할 수 있는가</td><td>공개 게시판에서 실제 다운로드</td><td><span class="pill ok">성공</span> 본문 텍스트 추출까지 확인</td></tr>
-    </tbody>
-  </table></div>
+  <p class="lede">학교 기본정보 공공 API를 직접 호출해 주소만으로 관할을 자동 판정할 수 있음을 확인했고, 타 지역 공개 서식을 실제로 내려받아 본문 추출까지 확인했습니다.</p>
 
-  <h3>세 차례, 스스로의 가정을 기각했습니다</h3>
-  <p>조사 과정에서 처음 세운 전제 세 가지가 사실과 다르다는 점을 확인했고, 이를 기록으로 남겼습니다.</p>
+  <p>사용자가 자기 관할을 몰라도 서비스가 판정할 수 있다는 뜻이고, 관할 문서를 기계로 읽어 규칙을 뽑을 수 있다는 뜻입니다. 확인 항목과 검증 수준은 <strong>§2-1의 데이터 확보 가능성 검증표</strong>에 정리했습니다.</p>
 
-  <p><strong>첫째, “특수교육 학교 지도는 없다”는 전제를 폐기했습니다.</strong> 한 교육지원청이 연결하는 관내 특수학급·특수학교 현황 지도를 발견했기 때문입니다. 없는 것을 새로 만든다는 주장은 성립하지 않았습니다. 대신 해당 서비스의 구현 방식을 확인하여 <strong>무엇이 다른지</strong>를 특정했습니다.</p>
+  <h3>과제의 정의가 조사 도중에 바뀌었습니다</h3>
+  <p>처음에는 “배치 제도가 불만족스럽다”는 전제로 접근했습니다. 그런데 국가승인통계를 확인해 보니 선정·배치에 <strong>만족 이상이 70.9%</strong>, 불만족 이하는 5.1%였습니다(§1-2). 제도가 잘못되었다는 서술은 통계에 정면으로 반합니다. 그래서 이 접근을 폐기했습니다.</p>
 
-  <p><strong>둘째, “규칙이 관할마다 크게 다르다”는 주장을 단정에서 검증 과제로 내렸습니다.</strong> 같은 조건(중학교 입학 배치)에서 비교된 것은 D와 S 두 건이며, 그 둘의 규칙은 대부분 동일했습니다. <strong>저희에게 유리한 주장이었으나 표본이 부족했습니다.</strong></p>
-
-  <p><strong>셋째, “배치 제도가 불만족스럽다”는 접근을 완전히 폐기했습니다.</strong> 국가승인통계를 확인해 보니 선정·배치에 <strong>만족 이상이 70.9%</strong>, 불만족 이하는 5.1%였습니다(§1-2). 제도가 잘못되었다는 서술은 통계에 정면으로 반합니다. <strong>문제는 제도가 아니라 그 제도를 통과하는 과정에 있었습니다.</strong> 이 발견이 본 과제의 정의를 바꾸었습니다.</p>
+  <div class="rule-note">
+    <p><strong>문제는 제도가 아니라 그 제도를 통과하는 과정에 있었습니다.</strong> 이 발견이 본 과제의 정의를 바꾸었습니다.</p>
+    <p class="note">※ 이 밖에도 저희에게 유리했던 전제 세 가지를 조사 결과에 따라 기각했고, 무엇으로 대체했는지를 §4-1의 ‘기각한 주장과 대체 내용’에 정리했습니다.</p>
+  </div>
 
   <h3>그래서 이 문제를 선택했습니다</h3>
   <ul>
@@ -488,14 +494,15 @@ footer p{max-width:72ch;margin-bottom:10px;line-height:1.7}
   <div class="shead"><span class="snum">1-2</span><h2 class="stitle">문제 해결의 필요성과 사회적 공감대</h2><span class="chip">15점</span></div>
 
   <h3>통합교육은 예외가 아니라 표준입니다</h3>
+  <figure class="fig"><img src="../proposal/figures/fig3.png" alt="특수교육 규모의 10년 변화"><figcaption>【그림 3】 특수교육 규모의 10년 변화</figcaption></figure>
 
-  <div class="tw"><table><caption>교육부 2025 특수교육 연차보고서 · 기준일 2025.4.1</caption>
-    <thead><tr><th>지표</th><th class="num">2025년</th><th>비교</th></tr></thead>
+  <div class="tw"><table><caption>교육부 2026 특수교육 연차보고서 · 조사기준일 2026.4.1</caption>
+    <thead><tr><th>지표</th><th class="num">2026년</th><th>비교</th></tr></thead>
     <tbody>
-      <tr><td>전체 특수교육대상자</td><td class="big">120,735명</td><td>2016년 87,950명 → <strong>10년간 +37.3%</strong></td></tr>
-      <tr class="hi"><td><strong>일반학교 배치</strong></td><td class="big">89,440명<br>74.1%</td><td>특수학급 69,908명(57.9%) + 일반학급 19,532명(16.2%)</td></tr>
-      <tr><td>특수학교 배치</td><td class="big">31,027명<br>25.7%</td><td></td></tr>
-      <tr><td>전국 특수학급 수</td><td class="big">14,658개</td><td>2016년 10,065개 → <strong>+45.6%</strong></td></tr>
+      <tr><td>전체 특수교육대상자</td><td class="big">124,195명</td><td>2016년 87,950명 → <strong>10년간 +41.2%</strong></td></tr>
+      <tr class="hi"><td><strong>일반학교 배치</strong></td><td class="big">91,986명<br>74.1%</td><td>특수학급 72,784명(58.6%) + 일반학급 19,202명(15.5%)</td></tr>
+      <tr><td>특수학교 배치</td><td class="big">31,993명<br>25.8%</td><td></td></tr>
+      <tr><td>전국 특수학급 수</td><td class="big">15,426개</td><td>2016년 10,065개 → <strong>+53.3%</strong></td></tr>
     </tbody>
   </table></div>
 
@@ -503,16 +510,7 @@ footer p{max-width:72ch;margin-bottom:10px;line-height:1.7}
 
   <p>학교급을 중학교로 좁히면 구조가 더욱 뚜렷해집니다.</p>
 
-  <div class="tw"><table><caption>중학교 과정 특수교육대상자 27,188명의 배치</caption>
-    <thead><tr><th>배치 유형</th><th class="num">인원</th><th class="num">비율</th></tr></thead>
-    <tbody>
-      <tr class="hi"><td><strong>일반학교 특수학급</strong></td><td class="num"><strong>15,305명</strong></td><td class="num"><strong>56.3%</strong></td></tr>
-      <tr><td>특수학교</td><td class="num">7,290명</td><td class="num">26.8%</td></tr>
-      <tr><td>일반학교 일반학급</td><td class="num">4,593명</td><td class="num">16.9%</td></tr>
-    </tbody>
-  </table></div>
-
-  <p>일반학교 특수학급 인원이 특수학교의 두 배를 넘습니다. 중학교 과정 인원은 2019년 18,462명에서 2025년 27,188명으로 <strong>6년간 47.3% 증가</strong>했습니다.</p>
+  <p>중학교 과정 27,881명의 배치는 <strong>일반학교 특수학급 15,758명(56.5%)</strong>, 특수학교 7,509명(26.9%), 일반학교 일반학급 4,614명(16.6%)입니다. 특수학급 인원이 특수학교의 두 배를 넘습니다.</p>
 
   <p class="lede">“우리 동네 어느 일반학교에 특수학급이 있고, 우리 관할은 무엇을 어떻게 작성하라고 하는가?”</p>
 
@@ -547,18 +545,11 @@ footer p{max-width:72ch;margin-bottom:10px;line-height:1.7}
   <p>정보를 찾고 서류를 준비하는 일을 대신해 줄 사람도 사실상 부모입니다. 특수교육대상 중학생의 일상생활을 주로 돕는 사람은 <strong>84.5%가 가족</strong>이며(표 Ⅰ-89), 발달장애인의 주 돌봄자는 <strong>78.6%가 부모</strong>(모 66.2%·부 12.4%), 평균 연령은 <strong>56.6세</strong>입니다(보건복지부, 2021년 발달장애인 실태조사).</p>
 
   <h3>학부모는 언제나 처음입니다</h3>
-  <p>교사는 매 학년도 이 업무를 반복하며 숙련됩니다. <strong>학부모는 대개 평생 한 번 겪습니다.</strong> 그리고 그 한 번이 아이가 3년을 보낼 학교를 결정합니다.</p>
+  <p>학부모가 이 절차를 겪는 것은 <strong>대개 평생 한 번</strong>이고, 그 한 번이 아이가 3년을 보낼 학교를 결정합니다.</p>
 
   <p>실제로 <strong>중학교 과정 특수교육대상자의 19.8%(4,546명)는 중학교에 들어와서 처음 특수교육대상자로 선정됐습니다</strong>(중학교 1학년 9.3% + 2~3학년 10.5%, 표 Ⅰ-5). 이 가정들에게 배치 절차는 <strong>말 그대로 처음 겪는 일</strong>입니다.</p>
 
-  <p>구조적으로도 불리한 조건에 놓여 있습니다.</p>
-  <ul>
-    <li><strong>반복 학습이 불가능합니다.</strong> 익숙해질 무렵 과정이 끝납니다</li>
-    <li><strong>규칙이 매년 변경됩니다.</strong> 지난해 이웃이 겪은 경험이 올해도 유효하다는 보장이 없습니다</li>
-    <li><strong>관할마다 다릅니다.</strong> 이사를 하면 처음부터 다시 확인해야 합니다</li>
-    <li><strong>증빙이 여러 기관에 걸쳐 있습니다.</strong> 선정 결과통지서, 장애등록 정보, 주민등록등본을 함께 준비해야 하며, 교사는 그 서류 사이의 차이까지 확인합니다 [D·S Ⅴ]</li>
-    <li><strong>문의할 곳이 사실상 학교뿐입니다.</strong> 통합된 안내 창구가 없습니다</li>
-  </ul>
+  <p>구조적으로도 불리합니다. 반복 학습이 불가능하고, 규칙은 매년 바뀌며, 이사하면 관할이 달라져 처음부터 다시 확인해야 합니다. 증빙은 여러 기관에 걸쳐 있어 선정 결과통지서·장애등록 정보·주민등록등본을 함께 준비해야 하고, 교사는 그 서류 사이의 차이까지 확인합니다 [D·S Ⅴ]. 그런데 <strong>문의할 곳이 사실상 학교뿐입니다.</strong> 통합된 안내 창구가 없습니다.</p>
 
   <p><strong>확인할 방법이 없다는 사실 자체가 부담입니다.</strong> 아이의 진학을 결정하면서 무엇이 맞는지 모르는 상태로 서류를 작성하는 일은, 시간의 문제이기에 앞서 확신의 문제입니다.</p>
 
@@ -602,7 +593,7 @@ footer p{max-width:72ch;margin-bottom:10px;line-height:1.7}
   <div class="tw"><table>
     <thead><tr><th>흩어진 지점</th><th>확인된 사실</th></tr></thead>
     <tbody>
-      <tr><td><strong>학교</strong></td><td>특수학급 14,658개가 개별 학교 단위로 분산. 설치 여부는 공시자료로 도출할 수 있으나 <strong>학급유형은 관할 문서에만</strong> 있음</td></tr>
+      <tr><td><strong>학교</strong></td><td>특수학급 15,426개가 개별 학교 단위로 분산. 설치 여부는 공시자료로 도출할 수 있으나 <strong>학급유형은 관할 문서에만</strong> 있음</td></tr>
       <tr><td><strong>관할</strong></td><td>전국 교육지원청 <strong>176개</strong>가 각자 계획·서식 발간</td></tr>
       <tr><td><strong>연도</strong></td><td>계획은 <strong>매 학년도 새로 발간</strong>. 신설·증설 예정 학교가 별도 표기됨</td></tr>
       <tr><td><strong>규칙</strong></td><td>근거리 행 수, 거리 표기 단위, 기준 지도, 형제·자매 조항이 문서마다 상이하게 기재</td></tr>
@@ -657,6 +648,8 @@ footer p{max-width:72ch;margin-bottom:10px;line-height:1.7}
 
 <section id="s21">
   <div class="shead"><span class="snum">2-1</span><h2 class="stitle">구체적 실행계획 및 기술적 실현 가능성</h2><span class="chip big">20점</span></div>
+  <figure class="fig"><img src="../proposal/figures/fig2.png" alt="결과 화면 구성"><figcaption>【그림 2】 결과 화면 구성 — 주소 입력에서 교사 검수까지</figcaption></figure>
+  <div class="rule-note"><p><strong>만들 화면은 이렇습니다.</strong> 아래는 그 화면을 뒷받침하는 데이터·기술 근거입니다.</p></div>
 
   <h3>기술 검증 결과 — 기획 단계에서 실행으로 확인한 사항</h3>
   <p>개발자와 서비스 범위를 협의하여 개발 가능 의견을 확인했으며, 그와 별개로 핵심 데이터의 확보 가능성을 직접 확인했습니다.</p>
@@ -741,28 +734,18 @@ footer p{max-width:72ch;margin-bottom:10px;line-height:1.7}
 
   <p class="lede">특정 사업자를 벗어나면 도보와 대중교통 모두 공개 API가 존재하며, 제휴 없이 키 발급만으로 시작할 수 있습니다.</p>
 
-  <div class="tw"><table><caption>이동수단별 경로 조회 API 개방 상태</caption>
-    <thead><tr><th>이동수단</th><th>API</th><th>개방 상태</th></tr></thead>
+  <div class="tw"><table><caption>경로 조회 수단과 대응 구조</caption>
+    <thead><tr><th>대응</th><th>수단</th><th>개방 상태</th><th>상태</th></tr></thead>
     <tbody>
-      <tr class="hi"><td><strong>도보</strong></td><td><strong>TMAP 보행자 경로안내</strong></td><td><span class="pill ok">공개</span> 키 발급만으로 즉시 호출, 제휴 불필요. <strong>무료 1,000건/일</strong></td></tr>
-      <tr class="hi"><td><strong>대중교통</strong></td><td><strong>ODsay 대중교통 API</strong></td><td><span class="pill ok">공개</span> 무료는 개인·학생·5인 이하 스타트업 한정</td></tr>
-      <tr><td>대중교통</td><td>TMAP 대중교통 API</td><td><span class="pill warn">문의·계약</span></td></tr>
-      <tr><td>도보·대중교통</td><td>카카오모빌리티</td><td>도보는 제휴 전용, 대중교통은 미개방</td></tr>
+      <tr class="hi"><td><strong>② 대체 (기본)</strong></td><td><strong>도보 — TMAP 보행자 경로안내</strong></td><td><span class="pill ok">공개</span> 키 발급만으로 즉시 호출, 제휴 불필요. <strong>무료 1,000건/일</strong></td><td>발급 조건 확인 완료</td></tr>
+      <tr class="hi"><td><strong>② 대체 (기본)</strong></td><td><strong>대중교통 — ODsay 대중교통 API</strong></td><td><span class="pill ok">공개</span> 무료는 개인·학생·5인 이하 스타트업 한정</td><td>발급 조건 확인 완료</td></tr>
+      <tr><td>③ 하이브리드 (폴백)</td><td>각 후보의 지도 길찾기 링크를 제공, 교사가 확인·입력</td><td>—</td><td><span class="pill ok">설계 반영 완료</span></td></tr>
+      <tr><td>① 제휴 (선택)</td><td>카카오모빌리티</td><td>도보는 제휴 전용, 대중교통은 미개방</td><td>리드타임 고려해 병행</td></tr>
+      <tr><td>(미채택)</td><td>TMAP 대중교통 API</td><td><span class="pill warn">문의·계약</span></td><td>—</td></tr>
     </tbody>
   </table></div>
 
-  <p><strong>이 둘로 서식이 요구하는 두 이동수단을 모두 덮습니다.</strong> 따라서 대응 구조를 다음과 같이 정리했습니다.</p>
-
-  <div class="tw"><table><caption>경로 조회 수단 확보 방안</caption>
-    <thead><tr><th>대응</th><th>내용</th><th>상태</th></tr></thead>
-    <tbody>
-      <tr class="hi"><td><strong>② 대체 (기본)</strong></td><td>TMAP 보행자 + ODsay 대중교통. 조회 제공자를 결과에 함께 표기하고 교사 검수</td><td><span class="pill ok">개방 상태·발급 조건 확인</span></td></tr>
-      <tr><td>③ 하이브리드 (폴백)</td><td>후보를 선별한 뒤 각 후보의 지도 길찾기 링크 제공, 교사가 확인·입력</td><td><span class="pill ok">설계 반영 완료</span></td></tr>
-      <tr><td>① 제휴 (선택)</td><td>서식 기준 지도와 값을 일치시키기 위한 카카오 제휴 문의. <strong>필수 아님</strong></td><td>리드타임 고려해 병행</td></tr>
-    </tbody>
-  </table></div>
-
-  <p>②가 기본 경로이며, ③은 호출 한도를 초과하거나 조회가 실패할 때의 폴백으로 유지합니다. <strong>①은 값 일치를 높이기 위한 선택지이지 전제 조건이 아닙니다.</strong></p>
+  <p><strong>②만으로 서식이 요구하는 두 이동수단을 모두 덮습니다.</strong> ③은 호출 한도를 초과하거나 조회가 실패할 때의 폴백으로 유지하고, ①은 값 일치를 높이기 위한 선택지이지 전제 조건이 아닙니다. 조회 제공자는 결과에 함께 표기하고 교사 검수를 거칩니다.</p>
 
   <div class="rule-note">
     <p>서식의 기준 지도는 카카오맵입니다. 어느 수단을 쓰든 <strong>“기준 지도와 값이 다를 수 있다”</strong>는 사실을 화면에 표기하고, 교사 검수를 거칩니다.</p>
@@ -839,54 +822,51 @@ footer p{max-width:72ch;margin-bottom:10px;line-height:1.7}
 
   <p><strong>핵심 차이는 ‘현황 열람’과 ‘신청 준비’의 차이입니다.</strong> 기존 서비스는 어디에 있는지를 보여주고, 본 서비스는 무엇을 어떻게 작성해야 하는지까지 지원합니다.</p>
 
+  <h3>공공 공모전의 기존 수상작과도 대조했습니다</h3>
+
+  <p>유사 아이디어를 판단할 때 심사 기준이 되는 축이 공개되어 있습니다. 참가신청서 붙임 <strong>「동일·유사 아이템 소명서」의 네 가지 필수 비교항목</strong>입니다. 그 축을 그대로 사용해 먼저 대조했습니다.</p>
+
+  <p>대조 대상은 공공 주최 공모전에서 특수교육을 다뤄 수상한 사례이며, 가장 가까운 것은 2024년 교육 공공데이터 분석활용대회 수상작입니다.<sup>주1)</sup></p>
+
+  <div class="tw"><table><caption>기존 수상작과의 대조 (「동일·유사 아이템 소명서」 필수 4축)</caption>
+    <thead><tr><th>비교 축</th><th>「맞춤형 교육의 희망」(2024 우수상)</th><th>중입배치 MAP</th><th>판단</th></tr></thead>
+    <tbody>
+      <tr class="hi"><td>해결하려는 문제</td><td>특수교육대상자의 학습·교육 지원</td><td><strong>중학교 진학 단계의 후보학교 탐색과 배치 신청자료 작성</strong></td><td>상이함</td></tr>
+      <tr><td>주요 이용자·수요대상</td><td>학생</td><td><strong>보호자와 초등 특수교사.</strong> 접수기관은 교육지원청</td><td>상이함</td></tr>
+      <tr><td>핵심 해결수단</td><td>기초학력·대화 데이터를 활용한 AI 학습 지원</td><td><strong>학교 설치정보·학구·경로 데이터와 관할 서식 규칙의 대조 검수</strong></td><td>상이함</td></tr>
+      <tr><td>서비스 구조·제공방식</td><td>학생 대상 통합 지원 서비스</td><td><strong>보호자 작성 → 교사 검수로 이어지는 인계 흐름</strong></td><td>상이함</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="rule-note">
+    <p><strong>같은 대상 집단을 다루지만, 해결하는 업무 단계가 다릅니다.</strong> 학습 지원은 학교에 다니는 동안의 일이고, 본 서비스는 어느 학교에 다닐지를 정하는 신청 단계의 일입니다.</p>
+    <p>※ 위 판단은 공표된 작품명과 활용 데이터 목록에 근거합니다. 제출 원본은 비공개이므로 기능 단위 대조는 하지 못했습니다. 추가 소명이 요청되면 그때 확인하겠습니다.</p>
+    <p><strong>이 선례들은 오히려 본 과제의 필요성을 뒷받침합니다.</strong> 특수교육 통계를 근거로 한 제안이 2년 연속 교육 부문에서 대상과 우수상을 받았습니다. 이 영역에 공공데이터 기반 서비스의 수요가 실재한다는 뜻입니다. 다만 확인된 범위에서, <strong>진학·배치 신청 단계를 다룬 사례는 없었습니다.</strong></p>
+  </div>
+
   <h3>인접 영역에서 같은 구조가 이미 작동하고 있습니다</h3>
 
-  <p>본 서비스가 시도하는 방식은 새로 고안한 것이 아닙니다. <strong>다른 공공 제도에서 이미 검증된 구조입니다.</strong></p>
-
-  <p>주택 청약 분야에는 <strong>LH·SH·GH 등 공급기관마다 따로 공고되던 청약 정보를 한자리에 모으고</strong>, 신청자의 조건을 대입해 <strong>지원 자격이 되는지와 몇 순위로 지원할 수 있는지</strong>를 안내하는 민간 서비스가 있습니다.<sup>주1)</sup> 제도나 법을 바꾸지 않고, <strong>흩어진 공개 규칙을 개인의 조건에 대입해 주는 것만으로</strong> 그전까지 사실상 전문가의 영역이던 청약을 일반인이 접근할 수 있는 일로 바꾸어 놓았습니다.</p>
-
-  <p><strong>기관마다 흩어진 공고를 하나로 모았다는 점이 본 과제와 가장 닮은 지점입니다.</strong> 청약에서 LH·SH·GH가 놓인 자리를, 특수교육 배치에서는 <strong>176개 교육지원청</strong>이 차지하고 있습니다.</p>
-
-  <div class="tw"><table><caption>처리 단계의 대응 관계</caption>
-    <thead><tr><th>처리 단계</th><th>주택 청약 서비스</th><th>중입배치 MAP</th></tr></thead>
-    <tbody>
-      <tr class="hi"><td>① 흩어진 원천을 모은다</td><td>LH·SH·GH 등 공급기관별 공고</td><td><strong>176개 교육지원청의 계획·서식</strong></td></tr>
-      <tr><td>② 자격을 판정한다</td><td>내가 이 청약에 지원할 수 있는가</td><td><strong>이 학교가 후보가 되는가</strong>(특수학급 설치·학급유형)</td></tr>
-      <tr><td>③ 순위를 산출한다</td><td><strong>몇 순위로 지원 가능한가</strong>(자격 요건 기준)</td><td><strong>근거리 몇 순위인가</strong>(통학거리 기준)</td></tr>
-      <tr><td>④ 지도에 표시한다</td><td>해당 청약 물건의 위치</td><td><strong>후보학교의 위치와 통학 조건</strong></td></tr>
-    </tbody>
-  </table></div>
+  <p>주택 청약 분야에는 <strong>LH·SH·GH 등 공급기관마다 흩어져 공고되던 정보를 모아</strong> 신청자 조건에 따른 <strong>자격과 순위</strong>를 안내하는 민간 서비스가 있습니다.<sup>주2)</sup> 제도를 바꾸지 않고 <strong>공개 규칙을 개인의 조건에 대입해 주는 것만으로</strong>, 사실상 전문가의 영역이던 청약을 일반인이 접근할 수 있는 일로 바꾸었습니다.</p>
 
   <div class="rule-note">
-    <p><strong>두 서비스의 ‘순위’는 계산 근거가 다릅니다.</strong> 청약은 무주택 기간·납입 요건 같은 <strong>자격 요건</strong>으로, 본 서비스는 <strong>통학거리</strong>로 순위가 정해집니다. 그러나 <strong>제도가 정해 둔 공개 규칙을 개인의 조건에 대입해 순위를 산출한다는 점에서는 같은 일</strong>입니다.</p>
-    <p><strong>같은 문제 구조에 같은 해법이 이미 작동한 선례가 있다는 뜻입니다.</strong> 본 과제는 검증되지 않은 방식을 처음 시도하는 것이 아니라, <strong>행정 정보 격차가 큰 다른 영역에 그 방식을 적용하는 것</strong>입니다.</p>
+    <p><strong>청약에서 LH·SH·GH가 놓인 자리를, 특수교육 배치에서는 176개 교육지원청이 차지하고 있습니다.</strong> 흩어진 원천을 모으고 자격을 판정해 순위를 산출하는 처리 단계가 같습니다. 계산 근거만 다릅니다 — 청약은 <strong>자격 요건</strong>으로, 본 서비스는 <strong>통학거리</strong>로 정해집니다. 검증되지 않은 방식을 처음 시도하는 것이 아닙니다.</p>
   </div>
 
-  <p><strong>다만 본 서비스가 하지 않는 것이 하나 있습니다.</strong></p>
-
-  <div class="tw"><table><caption>배치 가능성을 제시하지 않는 이유</caption>
-    <thead><tr><th>구분</th><th>주택 청약 서비스</th><th>본 서비스</th></tr></thead>
-    <tbody>
-      <tr><td>규칙 기반 순위</td><td>제공(자격 순위)</td><td><strong>제공</strong>(근거리 순위)</td></tr>
-      <tr><td>공급 물량</td><td><strong>공개됨</strong></td><td><strong>정원·잔여석 비공개</strong></td></tr>
-      <tr class="hi"><td>당첨·배치 가능성</td><td>모집 호수·경쟁률로 가늠 가능</td><td><strong>제시하지 않음</strong></td></tr>
-    </tbody>
-  </table></div>
-
+  <p><strong>다만 갈리는 지점이 하나 있습니다.</strong> 청약은 모집 호수와 경쟁률이 공개되어 당첨 가능성을 가늠할 수 있지만, 특수교육 배치는 <strong>학교별 정원과 잔여석이 어떤 공개 경로로도 확보되지 않습니다.</strong></p>
   <div class="rule-note">
-    <p>청약은 모집 호수와 경쟁률이 공개되어 당첨 가능성을 가늠할 수 있습니다. 특수교육 배치는 <strong>학교별 정원과 잔여석이 어떤 공개 경로로도 확보되지 않습니다.</strong> 따라서 본 서비스는 <strong>근거리 순위까지만 산출하고, 배치 가능성은 제시하지 않습니다.</strong></p>
-    <p>기능의 한계가 아니라 <strong>의도적인 선긋기</strong>이며, 추정값이 보호자에게 배치 확률로 받아들여지는 상황을 막기 위한 설계 원칙입니다(§2-1 범위 밖 참조).</p>
+    <p>따라서 본 서비스는 <strong>근거리 순위까지만 산출하고, 배치 가능성은 제시하지 않습니다.</strong> 추정값이 보호자에게 배치 확률로 받아들여지는 것을 막기 위한 설계 원칙입니다(§2-1 범위 밖 참조).</p>
   </div>
 
-  <p class="srcnums">주1) ‘집지켜’ — LH·SH·GH 등 공급기관별로 흩어져 공고되던 청약 정보를 한 곳에서 조회할 수 있도록 통합하고, 신청자 조건에 따른 지원 자격과 순위를 안내하는 민간 애플리케이션.</p>
+  <p class="srcnums">주1) 「맞춤형 교육의 희망 : AI 기반 특수교육대상자 통합 지원 서비스」(팀 떡잎방범대), 제6회 교육 공공데이터 분석활용대회(2024) 일반부문 서비스·상품 우수상. 같은 대회 아이디어 기획 대상은 「소리와 손」(팀 맞손, 농아인 교육 AI 서비스), 데이터 분석 우수상은 「부산광역시 구군별 특수학교 최적 입지 선정」(팀 피자셋). 2025년에는 「말랑교실」(발달장애 학생 맞춤형 콘텐츠 플랫폼)이 대상을 받았다. 출처 : 교육부·한국교육학술정보원, 「제6회 교육 공공데이터 분석활용대회」 최종 결과 안내(2024.7.29.) / 행정안전부·한국지능정보사회진흥원, 예선기관별 공공데이터 활용 창업경진대회 수상작 현황(2023~2025).</p>
+  <p class="srcnums">주2) ‘집지켜’ — LH·SH·GH 등 공급기관별로 흩어져 공고되던 청약 정보를 한 곳에서 조회할 수 있도록 통합하고, 신청자 조건에 따른 지원 자격과 순위를 안내하는 민간 애플리케이션.</p>
 
   <h3>시장 니즈 — 규모와 주기</h3>
   <div class="tw"><table>
     <thead><tr><th>항목</th><th>근거</th></tr></thead>
     <tbody>
-      <tr><td>대상 규모</td><td>중학교 과정 특수교육대상자 27,188명, 그중 일반학교 특수학급 15,305명(2025)</td></tr>
+      <tr><td>대상 규모</td><td>중학교 과정 특수교육대상자 27,881명, 그중 일반학교 특수학급 15,758명(2026)</td></tr>
       <tr><td>발생 주기</td><td>매 학년도. 계획·서식이 매년 새로 발간</td></tr>
-      <tr><td>확장 축</td><td>고등학교 과정 28,240명 — <strong>고입 전형도 동일 구조</strong>(제주 사례에서 확인)</td></tr>
+      <tr><td>확장 축</td><td>고등학교 과정 24,871명 — <strong>고입 전형도 동일 구조</strong>(제주 사례에서 확인)</td></tr>
       <tr><td>관할 수</td><td>176개 교육지원청</td></tr>
     </tbody>
   </table></div>
@@ -968,7 +948,7 @@ footer p{max-width:72ch;margin-bottom:10px;line-height:1.7}
     <thead><tr><th>확장 축</th><th>근거</th><th>재사용되는 자산</th></tr></thead>
     <tbody>
       <tr><td><strong>관할 확장</strong></td><td>176개 교육지원청</td><td>게시판 어댑터, 규칙 스키마</td></tr>
-      <tr class="hi"><td><strong>학교급 확장 — 고입</strong></td><td>고등학교 과정 28,240명. 제주 고입 전형에서 동일 구조 확인</td><td>규칙 스키마 전체, 학교 마스터</td></tr>
+      <tr class="hi"><td><strong>학교급 확장 — 고입</strong></td><td>고등학교 과정 24,871명. 제주 고입 전형에서 동일 구조 확인</td><td>규칙 스키마 전체, 학교 마스터</td></tr>
       <tr><td><strong>학교급 확장 — 초등 취학</strong></td><td>동일한 학구·거리 기반 구조</td><td>학교 마스터, 거리 산출</td></tr>
       <tr><td><strong>기능 확장 — B 트랙</strong></td><td>수기서류 구조화·입력 지원</td><td>서식 필드 정의</td></tr>
     </tbody>
@@ -981,20 +961,10 @@ footer p{max-width:72ch;margin-bottom:10px;line-height:1.7}
 </section>
 
 <section id="s32">
-  <div class="shead"><span class="snum">3-2</span><h2 class="stitle">기존 공공 행정·서비스의 혁신</h2><span class="chip">10점</span></div>
+  <div class="shead"><span class="snum">3-2</span><h2 class="stitle">기술 적용을 통한 국민 편익·행정 효율 개선</h2><span class="chip">10점</span></div>
 
   <h3>행정 프로세스가 어떻게 바뀌는가</h3>
-  <div class="tw"><table>
-    <thead><tr><th>단계</th><th>현재</th><th>도입 후</th></tr></thead>
-    <tbody>
-      <tr><td>① 안내</td><td>교육지원청이 계획 HWP 게시 → 학교 전달 → 보호자가 읽고 해석</td><td>관할·학년도를 자동 판정하여 <strong>해당 규칙만</strong> 제시</td></tr>
-      <tr><td>② 보호자 작성</td><td>지도 검색을 반복하며 학교·거리·시간을 수기 기재</td><td>주소 입력 → 후보·거리·소요시간 비교표 자동 산출</td></tr>
-      <tr><td>③ 교사 확인</td><td>학생마다 지도 재조회, 계획서와 행 수·중복·단위 수동 대조</td><td><strong>중복·누락·학급유형 혼재 자동 점검</strong>, 수정 시 사유 기록</td></tr>
-      <tr><td>④ 등록·첨부</td><td>수기 내용을 시스템에 재입력</td><td>항목 추출·검수 후 입력 지원(B 트랙)</td></tr>
-      <tr class="hi"><td>⑤ 교육지원청 검토</td><td>거리 재점검 → 오류 시 수정 요청·수정공문</td><td>각 값에 <strong>출처·조회조건·수정이력</strong> 첨부 → 재확인 대상 축소</td></tr>
-      <tr><td>⑥ 심사</td><td>특수교육운영위원회 심사</td><td><strong>변경 없음.</strong> 서비스 범위 밖</td></tr>
-    </tbody>
-  </table></div>
+  <figure class="fig"><img src="../proposal/figures/fig1.png" alt="배치 신청 행정의 AS-IS / TO-BE"><figcaption>【그림 1】 배치 신청 행정의 AS-IS / TO-BE</figcaption></figure>
 
   <div class="rule-note">
     <p><strong>혁신의 지점은 ⑤입니다.</strong> 현재 행정은 <strong>사후 점검</strong>으로 오류를 잡습니다. 신청 단계에서 관할 기준이 적용되면 오류 자체가 줄고, 각 값에 근거가 붙어 재확인 비용이 낮아집니다.</p>
@@ -1043,7 +1013,7 @@ footer p{max-width:72ch;margin-bottom:10px;line-height:1.7}
 </section>
 
 <section id="s41">
-  <div class="shead"><span class="snum">4-1</span><h2 class="stitle">대표자의 주도성과 실행 의지</h2><span class="chip">10점</span></div>
+  <div class="shead"><span class="snum">4-1</span><h2 class="stitle">아이디어 구체화를 위해 진행한 사항</h2><span class="chip">10점</span></div>
 
   <h3>듣는 데서 멈추지 않았습니다</h3>
   <p>문제를 들은 것은 시작에 불과했습니다. 기획서를 작성하기 전에 <strong>확인할 수 있는 것은 모두 직접 확인했습니다.</strong></p>
@@ -1059,7 +1029,7 @@ footer p{max-width:72ch;margin-bottom:10px;line-height:1.7}
       <tr class="hi"><td><strong>개발 검토 문서 확보</strong></td><td>협업 개발자가 원고가 필요로 하는 데이터의 확보 경로를 <strong>API 단위로 검토해 문서로 제출</strong></td><td><strong>MVP 필요 다섯 개가 제휴 없이 시작 가능함을 확인.</strong> 원고 문구 오류 1건도 함께 지적받아 정정</td></tr>
       <tr class="hi"><td><strong>국가통계 원문 확인</strong></td><td>「2023 특수교육 실태조사」 통계표 원문 확보</td><td><strong>보호자 측 근거 9개 표 확보</strong></td></tr>
       <tr><td>지역 확장 조사</td><td>5개 지역 공개자료 표본 조사</td><td>수집 경로 확보 가능성 확인</td></tr>
-      <tr><td>유사 서비스 분석</td><td>기존 현황 지도의 구현 방식 확인</td><td>차별 지점 특정</td></tr>
+      <tr><td>유사 사례 분석</td><td>① 기존 현황 지도의 구현 방식 확인 ② 공공 주최 공모전의 특수교육 분야 기존 수상작 대조(2023~2025)</td><td>차별 지점 특정. 「동일·유사 아이템 소명서」 4축 모두 상이 확인(2-2)</td></tr>
       <tr><td>범위 조정</td><td>현장 확인에 따라 인원 데이터 제외</td><td><strong>요구 데이터 4개 필드로 축소</strong></td></tr>
       <tr><td>기록 관리</td><td>모든 조사 결과를 출처·검증 수준과 함께 관리</td><td>주장마다 근거 추적 가능</td></tr>
     </tbody>
@@ -1085,39 +1055,19 @@ footer p{max-width:72ch;margin-bottom:10px;line-height:1.7}
   <h3>2차 기간(10월 중~11월 중) 실행 계획</h3>
   <p>1차 합격 시 제공되는 공통교육·개별 멘토링·부트캠프 기간에 다음을 수행하고, <strong>결과를 2차 발표자료에 반영하겠습니다.</strong></p>
 
-  <h4>① 특수교사 설문조사</h4>
-  <div class="tw"><table>
-    <thead><tr><th>항목</th><th>내용</th></tr></thead>
+  <h4>① 설문 2종 — 표본 1명의 인터뷰를 다수 응답으로 확장합니다</h4>
+  <div class="tw"><table><caption>설문 계획 (§2-1의 V3·V4)</caption>
+    <thead><tr><th>구분</th><th>특수교사 설문 (V3)</th><th>보호자 설문 (V4)</th></tr></thead>
     <tbody>
-      <tr><td>대상</td><td>초·중등 특수교사 <span class="pill todo">목표 인원 기재</span>명</td></tr>
-      <tr><td>경로</td><td>특수교사 직무연수·교과연구회, 특수교육지원센터 협조</td></tr>
-      <tr><td>핵심 문항</td><td>ⓐ 학생 1명당 후보학교 탐색·거리 확인 소요시간 ⓑ 거리·학교명 오류로 수정 요청을 받은 경험과 빈도 ⓒ 관할 규칙을 확인하는 현재 방법 ⓓ 자동 산출 결과를 신뢰하기 위해 필요한 조건</td></tr>
-      <tr><td>활용</td><td><strong>인터뷰 2회(표본 1명) 결과를 다수 응답으로 확장.</strong> 인터뷰에서 확인된 소요시간을 <strong>문항 선택지 구간의 기준값</strong>으로 사용하여 백지에서 설계하지 않음</td></tr>
+      <tr><td>대상</td><td>초·중등 특수교사 <span class="pill todo">목표 인원 기재</span>명</td><td>특수교육대상자 보호자 <span class="pill todo">목표 인원 기재</span>명</td></tr>
+      <tr><td>경로</td><td>직무연수·교과연구회, 특수교육지원센터 협조</td><td>특수교사·특수교육지원센터 협조, 보호자 단체</td></tr>
+      <tr><td>핵심 문항</td><td>ⓐ 학생 1명당 후보학교 탐색·거리 확인 소요시간 ⓑ 거리·학교명 오류로 수정 요청을 받은 경험과 빈도 ⓒ 관할 규칙을 확인하는 현재 방법 ⓓ 자동 산출 결과를 신뢰하기 위해 필요한 조건</td><td>ⓐ 진학 준비 시 정보를 어디에서 찾았는가 ⓑ 가장 어려웠던 지점 ⓒ 신청 전에 관할 규칙을 알고 있었는가 ⓓ 근거리 순위와 희망학교의 차이를 이해했는가</td></tr>
+      <tr><td>활용</td><td>인터뷰에서 확인된 소요시간을 <strong>문항 선택지 구간의 기준값</strong>으로 사용하여 백지에서 설계하지 않음</td><td>§1-2 사회적 공감대의 <strong>당사자 근거</strong> 확보. 화면 문구 오해 가능성(V6) 동시 확인</td></tr>
     </tbody>
   </table></div>
 
-  <h4>② 학부모(보호자) 설문조사</h4>
-  <div class="tw"><table>
-    <thead><tr><th>항목</th><th>내용</th></tr></thead>
-    <tbody>
-      <tr><td>대상</td><td>특수교육대상자 보호자 <span class="pill todo">목표 인원 기재</span>명</td></tr>
-      <tr><td>경로</td><td>특수교사·특수교육지원센터 협조, 보호자 단체</td></tr>
-      <tr><td>핵심 문항</td><td>ⓐ 진학 준비 시 정보를 어디에서 찾았는가 ⓑ 가장 어려웠던 지점 ⓒ 신청 전에 관할 규칙을 알고 있었는가 ⓓ 근거리 순위와 희망학교의 차이를 이해했는가</td></tr>
-      <tr><td>활용</td><td>§1-2 사회적 공감대의 <strong>당사자 근거</strong> 확보. 화면 문구 오해 가능성(V6) 동시 확인</td></tr>
-    </tbody>
-  </table></div>
-
-  <h4>③ 병행 과제</h4>
-  <div class="tw"><table>
-    <thead><tr><th>과제</th><th>내용</th></tr></thead>
-    <tbody>
-      <tr><td>교육지원청 담당자 인터뷰</td><td>오류 재확인 실무 시간과 도입 조건 확인(V5)</td></tr>
-      <tr><td>타 관할 중입 계획 추가 수집</td><td>관할 간 규칙 차이 확정(V1)</td></tr>
-      <tr><td>A 트랙 프로토타입 구현</td><td>주소 → 후보 → 비교표 → 검수 흐름</td></tr>
-      <tr><td>경로 조회 수단 확정</td><td><strong>TMAP·ODsay 키 발급과 실호출</strong>, 이용조건·요금 확인, 카카오맵 값 대조(V2)</td></tr>
-      <tr><td>학교 마스터 키 매칭</td><td>NEIS 학교코드와 위치표준데이터 학교ID의 <strong>매칭률 측정</strong>. 분교·이전·개명 처리</td></tr>
-    </tbody>
-  </table></div>
+  <h4>② 병행 과제</h4>
+  <p>설문과 함께 <strong>§2-1의 검증 로드맵 V1·V2·V5</strong>를 같은 기간에 수행합니다. 여기에 더해 A 트랙 프로토타입(주소 → 후보 → 비교표 → 검수 흐름)을 구현하고, NEIS 학교코드와 위치표준데이터 학교ID의 <strong>매칭률을 측정</strong>합니다. 분교·이전·개명 처리가 관건입니다.</p>
 
   <div class="rule-note">
     <p><strong>설문 설계 원칙:</strong> 의견이 아니라 <strong>경험과 행동</strong>을 묻겠습니다. “필요하다고 생각하십니까”가 아니라 “지난 학년도에 몇 차례 다시 확인하셨습니까”를 묻습니다. 응답자 수와 표본의 한계는 결과와 함께 명시하겠습니다.</p>
@@ -1142,7 +1092,7 @@ footer p{max-width:72ch;margin-bottom:10px;line-height:1.7}
 
   <h3>채울 자리</h3>
   <ul class="checks">
-    <li><span class="box"></span><div><strong>Ⅰ. 참가 개요</strong> — 팀명</div></li>
+    <li><span class="box done"></span><div><strong>Ⅰ. 참가 개요 — 완료.</strong> 팀명 ‘다온이음’ 확정</div></li>
     <li><span class="box"></span><div><strong>§1-1 인터뷰 수치</strong> — 학생 1명당 소요시간, 수정 발생 항목, “N건 중 M건”. 양식은 <strong>10 현직교사 인터뷰 기록</strong></div></li>
     <li><span class="box"></span><div><strong>§4-1</strong> — 대표자 이름·소속, 개발자 참여 확정 여부</div></li>
     <li><span class="box"></span><div><strong>§4-1</strong> — 설문 목표 인원 2건</div></li>
@@ -1154,7 +1104,7 @@ footer p{max-width:72ch;margin-bottom:10px;line-height:1.7}
     <li><span class="box"></span><div><strong>인터뷰 수치를 비율로 쓰지 않았는지.</strong> 표본 1명이다. “오류율”, “평균”이 붙어 있으면 삭제한다</div></li>
     <li><span class="box"></span><div><strong>Ⅱ표를 중학생 수치로 쓰지 않았는지.</strong> 장애영아 보호자 406명 조사임을 병기해야 한다</div></li>
     <li><span class="box"></span><div><strong>만족도 70.9%를 빼지 않았는지.</strong> 불리해 보여도 싣는다. 빼면 제도 비판으로 오독된다</div></li>
-    <li><span class="box"></span><div><strong>연차보고서 2026년판 발간 여부.</strong> 발간됐다면 교체한다 — 이 기획서가 ‘정보의 적용 연도’를 다루므로 한 해 지난 수치를 쓰면 자기모순이다</div></li>
+    <li><span class="box done"></span><div><strong>연차보고서 2026년판 — 완료.</strong> 2026년판으로 교체했다. 국립특수교육원 2026-08-31·교육부 2026-09-08 게시, 수치는 「2026 특수교육통계」(조사기준일 2026.4.1) 원문과 대조.</div></li>
   </ul>
 
   <h3>분량 조정 순서</h3>
@@ -1176,31 +1126,25 @@ footer p{max-width:72ch;margin-bottom:10px;line-height:1.7}
     Ⅰ-149 현재 지원받는 관련서비스 · Ⅰ-165 향후 필요한 관련서비스 · Ⅰ-187 선정·배치 만족도<br>
     Ⅱ-7 기관 인지 경로 · Ⅱ-10 선정·배치 시 어려운 점
   </p>
-  <p>〈Ⅰ〉표는 전체 보호자 104,087명, <strong>〈Ⅱ〉표는 장애영아 보호자 406명</strong> 대상입니다. 본문의 <strong>62.3%는 어머니 55.9%와 아버지 6.4%를 합산한 값</strong>이며, 원문에 ‘부모’ 합계 항목은 없습니다. 본 조사의 중학교 과정 응답자는 <strong>23,002명(2023년 기준)</strong>으로, 「2025 특수교육 연차보고서」의 중학교 과정 27,188명(2025년 기준)과 <strong>조사 시점이 다릅니다.</strong></p>
+  <p>〈Ⅰ〉표는 전체 보호자 104,087명, <strong>〈Ⅱ〉표는 장애영아 보호자 406명</strong> 대상입니다. 본문의 <strong>62.3%는 어머니 55.9%와 아버지 6.4%를 합산한 값</strong>이며, 원문에 ‘부모’ 합계 항목은 없습니다. 본 조사의 중학교 과정 응답자는 <strong>23,002명(2023년 기준)</strong>으로, 「2026 특수교육 연차보고서」의 중학교 과정 27,881명(2026년 기준)과 <strong>조사 시점이 다릅니다.</strong></p>
   <p>보건복지부, 2021년 발달장애인 실태조사.</p>
 
   <h4>③ 교사 조사</h4>
   <p>전국특수교사노동조합, 「우리가 설계하는 2026년 특수교육」 설문(2026.5.14 발표, 응답 1,082명, 초등 특수교사 69.9%·특수학급 근무 81.1%). 국립특수교육원 「특수교육연구」 제29권 제1호, ‘특수교사의 직무 스트레스와 소진 경험 및 지원요구’(특수교사 10명 면담 질적연구).</p>
 
   <h4>④ 통계</h4>
-  <p>교육부, 「2025 특수교육 연차보고서」(2025.8, 기준일 2025.4.1).</p>
+  <p>교육부, 「2026 특수교육 연차보고서」(2026.8, 조사기준일 2026.4.1).</p>
   <p class="srcnums">
-    전체 120,735명 · 일반학교 89,440명(74.1%) · 특수학급 69,908명(57.9%) · 일반학급 19,532명(16.2%) · 특수학교 31,027명(25.7%)<br>
-    중학교 과정 27,188명 = 특수학교 7,290 + 특수학급 15,305 + 일반학급 4,593<br>
-    특수학급 총 14,658개 · 2016년 전체 87,950명, 특수학급 10,065개 · 중학교 과정 2019년 18,462명
+    전체 124,195명 · 일반학교 91,986명(74.1%) · 특수학급 72,784명(58.6%) · 일반학급 19,202명(15.5%) · 특수학교 31,993명(25.8%) · 특수교육지원센터 216명(0.2%)<br>
+    중학교 과정 27,881명 = 특수학교 7,509 + 특수학급 15,758 + 일반학급 4,614<br>
+    특수학급 총 15,426개 · 2016년 전체 87,950명, 특수학급 10,065개 · 중학교 과정 2019년 18,462명<br>※ 위 수치는 「2026 특수교육통계」(조사기준일 2026.4.1) 원문과 대조했습니다.
   </p>
 
   <h4>⑤ 서식·규칙</h4>
   <p>2027학년도 동부(D)·강동송파(S)·강남서초(G) 특수교육대상자 선정·배치 계획 및 신청서식 원문.</p>
 
   <h4>⑥ 데이터 확보 경로 (개발자 검토)</h4>
-  <p>「중입배치 MAP 활용 API 목록」(2026-09-18, 협업 개발자 작성). 원고 2절·3절이 필요로 하는 데이터의 확보 경로를 API 단위로 검토한 문서. <strong>검증 수준은 명세 확인</strong>이며, 키 발급·실호출·요금 확정은 2차 기간 V2.</p>
-  <p class="srcnums">
-    확보 경로 — NEIS 학교기본정보 · 전국초중등학교위치표준데이터 · 전국중학교학교군표준데이터 · 전국학교학구도연계정보표준데이터<br>
-    도로명주소 검색·좌표제공 API · 카카오 로컬 API · VWorld 지오코더<br>
-    TMAP 보행자 경로안내 · ODsay 대중교통 API · 학교알리미 공시정보 OpenAPI · KEDI 교육통계서비스(KESS)
-  </p>
-  <p>사용할 수 없음을 확인한 것 — 교육부 특수교육정보 특수학급 현황(기준일 2016.4.1, 10년째 정지) · 교육부 특수교육 통계(교육지원청 단위 집계만)</p>
+  <p>「중입배치 MAP 활용 API 목록」(2026-09-18, 협업 개발자 작성). 원고 2절·3절이 필요로 하는 데이터의 확보 경로를 API 단위로 검토한 문서. 확보 경로는 <strong>§3-1의 활용 공공데이터 표</strong>에, 공개돼 있으나 쓸 수 없는 것은 <strong>§1-2의 표</strong>에 정리했습니다. <strong>검증 수준은 명세 확인</strong>이며, 키 발급·실호출·요금 확정은 2차 기간 V2입니다.</p>
 </footer>
 
 </div>
