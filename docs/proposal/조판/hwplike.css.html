@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8">
+<title>중입배치 MAP — 2026 GovTech 창업경진대회 아이디어 기획서</title>
+<style>
+/* ───────────────────────────────────────────────────────────
+   한글(HWP) 문서 모양을 그대로 흉내 낸 조판본
+   · 화면 : A4 지면을 한 장씩 흰 종이로 보여준다
+   · 인쇄 : Ctrl+P → PDF 로 저장하면 실제 A4 조판이 된다
+   · 복사 : 본문을 긁어 한글에 Ctrl+V 하면 표·서식이 따라간다
+   서식 값은 제출원고 '작성 안내'의 권장값과 같다.
+     본문 함초롬바탕 10pt / 줄간격 160% / 여백 20mm
+   ─────────────────────────────────────────────────────────── */
+
+:root{
+  --page-w: 210mm;
+  --page-h: 297mm;
+  --margin: 20mm;
+  --ink: #000;
+  --rule: #555;
+}
+
+*{ box-sizing: border-box; }
+
+body{
+  margin: 0;
+  background: #6e7479;
+  font-family: "함초롬바탕", "HCR Batang", "바탕", Batang, "맑은 고딕", "Malgun Gothic", serif;
+  font-size: 10pt;
+  line-height: 160%;
+  color: var(--ink);
+  -webkit-text-size-adjust: 100%;
+}
+
+/* 화면에서 A4 한 장처럼 보이는 상자 */
+.page{
+  width: var(--page-w);
+  min-height: var(--page-h);
+  margin: 12mm auto;
+  padding: var(--margin);
+  background: #fff;
+  box-shadow: 0 2px 14px rgba(0,0,0,.35);
+  position: relative;
+}
+
+/* 안내 막대 — 인쇄할 때는 사라진다 */
+.howto{
+  width: var(--page-w);
+  margin: 16mm auto 0;
+  padding: 14px 18px;
+  background: #fffbe8;
+  border: 1px solid #e0cf90;
+  border-radius: 6px;
+  font-family: "맑은 고딕","Malgun Gothic",sans-serif;
+  font-size: 12px;
+  line-height: 1.7;
+  color: #4a3c10;
+}
+.howto b{ color:#7a4b00 }
+.howto ol{ margin: 6px 0 0; padding-left: 20px }
+.howto li{ margin-bottom: 3px }
+.howto code{
+  background:#fff; border:1px solid #e0cf90; border-radius:3px;
+  padding:1px 5px; font-family:Consolas,monospace; font-size:11px;
+}
+
+/* ── 제목 ───────────────────────────────────────────── */
+h1{
+  font-family: "함초롬돋움", "HCR Dotum", "맑은 고딕", "Malgun Gothic", sans-serif;
+  font-size: 14pt; font-weight: bold;
+  margin: 0 0 10pt; padding-bottom: 4pt;
+  border-bottom: 1pt solid var(--ink);
+  page-break-after: avoid;
+}
+h1 + h2, h1 + h3, h1 + h4{ margin-top: 8pt }
+
+h2{
+  font-family: "함초롬돋움", "HCR Dotum", "맑은 고딕", "Malgun Gothic", sans-serif;
+  font-size: 12pt; font-weight: bold;
+  margin: 18pt 0 8pt;
+  page-break-after: avoid;
+}
+h3{
+  font-family: "함초롬돋움", "HCR Dotum", "맑은 고딕", "Malgun Gothic", sans-serif;
+  font-size: 12pt; font-weight: bold;
+  margin: 15pt 0 7pt;
+  padding-left: 2pt; border-left: 3pt solid var(--ink);
+  page-break-after: avoid;
+}
+h4{
+  font-family: "함초롬돋움", "HCR Dotum", "맑은 고딕", "Malgun Gothic", sans-serif;
+  font-size: 10.5pt; font-weight: bold;
+  margin: 12pt 0 5pt;
+  page-break-after: avoid;
+}
+
+/* ── 문단 ───────────────────────────────────────────── */
+p{ margin: 0 0 6pt; text-align: justify; word-break: keep-all; }
+p.h3sub{ font-size: 10pt; color:#333; margin: -4pt 0 8pt; font-weight: normal }
+p.lead{ font-weight: bold; margin: 9pt 0 5pt; }
+p.note{
+  font-size: 9pt; line-height: 145%; color:#222;
+  margin: 3pt 0 7pt 12pt; text-indent: -12pt; padding-left: 12pt;
+}
+p.fn{
+  font-size: 9pt; line-height: 145%; color:#222;
+  margin: 2pt 0 3pt 12pt;
+}
+p.li1{ margin: 0 0 3pt 14pt; text-indent: -14pt; padding-left: 14pt }
+p.li2{ margin: 0 0 3pt 28pt; text-indent: -14pt; padding-left: 14pt }
+p.li3{ margin: 0 0 3pt 42pt; text-indent: -14pt; padding-left: 14pt }
+p.li1::before{ content:"○ " }
+p.li2::before{ content:"- " }
+p.li3::before{ content:"· " }
+p.end{ text-align: right; margin-top: 16pt }
+
+/* ── 표 ─────────────────────────────────────────────── */
+p.tcap{
+  font-family: "함초롬돋움", "HCR Dotum", "맑은 고딕", "Malgun Gothic", sans-serif;
+  font-size: 9.5pt; font-weight: bold;
+  margin: 11pt 0 3pt;
+  page-break-after: avoid;
+}
+table{
+  border-collapse: collapse; width: 100%;
+  font-size: 9pt; line-height: 135%;
+  margin: 0 0 9pt;
+  page-break-inside: avoid;
+}
+th, td{
+  border: 0.5pt solid var(--rule);
+  padding: 3pt 4pt;
+  vertical-align: top;
+  text-align: left;
+  word-break: keep-all;
+}
+th{ background: #eef1f4; font-weight: bold; text-align: center }
+
+/* ── 그림 ───────────────────────────────────────────── */
+p.figbox{ margin: 6pt 0 2pt; text-align: center; page-break-inside: avoid }
+p.figbox img{ width: 100%; height: auto; display: block }
+
+/* ── 인쇄 ───────────────────────────────────────────── */
+@page{ size: A4; margin: 20mm; }
+@media print{
+  body{ background: #fff }
+  .howto{ display: none }
+  .page{
+    width: auto; min-height: 0; margin: 0; padding: 0;
+    box-shadow: none; background: transparent;
+  }
+}
+</style></head><body>
+
+<div class="howto">
+  <b>이 파일은 한글에 옮기기 위한 조판본입니다.</b> 정본은 <code>docs/proposal/HWP_제출원고.txt</code>입니다.
+  <ol>
+    <li><b>한글로 옮기기</b> — 아래 흰 지면 안쪽을 마우스로 긁어 복사(Ctrl+C)한 뒤, 공고 첨부 양식 <code>04_[아이디어_기획서]…hwp</code>에 붙여넣기(Ctrl+V)합니다. <b>표와 그림이 그대로 따라갑니다.</b></li>
+    <li><b>분량 확인</b> — Ctrl+P → 대상을 'PDF로 저장', 용지 A4, 여백 '기본', 배율 100%, <b>'배경 그래픽' 체크</b>. 미리보기에 나오는 쪽수가 실제 분량입니다.</li>
+    <li>붙여넣은 뒤 한글에서 확인할 것 — 글꼴이 <b>함초롬바탕 10pt</b>인지, 줄간격 <b>160%</b>인지, 표가 본문 폭에 맞는지.</li>
+    <li><b>▶ 기호</b>는 진하게 처리한 문장이라 이미 굵게 나옵니다. <b>※</b>는 주석입니다. 기호 자체는 지우지 않아도 됩니다.</li>
+  </ol>
+</div>
+
+<div class="page">

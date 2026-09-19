@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8">
+<style>
+  :root{ --ink:#111418; --mute:#5b6570; --line:#d3d9df; --past:#aab4bf; --now:#1b4b8f; --hi:#b45309 }
+  *{box-sizing:border-box; margin:0; padding:0}
+  body{ width:1180px; padding:28px 30px 30px; background:#fff;
+        font-family:"Malgun Gothic","맑은 고딕",sans-serif; color:var(--ink) }
+  .cap{ font-size:17px; font-weight:700; letter-spacing:-.02em; margin-bottom:4px }
+  .sub{ font-size:12.5px; color:var(--mute); margin-bottom:22px }
+  .wrap{ display:flex; gap:34px; align-items:flex-end }
+  .grp{ flex:1 }
+  .gname{ font-size:12.5px; font-weight:700; letter-spacing:-.02em; margin-bottom:2px }
+  .gspan{ font-size:10.8px; color:var(--mute); margin-bottom:12px }
+  .bars{ display:flex; gap:26px; align-items:flex-end; height:230px; border-bottom:1.4px solid var(--line); padding-bottom:0 }
+  .bar{ flex:1; display:flex; flex-direction:column; justify-content:flex-end; align-items:center }
+  .val{ font-size:12.5px; font-weight:700; letter-spacing:-.03em; margin-bottom:5px }
+  .rect{ width:100%; border-radius:4px 4px 0 0 }
+  .rect.p{ background:var(--past) } .rect.n{ background:var(--now) }
+  .yr{ font-size:11px; color:var(--mute); margin-top:7px; letter-spacing:-.01em }
+  .delta{ margin-top:12px; font-size:12.5px; font-weight:700; color:var(--hi); letter-spacing:-.02em }
+  .delta span{ font-weight:400; color:var(--mute); font-size:11px }
+  .lead{ margin-top:22px; border-left:3px solid var(--now); padding:9px 0 9px 12px;
+         font-size:12.8px; line-height:1.65; letter-spacing:-.02em }
+  .lead b{ color:var(--now) }
+  .src{ margin-top:12px; font-size:10.5px; color:var(--mute); line-height:1.6; letter-spacing:-.01em }
+</style></head><body>
+
+<div class="cap">【그림 3】 특수교육 규모의 10년 변화</div>
+<div class="sub">학령인구가 감소하는 동안 특수교육대상자는 늘었고, 그 다수가 일반학교에 있다</div>
+
+<div class="wrap">
+
+  <div class="grp">
+    <div class="gname">전체 특수교육대상자</div>
+    <div class="gspan">2016 → 2026 (10년)</div>
+    <div class="bars">
+      <div class="bar"><div class="val" style="color:#6b7480">87,950명</div><div class="rect p" style="height:142px"></div></div>
+      <div class="bar"><div class="val" style="color:#1b4b8f">124,195명</div><div class="rect n" style="height:200px"></div></div>
+    </div>
+    <div style="display:flex;gap:26px"><div style="flex:1" class="yr">2016년</div><div style="flex:1" class="yr">2026년</div></div>
+    <div class="delta">+41.2% <span>· +36,245명</span></div>
+  </div>
+
+  <div class="grp">
+    <div class="gname">전국 특수학급 수</div>
+    <div class="gspan">2016 → 2026 (10년)</div>
+    <div class="bars">
+      <div class="bar"><div class="val" style="color:#6b7480">10,065개</div><div class="rect p" style="height:130px"></div></div>
+      <div class="bar"><div class="val" style="color:#1b4b8f">15,426개</div><div class="rect n" style="height:200px"></div></div>
+    </div>
+    <div style="display:flex;gap:26px"><div style="flex:1" class="yr">2016년</div><div style="flex:1" class="yr">2026년</div></div>
+    <div class="delta">+53.3% <span>· +5,361개</span></div>
+  </div>
+
+  <div class="grp">
+    <div class="gname">중학교 과정 대상자</div>
+    <div class="gspan">2019 → 2026 (7년)</div>
+    <div class="bars">
+      <div class="bar"><div class="val" style="color:#6b7480">18,462명</div><div class="rect p" style="height:132px"></div></div>
+      <div class="bar"><div class="val" style="color:#1b4b8f">27,881명</div><div class="rect n" style="height:200px"></div></div>
+    </div>
+    <div style="display:flex;gap:26px"><div style="flex:1" class="yr">2019년</div><div style="flex:1" class="yr">2026년</div></div>
+    <div class="delta">+51.0% <span>· +9,419명</span></div>
+  </div>
+
+</div>
+
+<div class="lead">
+  <b>중학교 과정 27,881명 가운데 15,758명(56.5%)이 일반학교 특수학급에 있습니다.</b> 특수학교 재학생 7,509명의 두 배가 넘습니다.
+  즉 중학교 진학에서 다수의 가정이 마주하는 질문은 “어느 특수학교로 갈 것인가”가 아니라, <b>“우리 동네 어느 일반학교에 특수학급이 있고, 우리 관할은 무엇을 요구하는가”</b>입니다.
+</div>
+
+<div class="src">
+  ※ 막대 높이는 각 지표의 최신값을 기준으로 맞춘 상대 비교이며, 세 지표의 축은 서로 다릅니다. 지표마다 비교 기점 연도가 다른 것은 원자료의 공표 범위에 따른 것입니다.<br>
+  출처 : 교육부, 「2026 특수교육 연차보고서」(2026. 8., 조사기준일 2026. 4. 1.). 수치는 「2026 특수교육통계」 원문과 대조했습니다.
+</div>
+
+</body></html>

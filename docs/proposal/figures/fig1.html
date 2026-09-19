@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8">
+<style>
+  :root{ --ink:#111418; --mute:#5b6570; --line:#c9d0d8; --asis:#8b95a1; --tobe:#1b4b8f; --hi:#b45309; --hibg:#fdf6ec; }
+  *{box-sizing:border-box; margin:0; padding:0}
+  body{ width:1180px; padding:28px 30px 30px; background:#fff;
+        font-family:"Malgun Gothic","맑은 고딕",sans-serif; color:var(--ink); }
+  .cap{ font-size:17px; font-weight:700; letter-spacing:-.02em; margin-bottom:4px }
+  .sub{ font-size:12.5px; color:var(--mute); margin-bottom:18px }
+  table{ border-collapse:collapse; width:100%; table-layout:fixed }
+  td,th{ vertical-align:top }
+  .lane{ width:92px; padding:10px 8px 0 0; font-size:13px; font-weight:700; letter-spacing:-.02em }
+  .lane small{ display:block; font-weight:400; font-size:11px; color:var(--mute); margin-top:2px }
+  .lane.a{ color:var(--asis) } .lane.b{ color:var(--tobe) }
+  .step{ padding:0 5px }
+  .num{ font-size:11.5px; font-weight:700; color:var(--mute); margin-bottom:5px; letter-spacing:-.01em }
+  .box{ border:1.4px solid var(--line); border-radius:7px; padding:9px 10px; font-size:11.8px;
+        line-height:1.5; letter-spacing:-.02em; min-height:82px }
+  .box.a{ background:#f7f8fa; color:#3d464f }
+  .box.b{ background:#fff; border-color:var(--tobe); color:#14314f }
+  .hi .box{ border-color:var(--hi); background:var(--hibg) }
+  .hi .num{ color:var(--hi) }
+  .arrows{ height:30px; position:relative }
+  .arrows td{ text-align:center; color:var(--line); font-size:17px; line-height:30px }
+  .note{ margin-top:16px; border-left:3px solid var(--hi); padding:8px 0 8px 12px;
+         font-size:12.5px; line-height:1.6; letter-spacing:-.02em }
+  .note b{ color:var(--hi) }
+  .outside{ background:repeating-linear-gradient(135deg,#f4f5f7 0 6px,#eceef1 6px 12px); color:#7b838c }
+</style></head><body>
+
+<div class="cap">【그림 1】 배치 신청 행정의 AS-IS / TO-BE</div>
+<div class="sub">특수교육대상자 중학교 입학 배치 신청 — 6단계 처리 흐름</div>
+
+<table>
+  <tr>
+    <td class="lane a">현재<small>AS-IS</small></td>
+    <td class="step"><div class="num">① 안내</div><div class="box a">교육지원청이 계획 HWP 게시 → 학교 전달 → 보호자가 읽고 해석</div></td>
+    <td class="step"><div class="num">② 보호자 작성</div><div class="box a">지도 검색을 반복하며 학교·거리·시간을 수기 기재</div></td>
+    <td class="step"><div class="num">③ 교사 확인</div><div class="box a">학생마다 지도 재조회, 행 수·중복·단위 수동 대조</div></td>
+    <td class="step"><div class="num">④ 등록·첨부</div><div class="box a">수기 내용을 업무시스템에 재입력</div></td>
+    <td class="step hi"><div class="num">⑤ 교육지원청 검토</div><div class="box a">거리 재점검 → 오류 시 수정 요청·수정공문</div></td>
+    <td class="step"><div class="num">⑥ 심사</div><div class="box a outside">특수교육운영위원회 심사</div></td>
+  </tr>
+  <tr class="arrows">
+    <td></td><td>▼</td><td>▼</td><td>▼</td><td>▼</td><td>▼</td><td></td>
+  </tr>
+  <tr>
+    <td class="lane b">도입 후<small>TO-BE</small></td>
+    <td class="step"><div class="num">① 안내</div><div class="box b">관할·학년도를 자동 판정하여 <b>해당 규칙만</b> 제시</div></td>
+    <td class="step"><div class="num">② 보호자 작성</div><div class="box b">주소 입력 → 후보·거리·소요시간 <b>비교표 자동 산출</b></div></td>
+    <td class="step"><div class="num">③ 교사 확인</div><div class="box b">중복·누락·학급유형 혼재 <b>자동 점검</b>, 수정 사유 기록</div></td>
+    <td class="step"><div class="num">④ 등록·첨부</div><div class="box b">항목 추출·검수 후 <b>입력 지원</b> (B 트랙)</div></td>
+    <td class="step hi"><div class="num">⑤ 교육지원청 검토</div><div class="box b">각 값에 출처·조회조건·수정이력 첨부 → <b>재확인 대상 축소</b></div></td>
+    <td class="step"><div class="num">⑥ 심사</div><div class="box b outside">변경 없음<br>서비스 범위 밖</div></td>
+  </tr>
+</table>
+
+<div class="note">
+  <b>혁신의 지점은 ⑤입니다.</b> 현재 행정은 사후 점검으로 오류를 잡습니다. 신청 단계에서 관할 기준이 적용되면 오류 자체가 줄고, 각 값에 근거가 붙어 재확인 비용이 낮아집니다.<br>
+  ⑥ 특수교육대상자 선정과 최종 배치 결정은 교육지원청 특수교육운영위원회의 고유 권한이며 서비스 범위 밖입니다.
+</div>
+
+</body></html>
