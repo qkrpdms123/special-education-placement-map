@@ -1,63 +1,78 @@
 <!DOCTYPE html>
 <html lang="ko"><head><meta charset="utf-8">
 <style>
-  :root{ --ink:#111418; --mute:#5b6570; --line:#c9d0d8; --asis:#8b95a1; --tobe:#1b4b8f; --hi:#b45309; --hibg:#fdf6ec; }
+  :root{ --ink:#111418; --mute:#5b6570; --line:#d3d9df; --past:#aab4bf; --now:#1b4b8f; --hi:#b45309 }
   *{box-sizing:border-box; margin:0; padding:0}
   body{ width:1180px; padding:28px 30px 30px; background:#fff;
-        font-family:"Malgun Gothic","맑은 고딕",sans-serif; color:var(--ink); }
+        font-family:"Malgun Gothic","맑은 고딕",sans-serif; color:var(--ink) }
   .cap{ font-size:17px; font-weight:700; letter-spacing:-.02em; margin-bottom:4px }
-  .sub{ font-size:12.5px; color:var(--mute); margin-bottom:18px }
-  table{ border-collapse:collapse; width:100%; table-layout:fixed }
-  td,th{ vertical-align:top }
-  .lane{ width:92px; padding:10px 8px 0 0; font-size:13px; font-weight:700; letter-spacing:-.02em }
-  .lane small{ display:block; font-weight:400; font-size:11px; color:var(--mute); margin-top:2px }
-  .lane.a{ color:var(--asis) } .lane.b{ color:var(--tobe) }
-  .step{ padding:0 5px }
-  .num{ font-size:11.5px; font-weight:700; color:var(--mute); margin-bottom:5px; letter-spacing:-.01em }
-  .box{ border:1.4px solid var(--line); border-radius:7px; padding:9px 10px; font-size:11.8px;
-        line-height:1.5; letter-spacing:-.02em; min-height:82px }
-  .box.a{ background:#f7f8fa; color:#3d464f }
-  .box.b{ background:#fff; border-color:var(--tobe); color:#14314f }
-  .hi .box{ border-color:var(--hi); background:var(--hibg) }
-  .hi .num{ color:var(--hi) }
-  .arrows{ height:30px; position:relative }
-  .arrows td{ text-align:center; color:var(--line); font-size:17px; line-height:30px }
-  .note{ margin-top:16px; border-left:3px solid var(--hi); padding:8px 0 8px 12px;
-         font-size:12.5px; line-height:1.6; letter-spacing:-.02em }
-  .note b{ color:var(--hi) }
-  .outside{ background:repeating-linear-gradient(135deg,#f4f5f7 0 6px,#eceef1 6px 12px); color:#7b838c }
+  .sub{ font-size:12.5px; color:var(--mute); margin-bottom:22px }
+  .wrap{ display:flex; gap:34px; align-items:flex-end }
+  .grp{ flex:1 }
+  .gname{ font-size:12.5px; font-weight:700; letter-spacing:-.02em; margin-bottom:2px }
+  .gspan{ font-size:10.8px; color:var(--mute); margin-bottom:12px }
+  .bars{ display:flex; gap:26px; align-items:flex-end; height:230px; border-bottom:1.4px solid var(--line); padding-bottom:0 }
+  .bar{ flex:1; display:flex; flex-direction:column; justify-content:flex-end; align-items:center }
+  .val{ font-size:12.5px; font-weight:700; letter-spacing:-.03em; margin-bottom:5px }
+  .rect{ width:100%; border-radius:4px 4px 0 0 }
+  .rect.p{ background:var(--past) } .rect.n{ background:var(--now) }
+  .yr{ font-size:11px; color:var(--mute); margin-top:7px; letter-spacing:-.01em }
+  .delta{ margin-top:12px; font-size:12.5px; font-weight:700; color:var(--hi); letter-spacing:-.02em }
+  .delta span{ font-weight:400; color:var(--mute); font-size:11px }
+  .lead{ margin-top:22px; border-left:3px solid var(--now); padding:9px 0 9px 12px;
+         font-size:12.8px; line-height:1.65; letter-spacing:-.02em }
+  .lead b{ color:var(--now) }
+  .src{ margin-top:12px; font-size:10.5px; color:var(--mute); line-height:1.6; letter-spacing:-.01em }
 </style></head><body>
 
-<div class="cap">【그림 1】 배치 신청 행정의 AS-IS / TO-BE</div>
-<div class="sub">특수교육대상자 중학교 입학 배치 신청 — 6단계 처리 흐름</div>
+<div class="cap">【그림 1】 특수교육 규모의 10년 변화</div>
+<div class="sub">학령인구가 감소하는 동안 특수교육대상자는 늘었고, 그 다수가 일반학교에 있다</div>
 
-<table>
-  <tr>
-    <td class="lane a">현재<small>AS-IS</small></td>
-    <td class="step"><div class="num">① 안내</div><div class="box a">교육지원청이 계획 HWP 게시 → 학교 전달 → 보호자가 읽고 해석</div></td>
-    <td class="step"><div class="num">② 보호자 작성</div><div class="box a">지도 검색을 반복하며 학교·거리·시간을 수기 기재</div></td>
-    <td class="step"><div class="num">③ 교사 확인</div><div class="box a">학생마다 지도 재조회, 행 수·중복·단위 수동 대조</div></td>
-    <td class="step"><div class="num">④ 등록·첨부</div><div class="box a">수기 내용을 업무시스템에 재입력</div></td>
-    <td class="step hi"><div class="num">⑤ 교육지원청 검토</div><div class="box a">거리 재점검 → 오류 시 수정 요청·수정공문</div></td>
-    <td class="step"><div class="num">⑥ 심사</div><div class="box a outside">특수교육운영위원회 심사</div></td>
-  </tr>
-  <tr class="arrows">
-    <td></td><td>▼</td><td>▼</td><td>▼</td><td>▼</td><td>▼</td><td></td>
-  </tr>
-  <tr>
-    <td class="lane b">도입 후<small>TO-BE</small></td>
-    <td class="step"><div class="num">① 안내</div><div class="box b">관할·학년도를 자동 판정하여 <b>해당 규칙만</b> 제시</div></td>
-    <td class="step"><div class="num">② 보호자 작성</div><div class="box b">주소 입력 → 후보·거리·소요시간 <b>비교표 자동 산출</b></div></td>
-    <td class="step"><div class="num">③ 교사 확인</div><div class="box b">중복·누락·학급유형 혼재 <b>자동 점검</b>, 수정 사유 기록</div></td>
-    <td class="step"><div class="num">④ 등록·첨부</div><div class="box b">항목 추출·검수 후 <b>입력 지원</b> (B 트랙)</div></td>
-    <td class="step hi"><div class="num">⑤ 교육지원청 검토</div><div class="box b">각 값에 출처·조회조건·수정이력 첨부 → <b>재확인 대상 축소</b></div></td>
-    <td class="step"><div class="num">⑥ 심사</div><div class="box b outside">변경 없음<br>서비스 범위 밖</div></td>
-  </tr>
-</table>
+<div class="wrap">
 
-<div class="note">
-  <b>혁신의 지점은 ⑤입니다.</b> 현재 행정은 사후 점검으로 오류를 잡습니다. 신청 단계에서 관할 기준이 적용되면 오류 자체가 줄고, 각 값에 근거가 붙어 재확인 비용이 낮아집니다.<br>
-  ⑥ 특수교육대상자 선정과 최종 배치 결정은 교육지원청 특수교육운영위원회의 고유 권한이며 서비스 범위 밖입니다.
+  <div class="grp">
+    <div class="gname">전체 특수교육대상자</div>
+    <div class="gspan">2016 → 2026 (10년)</div>
+    <div class="bars">
+      <div class="bar"><div class="val" style="color:#6b7480">87,950명</div><div class="rect p" style="height:142px"></div></div>
+      <div class="bar"><div class="val" style="color:#1b4b8f">124,195명</div><div class="rect n" style="height:200px"></div></div>
+    </div>
+    <div style="display:flex;gap:26px"><div style="flex:1" class="yr">2016년</div><div style="flex:1" class="yr">2026년</div></div>
+    <div class="delta">+41.2% <span>· +36,245명</span></div>
+  </div>
+
+  <div class="grp">
+    <div class="gname">전국 특수학급 수</div>
+    <div class="gspan">2016 → 2026 (10년)</div>
+    <div class="bars">
+      <div class="bar"><div class="val" style="color:#6b7480">10,065개</div><div class="rect p" style="height:130px"></div></div>
+      <div class="bar"><div class="val" style="color:#1b4b8f">15,426개</div><div class="rect n" style="height:200px"></div></div>
+    </div>
+    <div style="display:flex;gap:26px"><div style="flex:1" class="yr">2016년</div><div style="flex:1" class="yr">2026년</div></div>
+    <div class="delta">+53.3% <span>· +5,361개</span></div>
+  </div>
+
+  <div class="grp">
+    <div class="gname">중학교 과정 대상자</div>
+    <div class="gspan">2019 → 2026 (7년)</div>
+    <div class="bars">
+      <div class="bar"><div class="val" style="color:#6b7480">18,462명</div><div class="rect p" style="height:132px"></div></div>
+      <div class="bar"><div class="val" style="color:#1b4b8f">27,881명</div><div class="rect n" style="height:200px"></div></div>
+    </div>
+    <div style="display:flex;gap:26px"><div style="flex:1" class="yr">2019년</div><div style="flex:1" class="yr">2026년</div></div>
+    <div class="delta">+51.0% <span>· +9,419명</span></div>
+  </div>
+
+</div>
+
+<div class="lead">
+  <b>중학교 과정 27,881명 가운데 15,758명(56.5%)이 일반학교 특수학급에 있습니다.</b> 특수학교 재학생 7,509명의 두 배가 넘습니다.
+  즉 중학교 진학에서 다수의 가정이 마주하는 질문은 “어느 특수학교로 갈 것인가”가 아니라, <b>“우리 동네 어느 일반학교에 특수학급이 있고, 우리 관할은 무엇을 요구하는가”</b>입니다.
+</div>
+
+<div class="src">
+  ※ 막대 높이는 각 지표의 최신값을 기준으로 맞춘 상대 비교이며, 세 지표의 축은 서로 다릅니다. 지표마다 비교 기점 연도가 다른 것은 원자료의 공표 범위에 따른 것입니다.<br>
+  출처 : 교육부, 「2026 특수교육 연차보고서」(2026. 8., 조사기준일 2026. 4. 1.). 수치는 「2026 특수교육통계」 원문과 대조했습니다.
 </div>
 
 </body></html>
