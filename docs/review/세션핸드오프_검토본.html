@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>세션 핸드오프 — 2026-09-20 — 중입배치 MAP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=IBM+Plex+Sans+KR:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+:root{--paper:#F5F6F5;--surface:#FFF;--surface-2:#EDF0EF;--ink:#13303A;--ink-soft:#33474E;
+--muted:#5C6B6E;--faint:#8A9698;--rule:#D6DDDB;--rule-soft:#E5EAE9;--accent:#1E8E84;
+--accent-wash:#E2F0EE;--ok:#2F7D5B;--ok-wash:#E3F0E9;--warn:#A2691A;--warn-wash:#F6EDDD;
+--todo:#A83F34;--todo-wash:#F8E7E4;
+--serif:"Gowun Batang",Batang,serif;--sans:"IBM Plex Sans KR","Apple SD Gothic Neo",system-ui,sans-serif;
+--mono:"IBM Plex Mono","D2Coding",ui-monospace,monospace}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#0D1518;--surface:#141F22;
+--surface-2:#1B282B;--ink:#E4ECEA;--ink-soft:#C2CFCD;--muted:#93A3A4;--faint:#6B7B7D;
+--rule:#2B3A3D;--rule-soft:#223033;--accent:#4BC3B5;--accent-wash:#152E2F;--ok:#63B88E;
+--ok-wash:#162A22;--warn:#D2A257;--warn-wash:#2B2317;--todo:#DE8478;--todo-wash:#2D1B18}}
+:root[data-theme="dark"]{--paper:#0D1518;--surface:#141F22;--surface-2:#1B282B;--ink:#E4ECEA;
+--ink-soft:#C2CFCD;--muted:#93A3A4;--faint:#6B7B7D;--rule:#2B3A3D;--rule-soft:#223033;
+--accent:#4BC3B5;--accent-wash:#152E2F;--ok:#63B88E;--ok-wash:#162A22;--warn:#D2A257;
+--warn-wash:#2B2317;--todo:#DE8478;--todo-wash:#2D1B18}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;
+line-height:1.75;margin:0;padding-inline:20px;-webkit-font-smoothing:antialiased}
+.wrap{max-width:940px;margin:0 auto;padding-block:0 90px}
+.mast{padding-block:48px 22px;border-bottom:2px solid var(--ink);margin-bottom:8px}
+.kicker{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;
+color:var(--accent);font-weight:600;margin:0 0 12px}
+.mast h1{font-family:var(--serif);font-weight:700;font-size:clamp(27px,5vw,40px);line-height:1.18;margin:0 0 10px}
+.mast p{font-size:15.5px;color:var(--ink-soft);margin:0;max-width:64ch}
+.back{display:inline-block;font-family:var(--mono);font-size:11.5px;color:var(--accent);
+text-decoration:none;margin-bottom:26px;border:1px solid var(--rule);border-radius:2px;padding:4px 10px}
+.back:hover{background:var(--accent-wash)}
+h2{font-family:var(--serif);font-size:25px;font-weight:700;margin:52px 0 10px;
+padding-top:16px;border-top:1px solid var(--rule);line-height:1.3}
+h3{font-size:18px;font-weight:600;margin:32px 0 8px;color:var(--ink);line-height:1.4}
+h4{font-size:15.5px;font-weight:600;margin:24px 0 6px;color:var(--ink-soft)}
+p{margin:0 0 14px;max-width:none}
+ul,ol{margin:0 0 16px;padding-left:1.3em}
+li{margin:0 0 6px}
+hr{border:0;border-top:1px solid var(--rule);margin:40px 0}
+code{font-family:var(--mono);font-size:.88em;background:var(--surface-2);
+padding:1px 5px;border-radius:2px}
+pre{background:var(--surface-2);border:1px solid var(--rule);border-radius:3px;
+padding:14px 16px;overflow-x:auto;margin:0 0 18px}
+pre code{background:none;padding:0;font-size:12.5px;line-height:1.65}
+blockquote{margin:0 0 18px;padding:14px 18px;background:var(--surface);
+border-left:3px solid var(--accent);border-radius:0 3px 3px 0;color:var(--ink-soft)}
+blockquote p:last-child{margin-bottom:0}
+strong{font-weight:600;color:var(--ink)}
+a{color:var(--accent)}
+.tw{overflow-x:auto;margin:0 0 22px;border:1px solid var(--rule);border-radius:3px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{border-bottom:1px solid var(--rule-soft);padding:9px 12px;text-align:left;vertical-align:top}
+th{background:var(--surface-2);font-weight:600;font-size:13px;white-space:nowrap;
+position:sticky;top:0}
+tr:last-child td{border-bottom:0}
+td[align=right],th[align=right]{text-align:right}
+td[align=center],th[align=center]{text-align:center}
+@media(max-width:700px){body{font-size:15px}table{font-size:13px}th,td{padding:7px 9px}}
+</style></head><body><div class="wrap">
+<a class="back" href="../../검토.html">← 검토 목록</a>
+<div class="mast"><p class="kicker">검토본 · 원문은 마크다운</p>
+<h1>세션 핸드오프 — 2026-09-20</h1><p>다른 기기에서 새 채팅으로 이어받을 때 먼저 읽는 문서.</p></div>
+<p>다른 기기에서 새 채팅으로 이어받을 때 <strong>이 문서를 먼저 붙여넣으세요.</strong> 저장소 전체 규칙은 <a href="../CLAUDE.md">CLAUDE.md</a>에 있습니다.</p>
+<hr>
+<h2>1. 프로젝트 / 목표</h2>
+<p><strong>프로젝트:</strong> 중입배치 MAP — 특수교육대상자의 중학교 진학 후보학교·통학정보 탐색 및 배치 신청자료 작성 지원 서비스. 2026년 GovTech 창업경진대회 아이디어 기획서 준비.</p>
+<p><strong>이번 세션 목표:</strong> 보유 자료(서울 3개 관할 HWP)를 넘어 <strong>관할 지역별로 2027학년도 중입배치 공고를 모으고</strong>, 조건을 대조해 제출원고에 반영.</p>
+<p><strong>마감:</strong> 2026-09-21(월) 10:00. 1차는 <strong>서면평가</strong>(발표 없음).</p>
+<hr>
+<h2>2. 진행 상태</h2>
+<p><strong>서울 11개 교육지원청 전 관할 원문 확보 완료</strong> — 21개 파일, 42MB.</p>
+<div class="tw"><table><thead><tr><th>산출물</th><th>위치</th></tr></thead><tbody><tr><td>수집 대장 (출처·게시일·SHA-256)</td><td><code>docs/research/2027중입_관할별공고_수집대장.md</code></td></tr><tr><td><strong>배치조건 대조표</strong> (조항 단위 11개 관할 비교)</td><td><code>docs/research/2027중입_관할별_배치조건_대조표.md</code></td></tr><tr><td>제출원고 반영 결과</td><td><code>docs/proposal/제출원고_반영후보_2027중입수집.md</code></td></tr><tr><td>수집·추출 도구</td><td><code>tools/수집/</code> (스크립트 5개 + <code>수집대장.json</code>)</td></tr><tr><td>공고 원본 HWP/PDF</td><td><strong>저장소 밖</strong> <code>~/Desktop/특수교육맵서비스/공고원문_2027중입/</code></td></tr></tbody></table></div>
+<p><strong>제출원고(정본)에 반영 완료</strong> — <code>docs/proposal/HWP_제출원고.txt</code>. 사본 4개도 재생성했습니다.</p>
+<ul><li>§1-2 【표 10】 → 11개 관할 전수 표로 교체 (3행 → 11행)</li><li>§4-1 【표 28】 → &quot;기각 → 근거 확보 후 해제&quot;로 전환</li><li>§2-1 【표 17】 → V1 = 【완료 2026.9.20.】, 새 V1&#x27; = 타 시도 확장</li><li>§2-1 사 → 카카오맵 지정 사유 추가 / §3-1 → 게시처 폴백·형식 분기 추가</li><li>함께 정정 8곳(표 1·표 9·표 14 ①⑤·2-1 마·표 27 2행)</li><li>분량은 §2-2에서 중복 서술만 압축해 상쇄 → <strong>순증 18줄</strong></li></ul>
+<p><strong>부수 수정</strong> — 기존 HTML 4개에 <code>&lt;!DOCTYPE&gt;</code>·<code>&lt;meta charset&gt;</code>이 없어 한글이 깨지던 것을 고쳤습니다(<code>검토.html</code>, <code>초안_검토요약.html</code>, <code>기획서_v1.0_제출본_검토.html</code>, <code>기획서_v0.5_검토본.html</code>).</p>
+<p><strong>GitHub 푸시 완료</strong> — <code>17b04ab</code>(35개 파일). 그 뒤 <code>799e67d</code>(수집 도구 이관)는 <strong>아직 푸시 안 됨.</strong></p>
+<hr>
+<h2>3. 주요 결정 사항 및 맥락</h2>
+<p><strong>결정 사항</strong></p>
+<ul><li>【표 10】은 <strong>11개 관할 전수 표로 교체</strong>한다(요약 압축형 아님)</li><li>【표 28】의 &quot;규칙이 관할마다 다르다&quot;는 <strong>삭제가 아니라 &#x27;보류 → 해제&#x27;로 서술</strong>한다 — §4-1 주도성 서사가 강해진다</li><li>V1은 <strong>완료 처리</strong>하고 새 V1&#x27;을 타 시도 확장으로 둔다</li><li>분량 초과분은 <strong>§2-2에서 줄인다</strong>(배점 10점 대비 가장 두꺼움). <strong>§3-1·3-2는 절대 줄이지 않는다</strong></li><li>원본 HWP/PDF는 <strong>저장소에 커밋하지 않는다.</strong> 수집 스크립트는 커밋한다</li><li>저장소는 <strong>현재 PUBLIC.</strong> 사용자가 &quot;지금 바로 푸시&quot; 결정</li></ul>
+<p><strong>맥락 — 이번에 확인된 핵심 사실</strong></p>
+<ul><li><strong>근거리 학교 기재 수가 관할마다 3·4·5개로 갈린다.</strong> 3 = 동부·남부·북부·중부 / 4 = 강남서초 / 5 = 서부·강서양천·성동광진</li><li><strong>북부 서식에는 보호자 희망 행이 아예 없다.</strong> 중부만 희망교를 1·2·3순위로 받는다</li><li>거리 기준은 11/11 동일 — <strong>카카오맵, 2km 미만 도보 / 2km 이상 대중교통(자차 제외)</strong></li><li><strong>서부 신·구 대조표에 카카오맵 지정 사유가 있다</strong> — &quot;대중교통 거리(km) 산출 기능이 있는 포털사이트 명시 — 네이버 지도: X, 카카오맵: O&quot;. 경로 조회 공급자 선택의 행정적 근거</li><li><strong>관할 기준은 단계마다 다르다.</strong> 거리 산정 = 주민등록상 거주지 / 심사·배치 = 희망 학교 관할(이관받은 곳)</li><li>강동송파만 출발지를 <strong>아파트 동까지</strong>, 1km 미만을 <strong>m 일의 자리</strong>로 요구</li><li>중부만 특이배치 가족관계증명서가 <strong>1개월</strong>(공통 조항은 3개월) — 같은 문서 안에서 어긋남</li></ul>
+<hr>
+<h2>4. 미결 사항</h2>
+<p><strong>문서 내부가 어긋나 확정하지 못한 것 — 지원청 확인 필요</strong></p>
+<div class="tw"><table><thead><tr><th>관할</th><th>문제</th><th>연락처</th></tr></thead><tbody><tr><td>강동송파</td><td>문장 &quot;4개&quot; vs 서식 근거리 3행</td><td>02-414-2634</td></tr><tr><td>성북강북</td><td>문장 &quot;5개&quot; vs 서식 근거리 4행</td><td>070-5014-0853</td></tr><tr><td>동작관악</td><td>문장 &quot;5개&quot; vs 서식 3행. <strong>어느 쪽으로도 안 맞는다</strong></td><td>02-833-2895</td></tr><tr><td>북부</td><td>보호자 희망 행 부재가 의도인지</td><td>02-956-1039</td></tr><tr><td>중부</td><td>&quot;1,2,3순위 희망교&quot; 해석 / 가족관계증명서 1개월</td><td>02-2027-7900</td></tr><tr><td>남부</td><td>상세표시일 13일 차이(08-19 vs 09-01)</td><td>070-8895-2274</td></tr></tbody></table></div>
+<p><strong>원문에 아예 없는 것</strong></p>
+<ul><li><strong>거주지 관할 ≠ 희망 학교 관할일 때 어느 관할의 서식 규칙을 따르는가.</strong> 11개 문서 어디에도 없다. 관할 자동 판정의 전제라 <code>unknown</code>으로 두고 있다</li><li>서부를 뺀 10개 관할의 <strong>대중교통 경로 선택 기준</strong>(서부만 &#x27;최단거리&#x27; 명시)</li></ul>
+<p><strong>측정하지 않은 것</strong></p>
+<ul><li>카카오맵과 대체 공급자(TMAP·ODsay)의 <strong>값 차이</strong> → V2</li><li>아파트 동 차이로 순위가 실제로 뒤집히는지</li></ul>
+<p><strong>저장소 공개 여부</strong> — 현재 PUBLIC. 제출 전 private 전환 여부 미결.</p>
+<hr>
+<h2>5. 남은 작업 및 다음 단계</h2>
+<p><strong>남은 작업</strong></p>
+<ol><li><strong>커밋 <code>799e67d</code> 푸시</strong> — <code>git push origin main</code> (수집 도구 이관분)</li><li><strong>원고를 한글 양식에 붙여넣고 쪽수 직접 세기</strong> — 상한 20쪽, 추정 23쪽+. <strong>자동 측정값은 신뢰할 수 없다</strong>(CLAUDE.md §6)</li><li>넘치면 §2-2를 더 줄인다. <strong>중복은 이미 걷어냈으므로 다음은 근거를 덜어내는 판단이 필요 — 사용자에게 물어볼 것</strong></li><li>제출 전 빈칸 3개 — §1-1 인터뷰 수치, §4-1 대표자 이름·소속, §4-1 설문 목표 인원</li><li>사실증명(사업자등록사실여부) 발급 — <strong>미비 시 평가 제외</strong></li><li>위 §4 미결 사항 지원청 확인</li><li>인접 자료 수집(선택) — 특수학교 신입생 계획 11개 관할, 관내 특수학급 신·증설 현황</li></ol>
+<p><strong>다음 단계</strong></p>
+<p>→ <strong>먼저 <code>git push origin main</code>으로 <code>799e67d</code>를 올린다.</strong> 그다음 <code>docs/proposal/조판/한글용_원고.html</code>을 브라우저로 열어 흰 지면을 복사해 공고 첨부 양식 <code>04_[아이디어_기획서]…hwp</code>에 붙여넣고 <strong>한글에서 쪽수를 센다.</strong></p>
+<p><strong>새 기기 환경 준비는 <a href="../CLAUDE.md">CLAUDE.md</a> §9</strong>에 체크리스트로 있습니다 — pip 의존성(<code>olefile pypdf openpyxl</code>), 원본 재수집(<code>tools/수집/</code>), 사본 4개 재생성 절차, 그리고 <strong>정본을 고쳤을 때 빠뜨리기 쉬운 사본 1개</strong>.</p>
+</div></body></html>
