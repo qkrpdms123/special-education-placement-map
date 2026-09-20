@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>검토본 — 중입배치 MAP 아이디어 기획서</title>
+<style>
+/* ───────────────────────────────────────────────────────────
+   검토본 — 본문 옆 여백에 검토 의견을 적는다.
+   · 이 파일은 읽고 메모하기 위한 것이다. 한글에 붙여넣지 않는다.
+     붙여넣을 파일은 같은 폴더의 한글용_원고.html 이다.
+   · 적은 내용은 브라우저에 자동 저장되고,
+     [검토 내용 모아보기]로 한 번에 긁어낼 수 있다.
+   ─────────────────────────────────────────────────────────── */
+
+:root{
+  --ink:#111; --rule:#666;
+  --bg:#70767c; --paper:#fff;
+  --accent:#8a5a00; --accent-bg:#fffbe8; --accent-line:#e0cf90;
+  --ui:"Pretendard","Apple SD Gothic Neo","맑은 고딕","Malgun Gothic",system-ui,sans-serif;
+}
+*{ box-sizing:border-box }
+html{ -webkit-text-size-adjust:100% }
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:"함초롬바탕","HCR Batang","AppleMyungjo","바탕",Batang,serif;
+  font-size:10.5pt; line-height:170%;
+}
+
+/* ── 상단 도구막대 ─────────────────────────────────── */
+.bar{
+  position:sticky; top:0; z-index:50;
+  background:#23282d; color:#eceff2;
+  font-family:var(--ui); font-size:13px; line-height:1.5;
+  padding:10px 18px; display:flex; flex-wrap:wrap; gap:10px; align-items:center;
+  box-shadow:0 1px 8px rgba(0,0,0,.4);
+}
+.bar .t{ font-weight:700; margin-right:auto }
+.bar .t small{ font-weight:400; opacity:.65; margin-left:8px }
+.bar button{
+  font-family:var(--ui); font-size:13px; font-weight:600;
+  padding:7px 14px; border-radius:6px; border:1px solid #4a525a;
+  background:#333a41; color:#eceff2; cursor:pointer;
+}
+.bar button:hover{ background:#3e464e }
+.bar button.go{ background:#c8a13a; border-color:#c8a13a; color:#221a00 }
+.bar button.go:hover{ background:#d8b24b }
+.bar .cnt{
+  font-variant-numeric:tabular-nums; background:#c8a13a; color:#221a00;
+  border-radius:999px; padding:2px 10px; font-weight:700;
+}
+
+/* ── 안내 ──────────────────────────────────────────── */
+.howto{
+  max-width:1180px; margin:18px auto 0; padding:14px 18px;
+  background:var(--accent-bg); border:1px solid var(--accent-line); border-radius:8px;
+  font-family:var(--ui); font-size:13px; line-height:1.75; color:#4a3c10;
+}
+.howto b{ color:#7a4b00 }
+.howto ol{ margin:6px 0 0; padding-left:20px }
+
+/* ── 본문 + 여백 2단 ───────────────────────────────── */
+.doc{
+  max-width:1180px; margin:18px auto 80px;
+  display:grid; grid-template-columns:minmax(0,1fr) 330px;
+  column-gap:20px;
+  background:var(--paper); padding:30px 34px; border-radius:4px;
+  box-shadow:0 2px 16px rgba(0,0,0,.35);
+}
+.blk{ grid-column:1; scroll-margin-top:70px; position:relative; padding-left:10px; border-left:3px solid transparent }
+.blk.has{ border-left-color:#c8a13a; background:#fffdf4 }
+.blk:target{ border-left-color:#6b8cae }
+
+/* ── 여백 메모칸 ───────────────────────────────────── */
+.note{ grid-column:2; font-family:var(--ui); font-size:13px; align-self:start; padding-top:2px }
+.note .add{
+  width:100%; text-align:left; font-family:var(--ui); font-size:12px;
+  color:#9aa2ab; background:transparent; border:1px dashed #cfd5db;
+  border-radius:6px; padding:5px 9px; cursor:pointer; line-height:1.4;
+}
+.note .add:hover{ color:var(--accent); border-color:var(--accent-line); background:var(--accent-bg) }
+.note .box{ border:1px solid var(--accent-line); background:var(--accent-bg); border-radius:7px; padding:8px 9px }
+.note .tags{ display:flex; flex-wrap:wrap; gap:4px; margin-bottom:6px }
+.note .tags button{
+  font-family:var(--ui); font-size:11px; font-weight:600; padding:3px 8px;
+  border-radius:999px; cursor:pointer;
+  border:1px solid #d8cca0; background:#fff; color:#7a6a3a;
+}
+.note .tags button.on{ background:var(--accent); border-color:var(--accent); color:#fff }
+.note textarea{
+  width:100%; min-height:62px; resize:vertical;
+  font-family:var(--ui); font-size:13px; line-height:1.6; color:#3a2f10;
+  border:1px solid #ddd0a0; border-radius:5px; padding:6px 8px; background:#fff;
+}
+.note textarea:focus{ outline:2px solid var(--accent); outline-offset:-1px }
+.note .del{
+  margin-top:5px; font-family:var(--ui); font-size:11px; color:#9a7a3a;
+  background:none; border:none; cursor:pointer; padding:0; text-decoration:underline;
+}
+
+/* ── 모아보기 패널 ─────────────────────────────────── */
+.sheet{ position:fixed; inset:0; z-index:100; background:rgba(0,0,0,.55); display:none; padding:28px }
+.sheet.open{ display:flex; align-items:center; justify-content:center }
+.sheet .card{
+  background:#fff; border-radius:10px; width:min(860px,100%); max-height:100%;
+  display:flex; flex-direction:column; overflow:hidden; font-family:var(--ui);
+}
+.sheet .hd{ padding:14px 18px; border-bottom:1px solid #e3e6ea; display:flex; gap:10px; align-items:center }
+.sheet .hd b{ margin-right:auto; font-size:15px }
+.sheet .hd button{ font-family:var(--ui); font-size:13px; font-weight:600; padding:7px 13px; border-radius:6px; border:1px solid #ccd2d8; background:#f5f7f9; cursor:pointer }
+.sheet .hd button.go{ background:var(--accent); border-color:var(--accent); color:#fff }
+.sheet textarea{
+  flex:1; min-height:340px; margin:0; border:none; padding:16px 18px; resize:none;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:12.5px; line-height:1.65;
+}
+.sheet textarea:focus{ outline:none }
+.sheet .ft{ padding:10px 18px; border-top:1px solid #e3e6ea; font-size:12px; color:#6b737b }
+
+/* ── 원고 서식 (조판본과 동일 계열) ────────────────── */
+h1{ font-family:var(--ui); font-size:15pt; font-weight:800; margin:0 0 10pt; padding-bottom:5pt; border-bottom:1.5pt solid var(--ink) }
+h2{ font-family:var(--ui); font-size:13pt; font-weight:800; margin:20pt 0 8pt }
+h3{ font-family:var(--ui); font-size:12.5pt; font-weight:800; margin:16pt 0 7pt; padding-left:6pt; border-left:4pt solid var(--ink) }
+h4{ font-family:var(--ui); font-size:11pt; font-weight:800; margin:13pt 0 5pt; color:#1c2a38 }
+p{ margin:0 0 7pt; text-align:justify; word-break:keep-all }
+p.h3sub{ font-size:10pt; color:#444; margin:-4pt 0 8pt }
+p.lead{ font-weight:700; margin:10pt 0 6pt; color:#10243a }
+p.note{ font-size:9.5pt; line-height:155%; color:#333; margin:4pt 0 8pt 12pt; text-indent:-12pt; padding-left:12pt }
+p.fn{ font-size:9.5pt; line-height:155%; color:#333; margin:2pt 0 3pt 12pt }
+p.li1{ margin:0 0 4pt 14pt; text-indent:-14pt; padding-left:14pt }
+p.li2{ margin:0 0 4pt 28pt; text-indent:-14pt; padding-left:14pt }
+p.li3{ margin:0 0 4pt 42pt; text-indent:-14pt; padding-left:14pt }
+p.li1::before{ content:"○ " }
+p.li2::before{ content:"- " }
+p.li3::before{ content:"· " }
+p.end{ text-align:right; margin-top:16pt }
+p.tcap{ font-family:var(--ui); font-size:10pt; font-weight:700; margin:12pt 0 4pt }
+table{ border-collapse:collapse; width:100%; font-size:9.5pt; line-height:140%; margin:0 0 9pt }
+th,td{ border:0.5pt solid var(--rule); padding:4pt 5pt; vertical-align:top; text-align:left; word-break:keep-all }
+th{ background:#eef1f4; font-weight:700; text-align:center }
+p.figbox{ margin:6pt 0 2pt; text-align:center }
+p.figbox img{ width:100%; height:auto; display:block }
+
+/* ── 좁은 화면 : 메모를 본문 아래로 ────────────────── */
+@media (max-width:1080px){
+  .doc{ grid-template-columns:minmax(0,1fr); padding:20px 16px }
+  .blk{ grid-column:1 }
+  .note{ grid-column:1; margin:-2pt 0 14pt; padding-left:10px }
+}
+@media print{ .bar,.howto,.note,.sheet{ display:none !important } .doc{ box-shadow:none; max-width:none; grid-template-columns:1fr } }
+</style></head><body>
+
+<div class="bar">
+  <span class="t">검토본 — 중입배치 MAP 아이디어 기획서
+    <small>정본은 HWP_제출원고.txt · 한글에 붙여넣을 파일은 한글용_원고.html</small></span>
+  <span class="cnt" id="cnt">0건</span>
+  <button id="prev" title="이전 검토로 이동">↑</button>
+  <button id="next" title="다음 검토로 이동">↓</button>
+  <button class="go" id="collect">검토 내용 모아보기</button>
+</div>
+
+<div class="howto">
+  <b>본문 오른쪽 여백을 눌러 검토 의견을 적으세요.</b>
+  <ol>
+    <li>문단·표·그림마다 오른쪽에 <b>＋ 검토 의견</b> 칸이 있습니다. 눌러서 바로 적으면 됩니다.</li>
+    <li>필요하면 <b>수정 / 삭제 / 분량축소 / 확인필요</b> 꼬리표를 함께 누릅니다.</li>
+    <li>적는 즉시 브라우저에 저장됩니다. 창을 닫았다 다시 열어도 남아 있습니다.</li>
+    <li>다 적었으면 위의 <b>[검토 내용 모아보기]</b> → <b>[복사]</b> 를 눌러 그대로 붙여 주세요.</li>
+  </ol>
+</div>
+
+<div class="doc" id="doc">

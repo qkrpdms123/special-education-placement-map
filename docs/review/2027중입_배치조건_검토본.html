@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2027학년도 중입배치 조건 대조표 — 서울 11개 관할 — 중입배치 MAP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=IBM+Plex+Sans+KR:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+:root{--paper:#F5F6F5;--surface:#FFF;--surface-2:#EDF0EF;--ink:#13303A;--ink-soft:#33474E;
+--muted:#5C6B6E;--faint:#8A9698;--rule:#D6DDDB;--rule-soft:#E5EAE9;--accent:#1E8E84;
+--accent-wash:#E2F0EE;--ok:#2F7D5B;--ok-wash:#E3F0E9;--warn:#A2691A;--warn-wash:#F6EDDD;
+--todo:#A83F34;--todo-wash:#F8E7E4;
+--serif:"Gowun Batang",Batang,serif;--sans:"IBM Plex Sans KR","Apple SD Gothic Neo",system-ui,sans-serif;
+--mono:"IBM Plex Mono","D2Coding",ui-monospace,monospace}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#0D1518;--surface:#141F22;
+--surface-2:#1B282B;--ink:#E4ECEA;--ink-soft:#C2CFCD;--muted:#93A3A4;--faint:#6B7B7D;
+--rule:#2B3A3D;--rule-soft:#223033;--accent:#4BC3B5;--accent-wash:#152E2F;--ok:#63B88E;
+--ok-wash:#162A22;--warn:#D2A257;--warn-wash:#2B2317;--todo:#DE8478;--todo-wash:#2D1B18}}
+:root[data-theme="dark"]{--paper:#0D1518;--surface:#141F22;--surface-2:#1B282B;--ink:#E4ECEA;
+--ink-soft:#C2CFCD;--muted:#93A3A4;--faint:#6B7B7D;--rule:#2B3A3D;--rule-soft:#223033;
+--accent:#4BC3B5;--accent-wash:#152E2F;--ok:#63B88E;--ok-wash:#162A22;--warn:#D2A257;
+--warn-wash:#2B2317;--todo:#DE8478;--todo-wash:#2D1B18}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;
+line-height:1.75;margin:0;padding-inline:20px;-webkit-font-smoothing:antialiased}
+.wrap{max-width:940px;margin:0 auto;padding-block:0 90px}
+.mast{padding-block:48px 22px;border-bottom:2px solid var(--ink);margin-bottom:8px}
+.kicker{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;
+color:var(--accent);font-weight:600;margin:0 0 12px}
+.mast h1{font-family:var(--serif);font-weight:700;font-size:clamp(27px,5vw,40px);line-height:1.18;margin:0 0 10px}
+.mast p{font-size:15.5px;color:var(--ink-soft);margin:0;max-width:64ch}
+.back{display:inline-block;font-family:var(--mono);font-size:11.5px;color:var(--accent);
+text-decoration:none;margin-bottom:26px;border:1px solid var(--rule);border-radius:2px;padding:4px 10px}
+.back:hover{background:var(--accent-wash)}
+h2{font-family:var(--serif);font-size:25px;font-weight:700;margin:52px 0 10px;
+padding-top:16px;border-top:1px solid var(--rule);line-height:1.3}
+h3{font-size:18px;font-weight:600;margin:32px 0 8px;color:var(--ink);line-height:1.4}
+h4{font-size:15.5px;font-weight:600;margin:24px 0 6px;color:var(--ink-soft)}
+p{margin:0 0 14px;max-width:none}
+ul,ol{margin:0 0 16px;padding-left:1.3em}
+li{margin:0 0 6px}
+hr{border:0;border-top:1px solid var(--rule);margin:40px 0}
+code{font-family:var(--mono);font-size:.88em;background:var(--surface-2);
+padding:1px 5px;border-radius:2px}
+pre{background:var(--surface-2);border:1px solid var(--rule);border-radius:3px;
+padding:14px 16px;overflow-x:auto;margin:0 0 18px}
+pre code{background:none;padding:0;font-size:12.5px;line-height:1.65}
+blockquote{margin:0 0 18px;padding:14px 18px;background:var(--surface);
+border-left:3px solid var(--accent);border-radius:0 3px 3px 0;color:var(--ink-soft)}
+blockquote p:last-child{margin-bottom:0}
+strong{font-weight:600;color:var(--ink)}
+a{color:var(--accent)}
+.tw{overflow-x:auto;margin:0 0 22px;border:1px solid var(--rule);border-radius:3px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{border-bottom:1px solid var(--rule-soft);padding:9px 12px;text-align:left;vertical-align:top}
+th{background:var(--surface-2);font-weight:600;font-size:13px;white-space:nowrap;
+position:sticky;top:0}
+tr:last-child td{border-bottom:0}
+td[align=right],th[align=right]{text-align:right}
+td[align=center],th[align=center]{text-align:center}
+@media(max-width:700px){body{font-size:15px}table{font-size:13px}th,td{padding:7px 9px}}
+</style></head><body><div class="wrap">
+<a class="back" href="../../검토.html">← 검토 목록</a>
+<div class="mast"><p class="kicker">검토본 · 원문은 마크다운</p>
+<h1>2027학년도 중입배치 조건 대조표 — 서울 11개 관할</h1><p>서울 11개 교육지원청 2027 중입배치 계획 원문 11부를 조항 단위로 대조했다.</p></div>
+<p>정리일 2026-09-20. <strong>서울 11개 교육지원청이 배포한 「2027학년도 중학교 입학 특수교육대상자 선정·배치 계획」 원문 11부를 본문 텍스트로 추출해 조항 단위로 대조한 결과다.</strong> 원문 확보 경위는 <a href="2027중입_관할별공고_수집대장.md">수집 대장</a>.</p>
+<p><strong>이 문서는 원문에 적힌 것만 적는다.</strong> 추출·대조는 기계로 했고 <strong>교사 검수는 아직 받지 않았다.</strong> 서비스 규칙으로 확정하기 전에 §5의 확인 목록을 먼저 처리해야 한다.</p>
+<p>추출 방법: HWP는 OLE <code>BodyText/Section*</code> 스트림을 해제해 <code>HWPTAG_PARA_TEXT</code> 레코드에서 본문을 읽었고, HWP가 없는 동작관악은 PDF 텍스트를 읽었다. 표의 화면 배치와 병합 셀 구조는 복원하지 않았다.</p>
+<hr>
+<h2>0. 한 줄 요약</h2>
+<p><strong>뼈대는 서울시교육청 공통 서식이고 11개 관할이 거의 같다. 그런데 우리 서비스가 계산해야 하는 바로 그 값 — 근거리 학교를 몇 개 적는가 — 이 관할마다 3·4·5개로 갈린다.</strong></p>
+<div class="tw"><table><thead><tr><th></th><th></th></tr></thead><tbody><tr><td>11개 관할이 <strong>같은</strong> 조항</td><td>18개 (근거·대상·거주요건·일정 뼈대·거리 산정 기준·학급유형 통일·과원 처리·특이배치 6종 등)</td></tr><tr><td>관할마다 <strong>다른</strong> 조항</td><td>7개 (근거리 행 수, 보호자 희망 행 유무, 출발지 기준, 거리 표기 단위, 대중교통 &#x27;최단거리&#x27;, 공고일, 접수 시작일)</td></tr><tr><td>문서 <strong>내부가 어긋나는</strong> 관할</td><td>3개 (강동송파·성북강북·동작관악)</td></tr></tbody></table></div>
+<hr>
+<h2>1. 근거리 학교를 몇 개 적는가 — 관할마다 다르다</h2>
+<p><strong>이것이 가장 큰 차이다.</strong> 서식1 「배치대상학교」 표의 실제 행을 세고, 서식1-2 작성 방법의 문장과 대조했다.</p>
+<div class="tw"><table><thead><tr><th>관할</th><th align="center">서식1 표의 근거리 행</th><th align="center">보호자 희망 행</th><th>서식1-2 문장</th><th align="center">중복 금지 범위</th><th align="center">일치</th></tr></thead><tbody><tr><td>동부</td><td align="center"><strong>3</strong></td><td align="center">있음</td><td>&quot;반드시 3개 모두 기입&quot;</td><td align="center">근거리 1~3</td><td align="center">○</td></tr><tr><td>남부</td><td align="center"><strong>3</strong></td><td align="center">있음</td><td>&quot;반드시 3개 모두 기입&quot;</td><td align="center">근거리 1~3</td><td align="center">○</td></tr><tr><td>중부</td><td align="center"><strong>3</strong></td><td align="center">있음</td><td>&quot;반드시 3개 모두 기입&quot;</td><td align="center">근거리 1~3</td><td align="center">○</td></tr><tr><td>북부</td><td align="center"><strong>3</strong></td><td align="center"><strong>없음</strong></td><td>&quot;반드시 3개 모두 기입&quot;</td><td align="center">근거리 1~3</td><td align="center">○</td></tr><tr><td>강남서초</td><td align="center"><strong>4</strong></td><td align="center">있음</td><td>&quot;반드시 4개 모두 기입&quot;</td><td align="center">근거리 1~4</td><td align="center">○</td></tr><tr><td>서부</td><td align="center"><strong>5</strong></td><td align="center">있음</td><td>&quot;반드시 5개 모두 기입&quot;</td><td align="center">근거리 1~5</td><td align="center">○</td></tr><tr><td>강서양천</td><td align="center"><strong>5</strong></td><td align="center">있음</td><td>&quot;반드시 5개 모두 기입&quot;</td><td align="center">근거리 1~5</td><td align="center">○</td></tr><tr><td>성동광진</td><td align="center"><strong>5</strong></td><td align="center">있음</td><td>&quot;반드시 5개 모두 기입&quot;</td><td align="center">근거리 1~5</td><td align="center">○</td></tr><tr><td>강동송파</td><td align="center"><strong>3</strong></td><td align="center">있음</td><td>&quot;반드시 <strong>4개</strong> 모두 기입&quot;</td><td align="center">근거리 1~3</td><td align="center"><strong>✗</strong></td></tr><tr><td>성북강북</td><td align="center"><strong>4</strong></td><td align="center">있음</td><td>&quot;반드시 <strong>5개</strong> 모두 기입&quot;</td><td align="center">근거리 1~4</td><td align="center"><strong>✗</strong></td></tr><tr><td>동작관악</td><td align="center"><strong>3</strong></td><td align="center">있음</td><td>&quot;반드시 <strong>5개</strong> 모두 기입&quot;</td><td align="center">근거리 1~<strong>5</strong></td><td align="center"><strong>✗</strong></td></tr></tbody></table></div>
+<p><strong>8개 관할에서는 &quot;반드시 N개&quot; = 근거리 행 수다.</strong> 이 규칙으로 읽으면 세 관할이 어긋난다.</p>
+<ul><li><strong>강동송파</strong>(4개 vs 근거리 3행) — 근거리 3 + 보호자 희망 1 = 4로 읽으면 맞는다. <strong>보호자 희망까지 필수 기재</strong>라는 뜻일 수 있다.</li><li><strong>성북강북</strong>(5개 vs 근거리 4행) — 같은 방식으로 근거리 4 + 희망 1 = 5로 읽으면 맞는다.</li><li><strong>동작관악</strong>(5개 vs 근거리 3행) — <strong>어느 쪽으로 읽어도 맞지 않는다.</strong> 3+1=4이지 5가 아니다. 게다가 작성 방법은 &quot;1순위~5순위&quot;라 쓰고 서식1-1 예시는 근거리 3개만 채워져 있다. <strong>서식 표가 이전 판본으로 보인다.</strong></li></ul>
+<blockquote><p><strong>서비스 설계에 주는 함의.</strong> <code>nearby_row_count</code>를 3으로 하드코딩하면 5개 관할(서부·강남서초·강서양천·성동광진·성북강북)에서 신청서를 완성하지 못한다. 관할별 값이어야 하고, <strong>세 관할은 값을 확정할 수 없으므로 <code>unknown</code>으로 두고 지원청 확인 후 채운다.</strong></p></blockquote>
+<h3>보호자 희망 행 — 북부에는 아예 없다</h3>
+<div class="tw"><table><thead><tr><th>관할</th><th align="center">보호자 희망 행</th><th>행 설명 문구</th><th>서식1 하단 안내</th></tr></thead><tbody><tr><td><strong>북부</strong></td><td align="center"><strong>없음</strong></td><td>—</td><td>&quot;보호자 <strong>의견</strong>은 배치 시 참고사항&quot;</td></tr><tr><td>중부</td><td align="center">있음</td><td>&quot;<strong>1,2,3 순위</strong> 일반학교 중 희망교 기재&quot;</td><td>&quot;보호자 희망학교는 배치 시 참고사항&quot;</td></tr><tr><td>나머지 9개</td><td align="center">있음</td><td>&quot;일반학교 중 희망교 기재&quot;</td><td>&quot;보호자 희망학교는 배치 시 참고사항&quot;</td></tr></tbody></table></div>
+<ul><li><strong>북부</strong>는 서식1 표에 보호자 희망 행이 없고, 작성 방법·하단 안내 어디에도 &#x27;보호자 희망학교&#x27;라는 말이 없다. 일관되게 <strong>&#x27;보호자 의견&#x27;만</strong> 참고사항으로 둔다. → <code>guardian_preference_row = none</code> (원문으로 확인)</li><li><strong>중부</strong>만 보호자 희망 칸에 <strong>순위별로 3개</strong>를 받는 것으로 읽힌다. 다른 관할은 1개다.</li></ul>
+<h3>보호자 희망 행은 근거리 행과 중복해도 되는가 — 동작관악 예시가 답을 준다</h3>
+<p>동작관악 서식1-1 기재 예시:</p>
+<pre><code>근거리 1 순위   ㅇㅇ중학교  특수학급  도보  1.4km  약 21분  도보
+근거리 2 순위   ㅁㅁ중학교  특수학급  버스  2.6km  약 23분  직행
+근거리 3 순위   △△중학교  특수학급  버스  3.0km  약 25분  환승1회
+보호자 희망     ㅁㅁ중학교  특수학급  버스  2.6km  약 23분</code></pre>
+<p><strong>보호자 희망이 근거리 2순위와 같은 학교다.</strong> 중복 금지는 근거리 행끼리만 적용되고 보호자 희망과의 중복은 허용된다는 것을, 관할이 배포한 예시가 직접 보여준다. 저장소가 이미 세워 둔 규칙과 일치하며 <strong>이번에 원문 근거를 확보했다.</strong></p>
+<p>이 예시는 <strong>비고란에 &#x27;직행/환승1회&#x27;</strong> 를 적는 것도 보여준다. 대중교통 환승 횟수까지 기재 대상이다.</p>
+<hr>
+<h2>2. 거리를 어떻게 재는가 — 기준은 같고 세부는 셋이 다르다</h2>
+<h3>11개 관할 공통</h3>
+<blockquote><p>&quot;거리는 <strong>카카오맵 지도</strong>에서 <strong>2km 미만은 도보거리, 2km 이상은 대중교통(자차X) 거리</strong>를 기준으로 함&quot;</p></blockquote>
+<p>경계는 <strong>2km이고 &#x27;미만/이상&#x27;</strong>이다. 정확히 2km는 대중교통 쪽이다. 11개 관할 문장이 모두 같다.</p>
+<h3>왜 카카오맵인가 — 서부 신·구 대조표가 이유를 적어 놓았다</h3>
+<p>서부가 붙인 「신·구 대조표」에 2026→2027 변경 사유가 그대로 있다.</p>
+<div class="tw"><table><thead><tr><th>2026학년도</th><th>2027학년도(개정)</th><th>개정 사유</th></tr></thead><tbody><tr><td>&quot;거리는 <strong>포털사이트 지도</strong>에서…&quot;</td><td>&quot;거리는 <strong>카카오맵 지도</strong>에서…&quot;</td><td>&quot;대중교통 거리(km) 산출 기능이 있는 포털사이트 명시하여 기준 명확화<br>\* 포털사이트별 대중교통 거리 기능 제공 여부<br><strong>- 네이버 지도: X, 카카오맵: O</strong>&quot;</td></tr></tbody></table></div>
+<p><strong>교육청이 직접 &quot;네이버 지도는 대중교통 거리(km)를 제공하지 않는다&quot;고 기록했다.</strong> 우리 서비스의 경로 조회 공급자 선택은 취향이 아니라 <strong>공고문이 지정한 기준을 재현할 수 있는가</strong>의 문제라는 뜻이다. <a href="../development/API_활용목록_개발자검토.md">API 활용목록 개발자 검토</a>의 경로 조회 항목에 이 조항을 근거로 달아야 한다.</p>
+<blockquote><p>⚠️ <strong>주의.</strong> 이 조항은 &quot;카카오맵으로 재라&quot;는 것이지 &quot;카카오맵 API를 쓰라&quot;는 것이 아니다. 다른 공급자로 계산한 값이 카카오맵 값과 다르면 <strong>교육지원청 재점검에서 오류로 잡힌다.</strong> 어떤 공급자를 쓰든 <strong>카카오맵 결과와의 차이를 측정하는 일이 남는다.</strong> 이번 대조로 확인한 것은 조항의 존재이고, 공급자별 값 차이는 측정하지 않았다.</p></blockquote>
+<h3>출발지와 표기 단위 — 강동송파에만 있는 두 조항</h3>
+<div class="tw"><table><thead><tr><th>조항</th><th>강동송파</th><th>나머지 10개 관할</th></tr></thead><tbody><tr><td>출발지</td><td><strong>아파트 동까지</strong> — &quot;주민등록상 거주지가 서울 송파구 송파대로 123 123동 203호일 경우, <strong>출발지 설정: 서울 송파구 송파대로 123(□□아파트) 123동</strong>&quot;</td><td>조항 없음</td></tr><tr><td>순위 기준</td><td>&quot;주민등록상 <strong>거주지(동)</strong>에서 가장 가까운 학교 순&quot;</td><td>&quot;주민등록상 <strong>거주지</strong>에서 가장 가까운 학교 순&quot;</td></tr><tr><td>1km 미만 표기</td><td><strong>&quot;단위는 m로 일의자리까지&quot;</strong> — &quot;355m 일 때 0.3km(X), <strong>355m(○)</strong>&quot;</td><td>조항 없음</td></tr></tbody></table></div>
+<p><strong>같은 주소라도 관할에 따라 출발점이 다르다.</strong> 강동송파는 아파트 동 단위, 나머지는 거주지(도로명주소)다. 단지가 큰 아파트에서는 동에 따라 수백 m가 갈리므로 <strong>순위가 뒤집힐 수 있다.</strong></p>
+<p>그리고 강동송파만 1km 미만을 m 일의 자리까지 요구한다. 나머지 관할은 표기 단위 규정이 없으므로 <strong><code>display_under_1000m</code>은 강동송파만 확정이고 나머지는 <code>unknown</code>이다.</strong> 없는 규칙을 기본값으로 만들어 전 관할에 적용하면 안 된다.</p>
+<h3>대중교통 &#x27;최단거리&#x27; — 서부에만 있다</h3>
+<div class="tw"><table><thead><tr><th>서부</th><th>&quot;2km 이상은 대중교통(자차X) <strong>&#x27;최단거리&#x27;</strong>를 기준으로 함&quot;</th></tr></thead><tbody><tr><td>나머지 10개</td><td>&quot;2km 이상은 대중교통(자차X) <strong>거리</strong>를 기준으로 함&quot;</td></tr></tbody></table></div>
+<p>카카오맵 대중교통은 보통 복수 경로를 준다. 서부만 그중 무엇을 고를지 명시했다. <strong>나머지 10개 관할에서 &#x27;어느 경로의 거리인가&#x27;는 원문에 없다.</strong> 자동 선택 규칙을 만들어 넣으면 근거 없는 추정이 된다.</p>
+<hr>
+<h2>2-B. 관할은 무엇을 기준으로 정해지는가</h2>
+<p>원문에 답이 있다. <strong>거주지 관할이 기본이고, 다른 관할 학교를 희망하면 서류가 그 학교 관할로 넘어간다.</strong> 단계마다 기준이 달라진다.</p>
+<div class="tw"><table><thead><tr><th>단계</th><th>기준</th><th>원문</th></tr></thead><tbody><tr><td>신청서 교부</td><td><strong>출신(재학 중) 초등학교</strong></td><td>&quot;(교부) 재학 중인 초등학교 → 나이스 특수교육 배치시스템에 등록&quot;</td></tr><tr><td>접수</td><td>서울 소재 초 졸업예정자는 <strong>학교가 일괄 접수</strong> / 동등학력 인정자·타 시도 졸업(예정)자는 <strong>거주지 관할</strong></td><td>&quot;(교부 및 접수) <strong>거주지 관할</strong> 교육지원청 행정지원과&quot;</td></tr><tr><td><strong>근거리 순위 산정</strong></td><td><strong>주민등록상 거주지</strong></td><td>&quot;1순위~N순위: <strong>주민등록상 거주지</strong>에서 가장 가까운 학교 순&quot;</td></tr><tr><td>다른 관할 학교 희망 시</td><td><strong>거주지 관할이 1차 검토 → 희망 학교 관할로 이관</strong></td><td>&quot;거주지 관할 교육지원청에서는 1차 서류 검토 후 <strong>희망 학교 관할 교육지원청으로 이관</strong>&quot; (11/11 동일 문장)</td></tr><tr><td>심사·배치</td><td><strong>이관받은 관할</strong>의 특수교육운영위원회</td><td>&quot;교육지원청별 특수교육운영위원회 개최&quot;</td></tr><tr><td>결과 통보</td><td>관할 교육지원청 → 학교 → 보호자</td><td>&quot;특수교육운영위원회 → 관할 교육지원청 행정지원과 → 대상 초·중학교 → 보호자&quot;</td></tr></tbody></table></div>
+<p><strong>질문을 둘로 나누면 답이 갈린다.</strong></p>
+<ul><li><strong>&quot;거리를 어디서부터 재는가&quot;</strong> → <strong>거주지다.</strong> 11개 관할 모두 &quot;주민등록상 거주지에서 가장 가까운 학교 순&quot;이라고 쓴다. 이건 흔들림이 없다.</li><li><strong>&quot;누가 심사하는가&quot;</strong> → <strong>학교 관할이다.</strong> 다른 관할 학교를 희망하면 거주지 관할은 1차 검토만 하고 이관한다.</li></ul>
+<blockquote><p>⚠️ <strong>원문에 없는 것 — 이것이 우리 서비스에 직결된다.</strong></p><p>거주지 관할과 희망 학교 관할이 다를 때, <strong>어느 관할의 서식 규칙을 따르는지는 11개 문서 어디에도 없다.</strong></p><p>예를 들어 거주지가 강동송파(근거리 3행)인데 희망 학교가 성동광진(근거리 5행)이면, 신청서에 몇 개를 적어야 하는가? 서식은 출신 초등학교가 교부하므로 실무상 <strong>거주지·출신교 관할 서식</strong>을 쓰게 되지만, 심사는 이관받은 성동광진이 한다. <strong>원문은 이 경우를 다루지 않는다.</strong></p><p>서비스에서 관할을 자동 판정하려면 이 답이 필요하다. <strong>지금은 <code>unknown</code>이며, 주소만으로 관할 규칙을 확정해 적용하면 안 된다.</strong> §5 확인 목록 9번.</p></blockquote>
+<p>거주지와 출신 초등학교의 관할이 다른 경우(강동구 거주, 송파구 초등학교 재학 등)도 마찬가지다. 서울 소재 초 졸업예정자 항목만 &quot;거주지&quot;가 아니라 그냥 &quot;관할 교육지원청&quot;이라고 적혀 있어 <strong>어느 쪽인지 문장만으로는 갈리지 않는다.</strong></p>
+<hr>
+<h2>3. 11개 관할이 똑같은 조항</h2>
+<p>아래는 문장까지 동일하다. <strong>관할별 분기가 필요 없는 부분이며, 서비스의 공통 규칙으로 쓸 수 있다.</strong></p>
+<div class="tw"><table><thead><tr><th>#</th><th>조항</th><th>내용</th></tr></thead><tbody><tr><td>1</td><td>근거 법령</td><td>특수교육법 제3·14·15·16·17·19조 / 시행령 제10·11·12·14조 / 시행규칙 제2·3조 / 서울시 특수교육운영위원회 규칙 제5·6조</td></tr><tr><td>2</td><td>배치 대상</td><td>① 서울 소재 초등학교 졸업예정자 ② 초등학교 졸업자·동등학력 인정자 중 서울 거주자 ③ 서울 거주자 중 다른 시·도 초등학교 졸업(예정)자</td></tr><tr><td>3</td><td>거주 요건</td><td>&quot;서류 접수일 현재 보호자를 포함한 <strong>전 가족</strong>이 서울특별시에 <strong>단독 세대</strong>로 주민등록이 되어 있고, <strong>실제 거주</strong>하는 자&quot;</td></tr><tr><td>4</td><td>가거주</td><td>가거주로 확인되면 실거주지로 주민등록 환원 조치, <strong>배치 취소 가능</strong></td></tr><tr><td>5</td><td>접수 기간</td><td>2026. 8. 24.(월) ~ 9. 11.(금) 09:00~17:00 (토·공휴일 제외) — <strong>성북강북만 8. 31. 시작</strong></td></tr><tr><td>6</td><td>서류 이관</td><td>다른 지역 졸업(예정)자 9. 18.(금) / 센터 이송 10. 1.(목)</td></tr><tr><td>7</td><td>심사</td><td>2026. 10. 2.(금) ~ 10. 29.(목) 교육지원청 특수교육운영위원회</td></tr><tr><td>8</td><td>결과 통보</td><td>2026. 10. 30.(금). 재학 학교 공문, 소속 없으면 보호자에게 문자·유선</td></tr><tr><td>9</td><td>서류 유효기간</td><td>접수일 기준 <strong>3개월 이내 발급</strong>, <strong>주민등록등본은 1개월 이내</strong></td></tr><tr><td>10</td><td>개인정보</td><td>주민등록번호 뒷자리 <strong>음영처리</strong></td></tr><tr><td>11</td><td>학급유형 통일</td><td>&quot;배치대상학교의 학급은 특수학급 <strong>또는</strong> 일반학급으로 <strong>유형이 통일</strong>되어야 함&quot; (혼재 불가)</td></tr><tr><td>12</td><td>학교명 표기</td><td><strong>정식학교명</strong> — &quot;○○중학교(특수학급)&quot; ○ / &quot;○○중(특수학급)&quot; ✗</td></tr><tr><td>13</td><td>근거리 행 중복</td><td>근거리 순위 간 <strong>중복 기재 시 접수 불가</strong></td></tr><tr><td>14</td><td>특수학교 병행</td><td>특수학교 입학원서 제출자는 <strong>1순위에 특수학교</strong>, 2순위 이하는 중학교 특수학급/일반학급을 근거리 순으로. 일반학교 배치 신청서를 이미 낸 경우 중복 제출 불요</td></tr><tr><td>15</td><td>과원 처리</td><td>가까운 학교 특수학급이 모두 과원이면 특수교육운영위원회가 <strong>거리와 장애 정도를 고려해 희망하지 않은 학교에 배치 가능</strong></td></tr><tr><td>16</td><td>거리 재점검</td><td><strong>교육지원청이 거리를 다시 점검한다.</strong> 오류 시 나이스 특수교육배치시스템 수정 입력 또는 수정공문 → &quot;학교에서는 <strong>반드시 교사가 확인 후</strong> 공문 제출&quot;</td></tr><tr><td>17</td><td>특이배치 6종</td><td>쌍둥이 / 형제·자매 / 교직원 자녀 / 학교폭력 관련 / 가정폭력 피해 / 성폭력 피해</td></tr><tr><td>18</td><td>학교급 변경 재선정</td><td><strong>건강장애 · 정서·행동장애 · 정서·행동장애를 수반한 중도중복장애</strong>는 초→중 전환 시 재선정 심의 필수. <strong>심의를 받지 않으면 중학교 일반 배정 대상</strong></td></tr><tr><td>19</td><td>신청서 수정</td><td>두 줄 긋고 보호자 도장 또는 서명. <strong>수정액 사용 불가</strong></td></tr><tr><td>20</td><td>2차 배치</td><td>2차 중학교 입학 배치 계획 <strong>2027. 1월 공고 예정</strong></td></tr></tbody></table></div>
+<h3>17번에 예외가 하나 있다 — 중부만 서류 유효기간이 1개월</h3>
+<p>특이배치 서류인 <strong>가족관계증명서의 유효기간이 중부만 1개월</strong>이다(쌍둥이·형제자매·교직원 자녀). 나머지 10개 관할은 3개월이다.</p>
+<p><strong>중부 문서 안에서도 어긋난다.</strong> 같은 문서의 공통 조항은 &quot;구비서류는 서류 접수일 기준 3개월 이내 발급&quot;이라고 쓰는데 특이배치 표만 1개월이다. 실무에서는 더 엄격한 1개월을 맞추는 쪽이 안전하지만, <strong>확정은 지원청 확인이 필요하다.</strong></p>
+<h3>형제·자매 조항은 11개 관할 모두에 있다</h3>
+<p>저장소가 <code>sibling_rule_exists</code>를 3-state(<code>true</code>/<code>false</code>/<code>unknown</code>)로 관리하기로 한 항목이다. <strong>11개 관할 전부 특이배치 6종에 형제·자매를 포함한다.</strong> 제출 서류는 가족관계증명서(접수일 기준 3개월 이내) + 형제·자매 재학증명서(공고일 이후 발급).</p>
+<p>→ <strong>서울 11개 관할은 모두 <code>true</code>.</strong> 다만 이것은 서울 표본이고, 3-state 구조 자체는 타 시도 확장을 위해 유지한다.</p>
+<h3>특이배치 서류 (11개 공통)</h3>
+<div class="tw"><table><thead><tr><th>유형</th><th>제출 서류</th></tr></thead><tbody><tr><td>쌍둥이</td><td>가족관계증명서(3개월 이내)</td></tr><tr><td>형제·자매</td><td>가족관계증명서(3개월 이내) + 형제·자매 재학증명서(<strong>공고일 이후</strong> 발급)</td></tr><tr><td>교직원 자녀</td><td>가족관계증명서 + 부/모 재직증명서(공고일 이후). <strong>교원은 상피제 적용</strong>, 교육행정직·교육공무직 자녀가 중증 장애인이면 상피제 제외</td></tr><tr><td>학교폭력 관련</td><td>가해자가 전학 조치된 경우에 한함. 학교폭력대책심의위원회 조치결정 통보 공문 등</td></tr><tr><td>가정폭력 피해</td><td>보호시설 입소 확인서[서식6] 또는 피해상담사실 확인서[서식7] + 가족관계증명서</td></tr><tr><td>성폭력 피해</td><td>위 서류 또는 성폭력 피해 진단서 + 수사기관 신고 접수증·확인서</td></tr></tbody></table></div>
+<hr>
+<h2>4. 관할별 차이 — 한 장 정리</h2>
+<div class="tw"><table><thead><tr><th>항목</th><th>값이 갈리는 관할</th></tr></thead><tbody><tr><td><strong>근거리 행 수</strong></td><td>3 = 동부·남부·북부·중부 / 4 = 강남서초 / 5 = 서부·강서양천·성동광진 / <strong>확정 불가</strong> = 강동송파·성북강북·동작관악</td></tr><tr><td><strong>보호자 희망 행</strong></td><td><strong>북부만 없음.</strong> 중부는 &quot;1,2,3순위&quot; 복수 기재</td></tr><tr><td><strong>출발지</strong></td><td>강동송파만 <strong>아파트 동까지</strong>. 나머지는 거주지</td></tr><tr><td><strong>1km 미만 표기</strong></td><td>강동송파만 <strong>m 일의 자리</strong>. 나머지는 규정 없음</td></tr><tr><td><strong>대중교통 거리</strong></td><td>서부만 <strong>&#x27;최단거리&#x27;</strong> 명시</td></tr><tr><td><strong>공고일</strong></td><td>강동송파 <strong>8/21</strong>, 나머지 8/18</td></tr><tr><td><strong>접수 시작</strong></td><td>성북강북 <strong>8/31</strong>, 나머지 8/24</td></tr><tr><td><strong>배포 형식</strong></td><td>동작관악은 <strong>PDF만</strong>(HWP 없음). 중부·성동광진은 HWP+PDF</td></tr><tr><td><strong>문의처</strong></td><td>관할별 특수교육지원센터 직통번호 상이</td></tr></tbody></table></div>
+<h3>문의처</h3>
+<div class="tw"><table><thead><tr><th>관할</th><th>특수교육지원센터</th><th>관할</th><th>특수교육지원센터</th></tr></thead><tbody><tr><td>동부</td><td>070-8831-4351</td><td>강남서초</td><td>070-4490-7064</td></tr><tr><td>서부</td><td>02-715-0953</td><td>강동송파</td><td>02-414-2634</td></tr><tr><td>남부</td><td>070-8895-2274</td><td>강서양천</td><td>02-2620-2416</td></tr><tr><td>북부</td><td>02-956-1039(내선3)</td><td>성동광진</td><td>02-2292-6411</td></tr><tr><td>중부</td><td>02-2027-7900</td><td>성북강북</td><td>070-5014-0853</td></tr><tr><td></td><td></td><td>동작관악</td><td>02-833-2895</td></tr></tbody></table></div>
+<hr>
+<h2>5. 확정 전에 확인해야 할 것</h2>
+<p><strong>아래가 끝나기 전에는 어떤 값도 서비스 자동 적용 규칙으로 쓰지 않는다.</strong></p>
+<div class="tw"><table><thead><tr><th>#</th><th>확인 대상</th><th>왜</th><th>확인 방법</th></tr></thead><tbody><tr><td>1</td><td><strong>강동송파 &quot;4개&quot;</strong> — 근거리 3 + 희망 1인가, 근거리 4인가</td><td>근거리 행 수가 서비스 산출 개수를 결정한다</td><td>지원청 특수교육지원센터(02-414-2634) 확인</td></tr><tr><td>2</td><td><strong>성북강북 &quot;5개&quot;</strong> — 근거리 4 + 희망 1인가</td><td>위와 같음</td><td>070-5014-0853</td></tr><tr><td>3</td><td><strong>동작관악 &quot;5개&quot; vs 서식 3행</strong></td><td>어느 쪽으로도 맞지 않는다. 서식 표가 구판일 가능성</td><td>02-833-2895</td></tr><tr><td>4</td><td><strong>북부 보호자 희망 행 부재</strong>가 의도인지</td><td>서식에서 입력 칸 자체를 숨길지 결정한다</td><td>02-956-1039</td></tr><tr><td>5</td><td><strong>중부 &quot;1,2,3순위 희망교&quot;</strong> 해석</td><td>희망 행이 1개인지 3개인지</td><td>02-2027-7900</td></tr><tr><td>6</td><td>10개 관할의 <strong>대중교통 경로 선택 기준</strong></td><td>서부만 &#x27;최단거리&#x27;라 적었다. 나머지는 원문에 없다</td><td>원문에 없음 → 자동 규칙 금지, 교사 판단</td></tr><tr><td>7</td><td>카카오맵과 <strong>대체 공급자 값 차이 측정</strong></td><td>지원청 재점검에서 오류로 잡히는지가 걸린다</td><td>표본 주소·학교로 실측</td></tr><tr><td>8</td><td><strong>남부 상세표시일 13일 차이</strong>(08-19 vs 09-01)</td><td>수정 재게시라면 판본이 갈린다</td><td>070-8895-2274</td></tr><tr><td>9</td><td><strong>거주지 관할 ≠ 희망 학교 관할일 때 어느 규칙을 따르는가</strong></td><td>관할 자동 판정의 전제다. <strong>원문 11부 어디에도 없다</strong></td><td>지원청 2곳 교차 확인</td></tr><tr><td>10</td><td><strong>중부 가족관계증명서 1개월</strong> — 공통 조항(3개월)과 어긋난다</td><td>보호자가 서류를 다시 떼야 할 수 있다</td><td>02-2027-7900</td></tr></tbody></table></div>
+<hr>
+<h2>6. 저장소 규칙 스키마에 반영할 값</h2>
+<p><a href="../development/서식수집_규칙학습_전략.md">서식수집·규칙학습 전략</a> §3 스키마 기준. <strong><code>confirmed</code>는 원문 문장을 확인했다는 뜻이고 교사 검수는 별개다.</strong></p>
+<div class="tw"><table><thead><tr><th>규칙 키</th><th>서울 11개 관할 값</th><th>상태</th></tr></thead><tbody><tr><td><code>reference_map</code></td><td>카카오맵 (11/11)</td><td>confirmed</td></tr><tr><td><code>walk_transit_boundary_m</code></td><td>2000 (11/11)</td><td>confirmed</td></tr><tr><td><code>boundary_inclusive</code></td><td>미만/이상 — 2km 정확히는 대중교통 (11/11)</td><td>confirmed</td></tr><tr><td><code>nearby_row_count</code></td><td>3 / 4 / 5 관할별</td><td>8개 confirmed, <strong>3개 unknown</strong></td></tr><tr><td><code>guardian_preference_row</code></td><td>북부 <code>none</code>, 중부 복수, 나머지 단수</td><td>confirmed</td></tr><tr><td><code>duplicate_check_scope</code></td><td>근거리 행끼리. 보호자 희망과의 중복 허용</td><td>confirmed (동작관악 예시)</td></tr><tr><td><code>class_type_consistency</code></td><td>통일 필수 (11/11)</td><td>confirmed</td></tr><tr><td><code>departure_point</code></td><td>강동송파 = 아파트 동 / 나머지 = 거주지</td><td>confirmed</td></tr><tr><td><code>display_under_1000m</code></td><td>강동송파 = m 일의 자리 / 나머지 = 규정 없음</td><td>강동송파 confirmed, <strong>나머지 unknown</strong></td></tr><tr><td><code>special_school_branch</code></td><td>1순위 특수학교 (11/11)</td><td>confirmed</td></tr><tr><td><code>sibling_rule_exists</code></td><td><code>true</code> (11/11)</td><td>confirmed</td></tr><tr><td><code>sibling_form_id</code></td><td>특이배치 02 / 가족관계증명서 + 재학증명서</td><td>confirmed</td></tr><tr><td>대중교통 경로 선택</td><td>서부만 &#x27;최단거리&#x27;</td><td>서부 confirmed, <strong>나머지 unknown</strong></td></tr></tbody></table></div>
+<blockquote><p><strong>종전 기록 정정.</strong> 저장소는 <code>nearby_row_count</code>를 &quot;D·S=3, G=4&quot;로 적어 두었다. G(강남서초)는 <strong>특수학교 신입생 계획</strong> 문서였고, 이번에 확인한 <strong>강남서초의 일반 중입 계획도 4</strong>다. 값은 맞지만 근거 문서가 달라졌으므로 출처를 교체한다. 그리고 <strong>3·4·5 세 갈래라는 사실은 이번에 처음 확인됐다.</strong></p></blockquote>
+<hr>
+<h2>7. 원문 위치</h2>
+<p>본문 추출본은 저장소 밖에 있다 — <code>~/Desktop/특수교육맵서비스/공고원문_2027중입/_추출본문/{관할}.txt</code>. 원본 HWP/PDF는 같은 폴더의 관할별 하위 폴더에 있고, 파일 해시는 <a href="2027중입_관할별공고_수집대장.md">수집 대장</a> §3에 있다.</p>
+<p>추출 스크립트도 같은 폴더에 있다 — <code>_4_hwp_본문추출.py</code>(HWP), <code>_5_본문일괄추출.py</code>(HWP·PDF 일괄).</p>
+</div></body></html>

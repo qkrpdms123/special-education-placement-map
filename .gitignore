@@ -38,3 +38,8 @@ work/
 *.zip
 원본자료/
 attachments/
+
+# 편집 전 백업과 스크린샷 잔여 파일은 커밋하지 않는다
+*.bak
+*.orig
+docs/proposal/figures/*[0-9][0-9][0-9].png

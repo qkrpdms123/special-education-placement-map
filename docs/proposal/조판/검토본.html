@@ -1,167 +1,172 @@
 <!DOCTYPE html>
 <html lang="ko"><head><meta charset="utf-8">
-<title>중입배치 MAP — 2026 GovTech 창업경진대회 아이디어 기획서</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>검토본 — 중입배치 MAP 아이디어 기획서</title>
 <style>
 /* ───────────────────────────────────────────────────────────
-   한글(HWP) 문서 모양을 그대로 흉내 낸 조판본
-   · 화면 : A4 지면을 한 장씩 흰 종이로 보여준다
-   · 인쇄 : Ctrl+P → PDF 로 저장하면 실제 A4 조판이 된다
-   · 복사 : 본문을 긁어 한글에 Ctrl+V 하면 표·서식이 따라간다
-   서식 값은 제출원고 '작성 안내'의 권장값과 같다.
-     본문 함초롬바탕 10pt / 줄간격 160% / 여백 20mm
+   검토본 — 본문 옆 여백에 검토 의견을 적는다.
+   · 이 파일은 읽고 메모하기 위한 것이다. 한글에 붙여넣지 않는다.
+     붙여넣을 파일은 같은 폴더의 한글용_원고.html 이다.
+   · 적은 내용은 브라우저에 자동 저장되고,
+     [검토 내용 모아보기]로 한 번에 긁어낼 수 있다.
    ─────────────────────────────────────────────────────────── */
 
 :root{
-  --page-w: 210mm;
-  --page-h: 297mm;
-  --margin: 20mm;
-  --ink: #000;
-  --rule: #555;
+  --ink:#111; --rule:#666;
+  --bg:#70767c; --paper:#fff;
+  --accent:#8a5a00; --accent-bg:#fffbe8; --accent-line:#e0cf90;
+  --ui:"Pretendard","Apple SD Gothic Neo","맑은 고딕","Malgun Gothic",system-ui,sans-serif;
 }
-
-*{ box-sizing: border-box; }
-
+*{ box-sizing:border-box }
+html{ -webkit-text-size-adjust:100% }
 body{
-  margin: 0;
-  background: #6e7479;
-  font-family: "함초롬바탕", "HCR Batang", "바탕", Batang, "맑은 고딕", "Malgun Gothic", serif;
-  font-size: 10pt;
-  line-height: 160%;
-  color: var(--ink);
-  -webkit-text-size-adjust: 100%;
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:"함초롬바탕","HCR Batang","AppleMyungjo","바탕",Batang,serif;
+  font-size:10.5pt; line-height:170%;
 }
 
-/* 화면에서 A4 한 장처럼 보이는 상자 */
-.page{
-  width: var(--page-w);
-  min-height: var(--page-h);
-  margin: 12mm auto;
-  padding: var(--margin);
-  background: #fff;
-  box-shadow: 0 2px 14px rgba(0,0,0,.35);
-  position: relative;
+/* ── 상단 도구막대 ─────────────────────────────────── */
+.bar{
+  position:sticky; top:0; z-index:50;
+  background:#23282d; color:#eceff2;
+  font-family:var(--ui); font-size:13px; line-height:1.5;
+  padding:10px 18px; display:flex; flex-wrap:wrap; gap:10px; align-items:center;
+  box-shadow:0 1px 8px rgba(0,0,0,.4);
+}
+.bar .t{ font-weight:700; margin-right:auto }
+.bar .t small{ font-weight:400; opacity:.65; margin-left:8px }
+.bar button{
+  font-family:var(--ui); font-size:13px; font-weight:600;
+  padding:7px 14px; border-radius:6px; border:1px solid #4a525a;
+  background:#333a41; color:#eceff2; cursor:pointer;
+}
+.bar button:hover{ background:#3e464e }
+.bar button.go{ background:#c8a13a; border-color:#c8a13a; color:#221a00 }
+.bar button.go:hover{ background:#d8b24b }
+.bar .cnt{
+  font-variant-numeric:tabular-nums; background:#c8a13a; color:#221a00;
+  border-radius:999px; padding:2px 10px; font-weight:700;
 }
 
-/* 안내 막대 — 인쇄할 때는 사라진다 */
+/* ── 안내 ──────────────────────────────────────────── */
 .howto{
-  width: var(--page-w);
-  margin: 16mm auto 0;
-  padding: 14px 18px;
-  background: #fffbe8;
-  border: 1px solid #e0cf90;
-  border-radius: 6px;
-  font-family: "맑은 고딕","Malgun Gothic",sans-serif;
-  font-size: 12px;
-  line-height: 1.7;
-  color: #4a3c10;
+  max-width:1180px; margin:18px auto 0; padding:14px 18px;
+  background:var(--accent-bg); border:1px solid var(--accent-line); border-radius:8px;
+  font-family:var(--ui); font-size:13px; line-height:1.75; color:#4a3c10;
 }
 .howto b{ color:#7a4b00 }
-.howto ol{ margin: 6px 0 0; padding-left: 20px }
-.howto li{ margin-bottom: 3px }
-.howto code{
-  background:#fff; border:1px solid #e0cf90; border-radius:3px;
-  padding:1px 5px; font-family:Consolas,monospace; font-size:11px;
+.howto ol{ margin:6px 0 0; padding-left:20px }
+
+/* ── 본문 + 여백 2단 ───────────────────────────────── */
+.doc{
+  max-width:1180px; margin:18px auto 80px;
+  display:grid; grid-template-columns:minmax(0,1fr) 330px;
+  column-gap:20px;
+  background:var(--paper); padding:30px 34px; border-radius:4px;
+  box-shadow:0 2px 16px rgba(0,0,0,.35);
+}
+.blk{ grid-column:1; scroll-margin-top:70px; position:relative; padding-left:10px; border-left:3px solid transparent }
+.blk.has{ border-left-color:#c8a13a; background:#fffdf4 }
+.blk:target{ border-left-color:#6b8cae }
+
+/* ── 여백 메모칸 ───────────────────────────────────── */
+.note{ grid-column:2; font-family:var(--ui); font-size:13px; align-self:start; padding-top:2px }
+.note .add{
+  width:100%; text-align:left; font-family:var(--ui); font-size:12px;
+  color:#9aa2ab; background:transparent; border:1px dashed #cfd5db;
+  border-radius:6px; padding:5px 9px; cursor:pointer; line-height:1.4;
+}
+.note .add:hover{ color:var(--accent); border-color:var(--accent-line); background:var(--accent-bg) }
+.note .box{ border:1px solid var(--accent-line); background:var(--accent-bg); border-radius:7px; padding:8px 9px }
+.note .tags{ display:flex; flex-wrap:wrap; gap:4px; margin-bottom:6px }
+.note .tags button{
+  font-family:var(--ui); font-size:11px; font-weight:600; padding:3px 8px;
+  border-radius:999px; cursor:pointer;
+  border:1px solid #d8cca0; background:#fff; color:#7a6a3a;
+}
+.note .tags button.on{ background:var(--accent); border-color:var(--accent); color:#fff }
+.note textarea{
+  width:100%; min-height:62px; resize:vertical;
+  font-family:var(--ui); font-size:13px; line-height:1.6; color:#3a2f10;
+  border:1px solid #ddd0a0; border-radius:5px; padding:6px 8px; background:#fff;
+}
+.note textarea:focus{ outline:2px solid var(--accent); outline-offset:-1px }
+.note .del{
+  margin-top:5px; font-family:var(--ui); font-size:11px; color:#9a7a3a;
+  background:none; border:none; cursor:pointer; padding:0; text-decoration:underline;
 }
 
-/* ── 제목 ───────────────────────────────────────────── */
-h1{
-  font-family: "함초롬돋움", "HCR Dotum", "맑은 고딕", "Malgun Gothic", sans-serif;
-  font-size: 14pt; font-weight: bold;
-  margin: 0 0 10pt; padding-bottom: 4pt;
-  border-bottom: 1pt solid var(--ink);
-  page-break-after: avoid;
+/* ── 모아보기 패널 ─────────────────────────────────── */
+.sheet{ position:fixed; inset:0; z-index:100; background:rgba(0,0,0,.55); display:none; padding:28px }
+.sheet.open{ display:flex; align-items:center; justify-content:center }
+.sheet .card{
+  background:#fff; border-radius:10px; width:min(860px,100%); max-height:100%;
+  display:flex; flex-direction:column; overflow:hidden; font-family:var(--ui);
 }
-h1 + h2, h1 + h3, h1 + h4{ margin-top: 8pt }
+.sheet .hd{ padding:14px 18px; border-bottom:1px solid #e3e6ea; display:flex; gap:10px; align-items:center }
+.sheet .hd b{ margin-right:auto; font-size:15px }
+.sheet .hd button{ font-family:var(--ui); font-size:13px; font-weight:600; padding:7px 13px; border-radius:6px; border:1px solid #ccd2d8; background:#f5f7f9; cursor:pointer }
+.sheet .hd button.go{ background:var(--accent); border-color:var(--accent); color:#fff }
+.sheet textarea{
+  flex:1; min-height:340px; margin:0; border:none; padding:16px 18px; resize:none;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:12.5px; line-height:1.65;
+}
+.sheet textarea:focus{ outline:none }
+.sheet .ft{ padding:10px 18px; border-top:1px solid #e3e6ea; font-size:12px; color:#6b737b }
 
-h2{
-  font-family: "함초롬돋움", "HCR Dotum", "맑은 고딕", "Malgun Gothic", sans-serif;
-  font-size: 12pt; font-weight: bold;
-  margin: 18pt 0 8pt;
-  page-break-after: avoid;
-}
-h3{
-  font-family: "함초롬돋움", "HCR Dotum", "맑은 고딕", "Malgun Gothic", sans-serif;
-  font-size: 12pt; font-weight: bold;
-  margin: 15pt 0 7pt;
-  padding-left: 2pt; border-left: 3pt solid var(--ink);
-  page-break-after: avoid;
-}
-h4{
-  font-family: "함초롬돋움", "HCR Dotum", "맑은 고딕", "Malgun Gothic", sans-serif;
-  font-size: 10.5pt; font-weight: bold;
-  margin: 12pt 0 5pt;
-  page-break-after: avoid;
-}
-
-/* ── 문단 ───────────────────────────────────────────── */
-p{ margin: 0 0 6pt; text-align: justify; word-break: keep-all; }
-p.h3sub{ font-size: 10pt; color:#333; margin: -4pt 0 8pt; font-weight: normal }
-p.lead{ font-weight: bold; margin: 9pt 0 5pt; }
-p.note{
-  font-size: 9pt; line-height: 145%; color:#222;
-  margin: 3pt 0 7pt 12pt; text-indent: -12pt; padding-left: 12pt;
-}
-p.fn{
-  font-size: 9pt; line-height: 145%; color:#222;
-  margin: 2pt 0 3pt 12pt;
-}
-p.li1{ margin: 0 0 3pt 14pt; text-indent: -14pt; padding-left: 14pt }
-p.li2{ margin: 0 0 3pt 28pt; text-indent: -14pt; padding-left: 14pt }
-p.li3{ margin: 0 0 3pt 42pt; text-indent: -14pt; padding-left: 14pt }
+/* ── 원고 서식 (조판본과 동일 계열) ────────────────── */
+h1{ font-family:var(--ui); font-size:15pt; font-weight:800; margin:0 0 10pt; padding-bottom:5pt; border-bottom:1.5pt solid var(--ink) }
+h2{ font-family:var(--ui); font-size:13pt; font-weight:800; margin:20pt 0 8pt }
+h3{ font-family:var(--ui); font-size:12.5pt; font-weight:800; margin:16pt 0 7pt; padding-left:6pt; border-left:4pt solid var(--ink) }
+h4{ font-family:var(--ui); font-size:11pt; font-weight:800; margin:13pt 0 5pt; color:#1c2a38 }
+p{ margin:0 0 7pt; text-align:justify; word-break:keep-all }
+p.h3sub{ font-size:10pt; color:#444; margin:-4pt 0 8pt }
+p.lead{ font-weight:700; margin:10pt 0 6pt; color:#10243a }
+p.note{ font-size:9.5pt; line-height:155%; color:#333; margin:4pt 0 8pt 12pt; text-indent:-12pt; padding-left:12pt }
+p.fn{ font-size:9.5pt; line-height:155%; color:#333; margin:2pt 0 3pt 12pt }
+p.li1{ margin:0 0 4pt 14pt; text-indent:-14pt; padding-left:14pt }
+p.li2{ margin:0 0 4pt 28pt; text-indent:-14pt; padding-left:14pt }
+p.li3{ margin:0 0 4pt 42pt; text-indent:-14pt; padding-left:14pt }
 p.li1::before{ content:"○ " }
 p.li2::before{ content:"- " }
 p.li3::before{ content:"· " }
-p.end{ text-align: right; margin-top: 16pt }
+p.end{ text-align:right; margin-top:16pt }
+p.tcap{ font-family:var(--ui); font-size:10pt; font-weight:700; margin:12pt 0 4pt }
+table{ border-collapse:collapse; width:100%; font-size:9.5pt; line-height:140%; margin:0 0 9pt }
+th,td{ border:0.5pt solid var(--rule); padding:4pt 5pt; vertical-align:top; text-align:left; word-break:keep-all }
+th{ background:#eef1f4; font-weight:700; text-align:center }
+p.figbox{ margin:6pt 0 2pt; text-align:center }
+p.figbox img{ width:100%; height:auto; display:block }
 
-/* ── 표 ─────────────────────────────────────────────── */
-p.tcap{
-  font-family: "함초롬돋움", "HCR Dotum", "맑은 고딕", "Malgun Gothic", sans-serif;
-  font-size: 9.5pt; font-weight: bold;
-  margin: 11pt 0 3pt;
-  page-break-after: avoid;
+/* ── 좁은 화면 : 메모를 본문 아래로 ────────────────── */
+@media (max-width:1080px){
+  .doc{ grid-template-columns:minmax(0,1fr); padding:20px 16px }
+  .blk{ grid-column:1 }
+  .note{ grid-column:1; margin:-2pt 0 14pt; padding-left:10px }
 }
-table{
-  border-collapse: collapse; width: 100%;
-  font-size: 9pt; line-height: 135%;
-  margin: 0 0 9pt;
-  page-break-inside: avoid;
-}
-th, td{
-  border: 0.5pt solid var(--rule);
-  padding: 3pt 4pt;
-  vertical-align: top;
-  text-align: left;
-  word-break: keep-all;
-}
-th{ background: #eef1f4; font-weight: bold; text-align: center }
-
-/* ── 그림 ───────────────────────────────────────────── */
-p.figbox{ margin: 6pt 0 2pt; text-align: center; page-break-inside: avoid }
-p.figbox img{ width: 100%; height: auto; display: block }
-
-/* ── 인쇄 ───────────────────────────────────────────── */
-@page{ size: A4; margin: 20mm; }
-@media print{
-  body{ background: #fff }
-  .howto{ display: none }
-  .page{
-    width: auto; min-height: 0; margin: 0; padding: 0;
-    box-shadow: none; background: transparent;
-  }
-}
+@media print{ .bar,.howto,.note,.sheet{ display:none !important } .doc{ box-shadow:none; max-width:none; grid-template-columns:1fr } }
 </style></head><body>
 
+<div class="bar">
+  <span class="t">검토본 — 중입배치 MAP 아이디어 기획서
+    <small>정본은 HWP_제출원고.txt · 한글에 붙여넣을 파일은 한글용_원고.html</small></span>
+  <span class="cnt" id="cnt">0건</span>
+  <button id="prev" title="이전 검토로 이동">↑</button>
+  <button id="next" title="다음 검토로 이동">↓</button>
+  <button class="go" id="collect">검토 내용 모아보기</button>
+</div>
+
 <div class="howto">
-  <b>이 파일은 한글에 옮기기 위한 조판본입니다.</b> 정본은 <code>docs/proposal/HWP_제출원고.txt</code>입니다.
+  <b>본문 오른쪽 여백을 눌러 검토 의견을 적으세요.</b>
   <ol>
-    <li><b>한글로 옮기기</b> — 아래 흰 지면 안쪽을 마우스로 긁어 복사(Ctrl+C)한 뒤, 공고 첨부 양식 <code>04_[아이디어_기획서]…hwp</code>에 붙여넣기(Ctrl+V)합니다. <b>표와 그림이 그대로 따라갑니다.</b></li>
-    <li><b>분량 확인</b> — Ctrl+P → 대상을 'PDF로 저장', 용지 A4, 여백 '기본', 배율 100%, <b>'배경 그래픽' 체크</b>. 미리보기에 나오는 쪽수가 실제 분량입니다.</li>
-    <li>붙여넣은 뒤 한글에서 확인할 것 — 글꼴이 <b>함초롬바탕 10pt</b>인지, 줄간격 <b>160%</b>인지, 표가 본문 폭에 맞는지.</li>
-    <li><b>▶ 기호</b>는 진하게 처리한 문장이라 이미 굵게 나옵니다. <b>※</b>는 주석입니다. 기호 자체는 지우지 않아도 됩니다.</li>
+    <li>문단·표·그림마다 오른쪽에 <b>＋ 검토 의견</b> 칸이 있습니다. 눌러서 바로 적으면 됩니다.</li>
+    <li>필요하면 <b>수정 / 삭제 / 분량축소 / 확인필요</b> 꼬리표를 함께 누릅니다.</li>
+    <li>적는 즉시 브라우저에 저장됩니다. 창을 닫았다 다시 열어도 남아 있습니다.</li>
+    <li>다 적었으면 위의 <b>[검토 내용 모아보기]</b> → <b>[복사]</b> 를 눌러 그대로 붙여 주세요.</li>
   </ol>
 </div>
 
-<div class="page">
+<div class="doc" id="doc">
 <h1>Ⅰ. 참가 개요</h1>
 <h4>참가자(팀)명</h4>
 <p>다온이음 — 다름은 틀림이 아니라는 뜻의 '다온'과, 흩어진 정보와 사람을 잇는다는 '이음'을 합한 이름입니다.</p>
@@ -784,6 +789,234 @@ p.figbox img{ width: 100%; height: auto; display: block }
 <p>6. 데이터 확보 경로 (개발자 검토)</p>
 <p>「중입배치 MAP 활용 API 목록」(2026-09-18, 협업 개발자 작성). 원고 2절·3절이 필요로 하는 데이터의 확보 경로를 API 단위로 검토한 문서. 확보 경로는 3-1 【표 23】에, 공개돼 있으나 쓸 수 없는 것은 1-2 【표 11】에 정리했습니다. 검증 수준은 명세 확인이며, 키 발급·실호출·요금 확정은 2차 기간 V2입니다.</p>
 <p>이상.</p>
+</div><!-- /doc -->
 
+<div class="sheet" id="sheet">
+  <div class="card">
+    <div class="hd">
+      <b>검토 내용 모아보기</b>
+      <button id="copy" class="go">복사</button>
+      <button id="save">파일로 저장</button>
+      <button id="close">닫기</button>
+    </div>
+    <textarea id="out" spellcheck="false" readonly></textarea>
+    <div class="ft">이 내용을 그대로 붙여 주시면 한 번에 반영합니다. 원본 메모는 지워지지 않습니다.</div>
+  </div>
 </div>
+
+<script>
+(function(){
+  "use strict";
+  var KEY = "govtech-review-v1";
+  var TAGS = ["수정","삭제","분량축소","확인필요"];
+  var doc = document.getElementById("doc");
+
+  /* ── 저장소 (file:// 에서 막히는 브라우저가 있어 전부 감싼다) ── */
+  var mem = {};
+  function load(){
+    try { var r = localStorage.getItem(KEY); if(r) mem = JSON.parse(r) || {}; }
+    catch(e){ mem = {}; }
+  }
+  function save(){
+    try { localStorage.setItem(KEY, JSON.stringify(mem)); }
+    catch(e){ /* 저장 불가 — 화면의 내용은 그대로 살아 있다 */ }
+  }
+  load();
+
+  /* ── 블록 묶기 : 표제목+표, 그림+캡션은 한 덩어리로 ── */
+  var kids = Array.prototype.slice.call(doc.children);
+  var blocks = [], i = 0;
+  while(i < kids.length){
+    var el = kids[i], group = [el], j = i + 1;
+    if(el.className === "tcap" && kids[j] && kids[j].tagName === "TABLE"){ group.push(kids[j]); j++; }
+    else if(el.className === "figbox" && kids[j] && kids[j].className === "tcap"){ group.push(kids[j]); j++; }
+    blocks.push(group); i = j;
+  }
+
+  /* ── 텍스트 해시 : 원고를 고쳐도 다른 메모가 안 밀리도록 ── */
+  function hash(s){
+    var h = 5381;
+    for(var k = 0; k < s.length; k++){ h = ((h << 5) + h + s.charCodeAt(k)) | 0; }
+    return (h >>> 0).toString(36);
+  }
+  function textOf(group){
+    return group.map(function(e){ return e.textContent || ""; }).join(" ").replace(/\s+/g," ").trim();
+  }
+  function kindOf(group){
+    var t = group[0].tagName, c = group[0].className || "";
+    if(/^H[1-4]$/.test(t)) return "제목";
+    if(c === "tcap" && group.length > 1) return "표";
+    if(c === "figbox") return "그림";
+    if(c === "lead") return "강조문단";
+    if(c === "note") return "※ 주석";
+    if(c === "fn") return "각주";
+    if(/^li/.test(c)) return "항목";
+    if(t === "TABLE") return "표";
+    return "문단";
+  }
+
+  /* ── 화면 구성 ── */
+  var items = [];
+  blocks.forEach(function(group, idx){
+    var wrap = document.createElement("div");
+    wrap.className = "blk";
+    wrap.style.gridRow = String(idx + 1);
+    group.forEach(function(e){ wrap.appendChild(e); });
+    doc.appendChild(wrap);
+
+    var txt = textOf(group);
+    var id = hash(txt) + "-" + (txt.length % 97);
+    var cell = document.createElement("div");
+    cell.className = "note";
+    cell.style.gridRow = String(idx + 1);
+    doc.appendChild(cell);
+
+    var item = { id:id, wrap:wrap, cell:cell, kind:kindOf(group), text:txt, idx:idx };
+    items.push(item);
+    render(item);
+  });
+
+  function render(it){
+    var rec = mem[it.id];
+    it.cell.innerHTML = "";
+    it.wrap.classList.toggle("has", !!(rec && (rec.t || (rec.g && rec.g.length))));
+    if(!rec){
+      var add = document.createElement("button");
+      add.className = "add";
+      add.textContent = "＋ 검토 의견";
+      add.onclick = function(){ mem[it.id] = { t:"", g:[] }; save(); render(it); focus(it); };
+      it.cell.appendChild(add);
+      return;
+    }
+    var box = document.createElement("div");
+    box.className = "box";
+
+    var tags = document.createElement("div");
+    tags.className = "tags";
+    TAGS.forEach(function(name){
+      var b = document.createElement("button");
+      b.textContent = name;
+      if(rec.g && rec.g.indexOf(name) >= 0) b.className = "on";
+      b.onclick = function(){
+        rec.g = rec.g || [];
+        var at = rec.g.indexOf(name);
+        if(at >= 0) rec.g.splice(at, 1); else rec.g.push(name);
+        save(); render(it);
+      };
+      tags.appendChild(b);
+    });
+    box.appendChild(tags);
+
+    var ta = document.createElement("textarea");
+    ta.value = rec.t || "";
+    ta.placeholder = "무엇을 어떻게 고칠지 적어 주세요";
+    ta.oninput = function(){
+      rec.t = ta.value; save(); count();
+      it.wrap.classList.toggle("has", !!(rec.t || (rec.g && rec.g.length)));
+      ta.style.height = "auto"; ta.style.height = (ta.scrollHeight + 2) + "px";
+    };
+    box.appendChild(ta);
+
+    var del = document.createElement("button");
+    del.className = "del";
+    del.textContent = "이 검토 지우기";
+    del.onclick = function(){ delete mem[it.id]; save(); render(it); count(); };
+    box.appendChild(del);
+
+    it.cell.appendChild(box);
+    ta.style.height = "auto"; ta.style.height = (ta.scrollHeight + 2) + "px";
+  }
+  function focus(it){
+    var ta = it.cell.querySelector("textarea");
+    if(ta) ta.focus();
+  }
+
+  /* ── 건수 / 이동 ── */
+  function filled(){
+    return items.filter(function(it){
+      var r = mem[it.id];
+      return r && ((r.t && r.t.trim()) || (r.g && r.g.length));
+    });
+  }
+  function count(){ document.getElementById("cnt").textContent = filled().length + "건"; }
+  count();
+
+  var cursor = -1;
+  function jump(step){
+    var list = filled();
+    if(!list.length) return;
+    cursor = (cursor + step + list.length) % list.length;
+    list[cursor].wrap.scrollIntoView({ behavior:"smooth", block:"center" });
+  }
+  document.getElementById("next").onclick = function(){ jump(1); };
+  document.getElementById("prev").onclick = function(){ jump(-1); };
+
+  /* ── 모아보기 ── */
+  function heading(it){
+    for(var k = it.idx; k >= 0; k--){
+      if(items[k].kind === "제목") return items[k].text;
+    }
+    return "(머리말)";
+  }
+  function snip(s, n){ return s.length > n ? s.slice(0, n) + "…" : s; }
+
+  function build(){
+    var list = filled();
+    var today = new Date().toISOString().slice(0, 10);
+    var out = ["# 기획서 검토 의견 " + list.length + "건 — " + today, ""];
+    var last = null;
+    list.forEach(function(it){
+      var h = heading(it);
+      if(h !== last){ out.push("", "## " + h, ""); last = h; }
+      var r = mem[it.id];
+      var tag = (r.g && r.g.length) ? " [" + r.g.join("/") + "]" : "";
+      if(it.kind === "제목"){
+        out.push("**제목" + tag + "** — “" + snip(it.text, 60) + "”");
+      } else {
+        out.push("**" + it.kind + tag + "** — “" + snip(it.text, 90) + "”");
+      }
+      if(r.t && r.t.trim()) out.push("  → " + r.t.trim().replace(/\n/g, "\n    "));
+      out.push("");
+    });
+    if(!list.length) out.push("(아직 적은 검토 의견이 없습니다.)");
+    return out.join("\n");
+  }
+
+  var sheet = document.getElementById("sheet"), out = document.getElementById("out");
+  document.getElementById("collect").onclick = function(){
+    out.value = build(); sheet.classList.add("open");
+    out.readOnly = false; out.select();
+  };
+  document.getElementById("close").onclick = function(){ sheet.classList.remove("open"); };
+  sheet.onclick = function(e){ if(e.target === sheet) sheet.classList.remove("open"); };
+
+  document.getElementById("copy").onclick = function(){
+    out.select();
+    var ok = false;
+    try { ok = document.execCommand("copy"); } catch(e){}
+    if(!ok && navigator.clipboard){
+      navigator.clipboard.writeText(out.value).then(function(){ flash("복사했습니다"); });
+      return;
+    }
+    flash(ok ? "복사했습니다" : "복사가 막혔습니다 — 직접 긁어서 복사해 주세요");
+  };
+  document.getElementById("save").onclick = function(){
+    var blob = new Blob([out.value], { type:"text/markdown;charset=utf-8" });
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "검토의견_" + new Date().toISOString().slice(0, 10) + ".md";
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function(){ URL.revokeObjectURL(a.href); }, 1000);
+  };
+  function flash(msg){
+    var b = document.getElementById("copy"), old = b.textContent;
+    b.textContent = msg;
+    setTimeout(function(){ b.textContent = old; }, 1600);
+  }
+
+  document.addEventListener("keydown", function(e){
+    if(e.key === "Escape") sheet.classList.remove("open");
+  });
+})();
+</script>
 </body></html>

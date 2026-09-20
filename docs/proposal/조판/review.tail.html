@@ -1,0 +1,231 @@
+</div><!-- /doc -->
+
+<div class="sheet" id="sheet">
+  <div class="card">
+    <div class="hd">
+      <b>검토 내용 모아보기</b>
+      <button id="copy" class="go">복사</button>
+      <button id="save">파일로 저장</button>
+      <button id="close">닫기</button>
+    </div>
+    <textarea id="out" spellcheck="false" readonly></textarea>
+    <div class="ft">이 내용을 그대로 붙여 주시면 한 번에 반영합니다. 원본 메모는 지워지지 않습니다.</div>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var KEY = "govtech-review-v1";
+  var TAGS = ["수정","삭제","분량축소","확인필요"];
+  var doc = document.getElementById("doc");
+
+  /* ── 저장소 (file:// 에서 막히는 브라우저가 있어 전부 감싼다) ── */
+  var mem = {};
+  function load(){
+    try { var r = localStorage.getItem(KEY); if(r) mem = JSON.parse(r) || {}; }
+    catch(e){ mem = {}; }
+  }
+  function save(){
+    try { localStorage.setItem(KEY, JSON.stringify(mem)); }
+    catch(e){ /* 저장 불가 — 화면의 내용은 그대로 살아 있다 */ }
+  }
+  load();
+
+  /* ── 블록 묶기 : 표제목+표, 그림+캡션은 한 덩어리로 ── */
+  var kids = Array.prototype.slice.call(doc.children);
+  var blocks = [], i = 0;
+  while(i < kids.length){
+    var el = kids[i], group = [el], j = i + 1;
+    if(el.className === "tcap" && kids[j] && kids[j].tagName === "TABLE"){ group.push(kids[j]); j++; }
+    else if(el.className === "figbox" && kids[j] && kids[j].className === "tcap"){ group.push(kids[j]); j++; }
+    blocks.push(group); i = j;
+  }
+
+  /* ── 텍스트 해시 : 원고를 고쳐도 다른 메모가 안 밀리도록 ── */
+  function hash(s){
+    var h = 5381;
+    for(var k = 0; k < s.length; k++){ h = ((h << 5) + h + s.charCodeAt(k)) | 0; }
+    return (h >>> 0).toString(36);
+  }
+  function textOf(group){
+    return group.map(function(e){ return e.textContent || ""; }).join(" ").replace(/\s+/g," ").trim();
+  }
+  function kindOf(group){
+    var t = group[0].tagName, c = group[0].className || "";
+    if(/^H[1-4]$/.test(t)) return "제목";
+    if(c === "tcap" && group.length > 1) return "표";
+    if(c === "figbox") return "그림";
+    if(c === "lead") return "강조문단";
+    if(c === "note") return "※ 주석";
+    if(c === "fn") return "각주";
+    if(/^li/.test(c)) return "항목";
+    if(t === "TABLE") return "표";
+    return "문단";
+  }
+
+  /* ── 화면 구성 ── */
+  var items = [];
+  blocks.forEach(function(group, idx){
+    var wrap = document.createElement("div");
+    wrap.className = "blk";
+    wrap.style.gridRow = String(idx + 1);
+    group.forEach(function(e){ wrap.appendChild(e); });
+    doc.appendChild(wrap);
+
+    var txt = textOf(group);
+    var id = hash(txt) + "-" + (txt.length % 97);
+    var cell = document.createElement("div");
+    cell.className = "note";
+    cell.style.gridRow = String(idx + 1);
+    doc.appendChild(cell);
+
+    var item = { id:id, wrap:wrap, cell:cell, kind:kindOf(group), text:txt, idx:idx };
+    items.push(item);
+    render(item);
+  });
+
+  function render(it){
+    var rec = mem[it.id];
+    it.cell.innerHTML = "";
+    it.wrap.classList.toggle("has", !!(rec && (rec.t || (rec.g && rec.g.length))));
+    if(!rec){
+      var add = document.createElement("button");
+      add.className = "add";
+      add.textContent = "＋ 검토 의견";
+      add.onclick = function(){ mem[it.id] = { t:"", g:[] }; save(); render(it); focus(it); };
+      it.cell.appendChild(add);
+      return;
+    }
+    var box = document.createElement("div");
+    box.className = "box";
+
+    var tags = document.createElement("div");
+    tags.className = "tags";
+    TAGS.forEach(function(name){
+      var b = document.createElement("button");
+      b.textContent = name;
+      if(rec.g && rec.g.indexOf(name) >= 0) b.className = "on";
+      b.onclick = function(){
+        rec.g = rec.g || [];
+        var at = rec.g.indexOf(name);
+        if(at >= 0) rec.g.splice(at, 1); else rec.g.push(name);
+        save(); render(it);
+      };
+      tags.appendChild(b);
+    });
+    box.appendChild(tags);
+
+    var ta = document.createElement("textarea");
+    ta.value = rec.t || "";
+    ta.placeholder = "무엇을 어떻게 고칠지 적어 주세요";
+    ta.oninput = function(){
+      rec.t = ta.value; save(); count();
+      it.wrap.classList.toggle("has", !!(rec.t || (rec.g && rec.g.length)));
+      ta.style.height = "auto"; ta.style.height = (ta.scrollHeight + 2) + "px";
+    };
+    box.appendChild(ta);
+
+    var del = document.createElement("button");
+    del.className = "del";
+    del.textContent = "이 검토 지우기";
+    del.onclick = function(){ delete mem[it.id]; save(); render(it); count(); };
+    box.appendChild(del);
+
+    it.cell.appendChild(box);
+    ta.style.height = "auto"; ta.style.height = (ta.scrollHeight + 2) + "px";
+  }
+  function focus(it){
+    var ta = it.cell.querySelector("textarea");
+    if(ta) ta.focus();
+  }
+
+  /* ── 건수 / 이동 ── */
+  function filled(){
+    return items.filter(function(it){
+      var r = mem[it.id];
+      return r && ((r.t && r.t.trim()) || (r.g && r.g.length));
+    });
+  }
+  function count(){ document.getElementById("cnt").textContent = filled().length + "건"; }
+  count();
+
+  var cursor = -1;
+  function jump(step){
+    var list = filled();
+    if(!list.length) return;
+    cursor = (cursor + step + list.length) % list.length;
+    list[cursor].wrap.scrollIntoView({ behavior:"smooth", block:"center" });
+  }
+  document.getElementById("next").onclick = function(){ jump(1); };
+  document.getElementById("prev").onclick = function(){ jump(-1); };
+
+  /* ── 모아보기 ── */
+  function heading(it){
+    for(var k = it.idx; k >= 0; k--){
+      if(items[k].kind === "제목") return items[k].text;
+    }
+    return "(머리말)";
+  }
+  function snip(s, n){ return s.length > n ? s.slice(0, n) + "…" : s; }
+
+  function build(){
+    var list = filled();
+    var today = new Date().toISOString().slice(0, 10);
+    var out = ["# 기획서 검토 의견 " + list.length + "건 — " + today, ""];
+    var last = null;
+    list.forEach(function(it){
+      var h = heading(it);
+      if(h !== last){ out.push("", "## " + h, ""); last = h; }
+      var r = mem[it.id];
+      var tag = (r.g && r.g.length) ? " [" + r.g.join("/") + "]" : "";
+      if(it.kind === "제목"){
+        out.push("**제목" + tag + "** — “" + snip(it.text, 60) + "”");
+      } else {
+        out.push("**" + it.kind + tag + "** — “" + snip(it.text, 90) + "”");
+      }
+      if(r.t && r.t.trim()) out.push("  → " + r.t.trim().replace(/\n/g, "\n    "));
+      out.push("");
+    });
+    if(!list.length) out.push("(아직 적은 검토 의견이 없습니다.)");
+    return out.join("\n");
+  }
+
+  var sheet = document.getElementById("sheet"), out = document.getElementById("out");
+  document.getElementById("collect").onclick = function(){
+    out.value = build(); sheet.classList.add("open");
+    out.readOnly = false; out.select();
+  };
+  document.getElementById("close").onclick = function(){ sheet.classList.remove("open"); };
+  sheet.onclick = function(e){ if(e.target === sheet) sheet.classList.remove("open"); };
+
+  document.getElementById("copy").onclick = function(){
+    out.select();
+    var ok = false;
+    try { ok = document.execCommand("copy"); } catch(e){}
+    if(!ok && navigator.clipboard){
+      navigator.clipboard.writeText(out.value).then(function(){ flash("복사했습니다"); });
+      return;
+    }
+    flash(ok ? "복사했습니다" : "복사가 막혔습니다 — 직접 긁어서 복사해 주세요");
+  };
+  document.getElementById("save").onclick = function(){
+    var blob = new Blob([out.value], { type:"text/markdown;charset=utf-8" });
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "검토의견_" + new Date().toISOString().slice(0, 10) + ".md";
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function(){ URL.revokeObjectURL(a.href); }, 1000);
+  };
+  function flash(msg){
+    var b = document.getElementById("copy"), old = b.textContent;
+    b.textContent = msg;
+    setTimeout(function(){ b.textContent = old; }, 1600);
+  }
+
+  document.addEventListener("keydown", function(e){
+    if(e.key === "Escape") sheet.classList.remove("open");
+  });
+})();
+</script>
+</body></html>
